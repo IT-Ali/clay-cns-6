@@ -1,0 +1,18 @@
+{
+  "name": "clay-cns-6",
+  "version": "1.0.0",
+  "description": "Soft Clay - CNS examination part 6 of 11: motor system of the legs (inspection, tone, power)",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "preview": "node render.mjs preview",
+    "start": "node render.mjs final",
+    "solve": "node tools/solve.mjs",
+    "storyboard": "node tools/storyboard.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "5.2.0",
+    "playwright": "1.63.0",
+    "three": "0.187.0"
+  }
+}

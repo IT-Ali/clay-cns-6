@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CNS 6: Motor Legs</title>
+<link rel="stylesheet" href="vendor/fonts/fredoka.css">
+<style>
+  :root { --bg: #0d3a3d; --bar: #0a2c2e; --ink: #f8eedb; --accent: #f4ad08; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font: 500 14px "Fredoka", system-ui, sans-serif; overflow: hidden; }
+  #wrap { position: absolute; inset: 0 0 48px 0; display: flex; align-items: center; justify-content: center; }
+  canvas#c { width: 100%; height: 100%; object-fit: contain; display: block; }
+  #bar { position: absolute; left: 0; right: 0; bottom: 0; height: 48px; display: flex; gap: 10px; align-items: center; padding: 0 12px; background: var(--bar); box-sizing: border-box; }
+  #bar button { background: none; border: 1px solid #2f6b6f; color: var(--ink); border-radius: 8px; padding: 6px 10px; font: inherit; cursor: pointer; }
+  #bar input[type=range] { flex: 1; accent-color: var(--accent); }
+  #time { min-width: 108px; text-align: right; font-variant-numeric: tabular-nums; }
+  #msg { position: absolute; top: 12px; left: 12px; font-size: 16px; }
+  body.render #bar, body.render #msg { display: none; }
+  body.render #wrap { inset: 0; }
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="c" width="1920" height="1080"></canvas></div>
+<div id="msg">loading...</div>
+<div id="bar">
+  <button id="play">Play</button>
+  <input id="scrub" type="range" min="0" max="1000" value="0">
+  <span id="time">0.00 / 0.00</span>
+  <button id="snd">Sound: on</button>
+  <button id="cap">Captions: on</button>
+  <button id="loop">Loop: on</button>
+</div>
+<script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js" } }</script>
+<script type="module">
+  // URL options: ?render=1 (no UI; the renderer drives window.seek), samples=N, w=, h=, captions=0|1, lab=1 (no stage build)
+  import * as THREE from 'three';
+  window.THREE = THREE;
+  const q = new URLSearchParams(location.search);
+  if (q.get('render') === '1') document.body.classList.add('render');
+  if (q.has('captions')) window.CAPTIONS = q.get('captions') !== '0';
+  const load = (src) => new Promise((ok, bad) => { const s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = () => bad(new Error('cannot load ' + src)); document.head.appendChild(s); });
+  // the STAGE kit, TEXT3D, the SOUND kit, then shared/ in the README order (with the three v5 files), then this part
+  const SCRIPTS = ['lib/stage.js', 'lib/text3d.js', 'lib/sound.js',
+    'shared/clay.js', 'shared/set.js', 'shared/bed.js', 'shared/props.js', 'shared/hands.js', 'shared/patient.js', 'shared/sheet.js',
+    'shared/caption.js', 'shared/abdo.js', 'shared/home.js', 'shared/patient-neuro.js', 'shared/neuro.js', 'shared/neuro-props.js',
+    'part/contact.js', 'part/cns6-style.js'];
+  const msg = document.getElementById('msg');
+  try {
+    for (const s of SCRIPTS) await load(s + '?v=' + (q.get('v') || '1'));
+    // the solved poses (made once by `npm run solve`, never re-solved on the render machine)
+    if (q.get('solve') !== '1') {
+      const r = await fetch('solved.json?v=' + Date.now()).catch(() => null);
+      if (!r || !r.ok) throw new Error('solved.json is missing: run `npm run solve` on the build machine first');
+      window.SOLVED = await r.json();
+    }
+    window.SOLVE_MODE = q.get('solve') === '1';
+    const style = window.CNS6;
+    const canvas = document.getElementById('c');
+    const W = +(q.get('w') || 1920), H = +(q.get('h') || 1080);
+    canvas.width = W; canvas.height = H;
+    const samples = +(q.get('samples') || 3);
+    const S = await K.run(canvas, style, { samples, width: W, height: H });
+    window.S = S; window.STYLE = style; window.DURATION = style.duration;
+    window.seek = (t, n) => S.seek(t, n);
+    msg.textContent = '';
+    // ---- player
+    let t = 0, playing = false, last = 0, stopSound = null, soundOn = true, loop = true;
+    const scrub = document.getElementById('scrub'), time = document.getElementById('time'), playB = document.getElementById('play');
+    const show = () => { time.textContent = t.toFixed(2) + ' / ' + style.duration.toFixed(2); scrub.value = Math.round(t / style.duration * 1000); };
+    const stopS = () => { if (stopSound) { stopSound(); stopSound = null; } };
+    const startS = () => { stopS(); if (soundOn && playing) stopSound = SOUND.live((k) => style.sound(k), t, { voiceover: false }); };
+    const frame = (now) => {
+      if (playing) {
+        t += (now - last) / 1000; last = now;
+        if (t >= style.duration) { if (loop) { t = 0; startS(); } else { t = style.duration; playing = false; playB.textContent = 'Play'; stopS(); } }
+        S.seek(t, samples); show();
+      }
+      requestAnimationFrame(frame);
+    };
+    if (q.get('render') !== '1') {
+      playB.onclick = () => { playing = !playing; playB.textContent = playing ? 'Pause' : 'Play'; last = performance.now(); if (playing) startS(); else stopS(); };
+      scrub.oninput = () => { t = scrub.value / 1000 * style.duration; stopS(); S.seek(t, samples); show(); if (playing) startS(); };
+      document.getElementById('snd').onclick = (e) => { soundOn = !soundOn; e.target.textContent = 'Sound: ' + (soundOn ? 'on' : 'off'); if (soundOn) startS(); else stopS(); };
+      document.getElementById('cap').onclick = (e) => { window.CAPTIONS = !(window.CAPTIONS !== false); e.target.textContent = 'Captions: ' + (window.CAPTIONS ? 'on' : 'off'); S.seek(t, samples); };
+      document.getElementById('loop').onclick = (e) => { loop = !loop; e.target.textContent = 'Loop: ' + (loop ? 'on' : 'off'); };
+      S.seek(0, samples); show(); requestAnimationFrame(frame);
+    }
+    window.READY = true;
+  } catch (e) { msg.textContent = 'Error: ' + e.message; window.LOAD_ERROR = e.message + '\n' + (e.stack || ''); console.error(e); }
+</script>
+</body>
+</html>
