@@ -1,0 +1,30 @@
+{
+ "checked": "2026-11-20T23:02:11.790Z",
+ "renderer": "software WebGL (SwiftShader)",
+ "width": 480,
+ "height": 270,
+ "samples": 2,
+ "duration": 85,
+ "frames": 2550,
+ "lastFrameTime": 84.9667,
+ "firstVsLast": {
+  "differingPixels": 0,
+  "maxChannelDiff": 0,
+  "identical": true
+ },
+ "firstVsHoldEnd1s": {
+  "differingPixels": 0,
+  "maxChannelDiff": 0,
+  "identical": true
+ },
+ "firstVsHoldStartLast1s": {
+  "differingPixels": 0,
+  "maxChannelDiff": 0,
+  "identical": true
+ },
+ "firstVsFirstAgain": {
+  "differingPixels": 0,
+  "maxChannelDiff": 0,
+  "identical": true
+ }
+}

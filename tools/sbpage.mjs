@@ -21,7 +21,7 @@ M.assumptions = [
   "Knee extension: knee 60 degrees with the heel on the bed. The step does not say where the examiner's left hand goes, so it rests on his other knee (the usual technique), and the forearm runs under the bent knee, touching it (0.3 mm right, 0.07 mm left).",
   'Ankle: dorsiflexion +15 degrees, plantar flexion -20 degrees; for plantar flexion the leg pivots very slightly (hipFlex 0.4) so the heel does not sink into the bed.',
   'Power: the limb gives 2.5 mm in the direction of the examiner\'s push over 0.2 s and then holds. For hip extension it dips 2.5 mm and the hand does not rise.',
-  'Muscle firming (my own code, no added mesh): a smooth outward swell of the skin over the belly while he holds. Tibialis anterior 4.5 mm (a long ridge on the front of the shin), calf 4 mm, quadriceps above the knee 2.5 mm, hamstrings behind the knee 2 mm. It never swells down into the bed. Panel e shows before, during and the difference. If it reads as a lump to you, I will take it out.',
+  'Muscle firming (my own code, no added mesh): a smooth outward swell of the skin over the belly while he holds. Tibialis anterior 4.5 mm (a long ridge on the front of the shin), calf 4 mm, quadriceps above the knee 2.5 mm, hamstrings behind the knee 2 mm. It never swells down into the bed. Panel e shows before, during and the difference: the tibialis anterior ridge reads clearly; the calf change is barely visible because the calf lies on the bed. If either reads as a lump to you, or you want the calf firmer, tell me.',
   'Holds: the picture is still and has no caption; the quiet breathing goes on. The only speech is his silent "no" in beat 2 (visemes E-O-M, no sound).',
   'Breathing: 13.7 breaths a minute, exactly 19 breaths between the two home holds, so it starts and stops on the home phase with no jump.',
   'Pupils: 3.5 mm outside the home frames (shared README for the CNS video); the home frames use setFace({}) exactly as the README home code.',
@@ -37,7 +37,7 @@ M.assumptions = [
 for (const [a, b] of [['re_ta_before', 're_ta_during'], ['re_calf_before', 're_calf_during']]) {
   if (!P[a] || !P[b]) continue;
   const out = path.join(OUT, 'panels', b.replace('during', 'diff') + '.jpg');
-  spawnSync(FF, ['-hide_banner', '-loglevel', 'error', '-y', '-i', path.join(OUT, P[a].file), '-i', path.join(OUT, P[b].file), '-filter_complex', 'blend=all_mode=difference,lutrgb=r=val*8:g=val*8:b=val*8', '-q:v', '3', out]);
+  spawnSync(FF, ['-hide_banner', '-loglevel', 'error', '-y', '-i', path.join(OUT, P[a].file), '-i', path.join(OUT, P[b].file), '-filter_complex', "[0]format=gbrp[a];[1]format=gbrp[b];[a][b]blend=all_mode=difference,lutrgb=r='clip(val*8,0,255)':g='clip(val*8,0,255)':b='clip(val*8,0,255)',format=yuvj444p", '-q:v', '3', out]);
   P[b.replace('during', 'diff')] = { id: b.replace('during', 'diff'), group: 'e', kind: 'review', title: (b.includes('ta') ? 'Tibialis anterior' : 'Calf') + ': where the skin changed (difference before vs during, x8)', file: 'panels/' + path.basename(out) };
 }
 const capAt = (t) => (M.caps.find((c) => t >= c.t0 && t <= c.t1) || {}).text || '';

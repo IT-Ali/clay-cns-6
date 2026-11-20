@@ -1,6 +1,6 @@
 {
- "hash": "6bf47831",
- "version": "cns6-solve-v7",
+ "hash": "7df65730",
+ "version": "cns6-solve-v8",
  "made": "build machine",
  "legs": {
   "R": {
@@ -150,6 +150,11 @@
      "knee": 90,
      "ankle": -39.42150508838257,
      "hipFlex": 51.6713
+    },
+    "footFlatGive": {
+     "knee": 89.65,
+     "ankle": -39.42150508838257,
+     "hipFlex": 51.4663
     }
    },
    "measured": {
@@ -198,6 +203,12 @@
     "footFlat": {
      "heelMm": 5.37,
      "ballMm": 6.88,
+     "lowestLowerLegMm": 0.05,
+     "lowestAnyMm": -0.23
+    },
+    "footFlatGive": {
+     "heelMm": 5.3,
+     "ballMm": 7.21,
      "lowestLowerLegMm": 0.05,
      "lowestAnyMm": -0.23
     }
@@ -350,6 +361,11 @@
      "knee": 90,
      "ankle": -39.48183862218068,
      "hipFlex": 51.686
+    },
+    "footFlatGive": {
+     "knee": 89.65,
+     "ankle": -39.48183862218068,
+     "hipFlex": 51.4807
     }
    },
    "measured": {
@@ -398,6 +414,12 @@
     "footFlat": {
      "heelMm": 5.33,
      "ballMm": 6.83,
+     "lowestLowerLegMm": 0.05,
+     "lowestAnyMm": -0.81
+    },
+    "footFlatGive": {
+     "heelMm": 5.26,
+     "ballMm": 7.16,
      "lowestLowerLegMm": 0.05,
      "lowestAnyMm": -0.81
     }
@@ -1366,6 +1388,7 @@
   "R dorsiUp {\"ankle\":15,\"hipFlex\":0} mattress gaps (mm) {\"heelMm\":7.48,\"ballMm\":157.31,\"lowestLowerLegMm\":-5.33,\"lowestAnyMm\":-5.33}",
   "R plantarDown {\"ankle\":-20,\"hipFlex\":0.37} mattress gaps (mm) {\"heelMm\":-5.33,\"ballMm\":101,\"lowestLowerLegMm\":-5.33,\"lowestAnyMm\":-5.33}",
   "R footFlat {\"knee\":90,\"ankle\":-39.42,\"hipFlex\":51.67} mattress gaps (mm) {\"heelMm\":5.37,\"ballMm\":6.88,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.23}",
+  "R footFlatGive {\"knee\":89.65,\"ankle\":-39.42,\"hipFlex\":51.47} mattress gaps (mm) {\"heelMm\":5.3,\"ballMm\":7.21,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.23}",
   "L: rest lowest calf/heel -5.83 / 3.21 mm above the mattress (the shared home pose)",
   "L rest {} mattress gaps (mm) {\"heelMm\":3.21,\"ballMm\":139.58,\"lowestLowerLegMm\":-5.83,\"lowestAnyMm\":-5.83}",
   "L lift45 {\"knee\":45,\"hipFlex\":23.98} mattress gaps (mm) {\"heelMm\":0.05,\"ballMm\":104.53,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.45}",
@@ -1375,6 +1398,7 @@
   "L dorsiUp {\"ankle\":15,\"hipFlex\":0} mattress gaps (mm) {\"heelMm\":7.38,\"ballMm\":157.23,\"lowestLowerLegMm\":-5.83,\"lowestAnyMm\":-5.83}",
   "L plantarDown {\"ankle\":-20,\"hipFlex\":0.34} mattress gaps (mm) {\"heelMm\":-5.83,\"ballMm\":100.43,\"lowestLowerLegMm\":-5.83,\"lowestAnyMm\":-5.83}",
   "L footFlat {\"knee\":90,\"ankle\":-39.48,\"hipFlex\":51.69} mattress gaps (mm) {\"heelMm\":5.33,\"ballMm\":6.83,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.81}",
+  "L footFlatGive {\"knee\":89.65,\"ankle\":-39.48,\"hipFlex\":51.48} mattress gaps (mm) {\"heelMm\":5.26,\"ballMm\":7.16,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.81}",
   "tone_R vi 17304 gaps(mm) {\"palm\":0.611,\"index\":4.052,\"middle\":0.439,\"ring\":0.209,\"little\":0.06,\"thumb\":8.014,\"forearm\":22.391}",
   "knee_R vi 17162 gaps(mm) {\"palm\":0.071,\"index\":13.85,\"middle\":23.714,\"ring\":16.618,\"little\":1.639,\"thumb\":0.05,\"forearm\":11.076} slide lift 19.5",
   "hipflex_R vi 17112 gaps(mm) {\"palm\":0.139,\"index\":1.572,\"middle\":0.094,\"ring\":0.05,\"little\":0.11,\"thumb\":5.387,\"forearm\":15.069}",
@@ -1393,9 +1417,9 @@
   "kneeextAux_L vi 18072 gaps(mm) {\"palm\":0.05,\"index\":2.381,\"middle\":14.106,\"ring\":27.814,\"little\":28.853,\"thumb\":0.05,\"forearm\":27.443} forearm 0.069",
   "dorsi_L vi 42363 gaps(mm) {\"palm\":0.053,\"index\":34.606,\"middle\":36.124,\"ring\":20.596,\"little\":13.266,\"thumb\":0.4,\"forearm\":19.727}",
   "plantar_L vi 41640 gaps(mm) {\"palm\":0.05,\"index\":38.423,\"middle\":35.961,\"ring\":13.563,\"little\":0.727,\"thumb\":30.104,\"forearm\":22.509}",
-  "solved in 336.0 s"
+  "solved in 315.2 s"
  ],
- "ms": 336041,
+ "ms": 315157,
  "firm": {
   "Rquadriceps": 14904,
   "Rhamstrings": 15626,

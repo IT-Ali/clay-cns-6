@@ -128,7 +128,7 @@
         calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v7';
+      const SOLVE_VERSION = 'cns6-solve-v8';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
       const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
@@ -190,7 +190,9 @@
               const lowBall = legLow(side, 'BALL');
               st.ankle = K.clamp(st.ankle - (lowBall - T) * 30, -40, 20);
             }
-            st = settle(side, st, 'FOOT', T, 0, 80); ps.footFlat = st; }
+            st = settle(side, st, 'FOOT', T, 0, 80); ps.footFlat = st;
+            // the 2.5 mm give (the examiner draws the heel away): the knee opens a little, the foot stays flat on the bed
+            ps.footFlatGive = settle(side, Object.assign({}, st, { knee: st.knee - 0.35 }), 'FOOT', T, 0, 80); }
           L2.measured = {};
           for (const [k, st] of Object.entries(ps)) {
             P.setLeg(side, st);
@@ -332,7 +334,7 @@
         if (tq >= rs[0] && tq < bk[0]) {
           const g = giveAt(tq, rs);
           // knee extension: the knee gives with the heel still ON the bed (the lift table re-seats the heel)
-          st = test === 'kneeext' ? liftState(side, st.knee + GIVE.kneeext.knee * g) : addGive(st, test, g);
+          st = test === 'kneeext' ? liftState(side, st.knee + GIVE.kneeext.knee * g) : test === 'kneeflex' ? mix(pose(side, 'footFlat'), pose(side, 'footFlatGive'), g) : addGive(st, test, g);
         }
         return st;
       }
@@ -525,7 +527,7 @@
         insFeet: shot([12.2, 9.4, 5.2], [7.4, 7.2, 0.0], [7.5, 7.3, 0.4], 0.035),
         toneR: shot([5.4, 8.3, 14.0], [2.9, 7.0, 0.9], [2.5, 7.0, 1.0], 0.04),
         hipflexR: shot([3.6, 9.0, 14.6], [3.0, 7.8, 0.9], [2.6, 7.6, 1.0], 0.04),
-        hipextR: shot([5.4, 7.4, 10.4], [6.0, 6.8, 0.9], [6.9, 6.6, 1.0], 0.035),
+        hipextR: shot([7.8, 8.0, 10.8], [6.0, 6.9, 0.9], [6.9, 6.6, 1.0], 0.035),
         kneeflexR: shot([8.4, 8.6, 11.6], [3.9, 7.5, 0.9], [4.5, 6.9, 1.0], 0.04),
         kneeextR: shot([8.2, 8.9, 12.6], [3.6, 7.6, 0.6], [4.4, 7.4, 1.0], 0.04),
         dorsiR: shot([7.4, 7.9, 8.8], [6.2, 7.3, 0.9], [7.0, 7.4, 1.1], 0.03),
@@ -575,6 +577,7 @@
           P.breathe(still ? 0 : (tq - HOME_HOLD) * BREATH_K);
           root.NP = NEURO.points(P);
         }
+        EX.R.group.visible = EX.L.group.visible = !root.HIDE_EXAMINER;   // review panels only (never in the video)
         shootCam(root.CAM_OVERRIDE || camAt(t));
         L.set(still ? 0 : tq, root.CAM_OVERRIDE ? { shadowCenter: [3.6, 7.0, 0], shadowSize: 7.5 } : shadowFor(t));
         if (still) L.lamp.intensity = SET.LAMP.power;    // no flicker on the home shot (it must match the other parts)
@@ -613,7 +616,7 @@
       for (const [test, W] of Object.entries(POWER)) {
         const mv = W.move;
         if (test === 'kneeflex' || test === 'kneeext') { rustle(mv[0], mv[1] - mv[0] + 0.1, 1, R); rustle(W.back[0], W.back[1] - W.back[0], 0.9, R); rustle(W.backL[0], W.backL[1] - W.backL[0], 0.9, Lp); }
-        else if (test === 'hipflex' || test === 'hipext') { rustle(test === 'hipext' ? W.slide[0] : mv[0], 0.35, 0.7, R); rustle(W.back[1] - 0.25, 0.3, 0.7, R); rustle(W.backL[1] - 0.25, 0.3, 0.7, Lp); }
+        else if (test === 'hipflex' || test === 'hipext') { rustle(test === 'hipext' ? W.heelUp[0] : mv[0], 0.35, 0.7, R); rustle(W.back[1] - 0.25, 0.3, 0.7, R); rustle(W.backL[1] - 0.25, 0.3, 0.7, Lp); }
         else { rustle(mv ? mv[0] : W.move[0], 0.22, 0.4, R); }
       }
     },

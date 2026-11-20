@@ -52,15 +52,15 @@ const BEAT = [
 // review panels: { id, group, t, title, cam ('contact:<id>' close side view | 'plan' | object), gaps: [contactId], heel: side, firmOff }
 const REV = [{ id: 'ra_plan', group: 'a', t: 2.0, title: 'Plan: his RIGHT and LEFT, the examiner on his right, and where the examiner stands for the left-side tests', cam: 'plan' }];
 const TONE = [['15.6', 'R', 'roll out (hipRot +25)', 'tone_R'], ['16.6', 'R', 'roll in (hipRot -25)', 'tone_R'], ['20.5', 'R', 'knee lift, highest point', 'knee_R'], ['25.8', 'L', 'roll out (hipRot +25)', 'tone_L'], ['26.8', 'L', 'roll in (hipRot -25)', 'tone_L'], ['30.7', 'L', 'knee lift, highest point', 'knee_L']];
-for (const [t, s, what, c] of TONE) REV.push({ id: `rb_${c}_${t}`, group: 'b', t: +t, title: `Tone, ${s === 'R' ? 'right' : 'left'} leg: ${what}`, cam: 'contact:' + c, gaps: [c], heel: what.startsWith('knee') ? s : null });
+for (const [t, s, what, c] of TONE) REV.push({ id: `rb_${c}_${t}`, group: 'b', t: +t, title: `Tone, ${s === 'R' ? 'right' : 'left'} leg: ${what}` + (what.startsWith('knee') ? ' (the scheduled shot: the whole leg and the heel)' : ''), cam: what.startsWith('knee') ? null : 'contact:' + c, gaps: [c], heel: what.startsWith('knee') ? s : null });
 const POW = [['hipflex', 37.5, 40.3, 'Hip flexion: palm on the front of the thigh just above the knee'], ['hipext', 45.5, 48.3, 'Hip extension: palm under the heel, heel 5 cm up'], ['kneeflex', 53.5, 56.3, 'Knee flexion: palm cupping the back of the heel, foot flat'], ['kneeext', 62.0, 64.6, 'Knee extension: palm on the lower shin; the knee over the other forearm'], ['dorsi', 69.3, 71.7, 'Ankle dorsiflexion: palm on the top of the foot'], ['plantar', 77.0, 79.3, 'Plantar flexion: palm on the ball of the foot']];
 for (const [c, tr, tl, title] of POW) for (const [s, t] of [['R', tr], ['L', tl]]) REV.push({ id: `rc_${c}_${s}`, group: 'c', t, title: `${title} (${s === 'R' ? 'right' : 'left'})`, cam: 'contact:' + c + '_' + s, gaps: c === 'kneeext' ? [c + '_' + s, 'kneeextAux_' + s] : [c + '_' + s], heel: ['kneeflex', 'kneeext'].includes(c) ? s : null });
-REV.push({ id: 'rd_cuff_R', group: 'd', t: 53.5, title: 'Trouser cuff, right knee at its most bent (knee 90, foot flat)', cam: { knee: 'R' } });
-REV.push({ id: 'rd_cuff_L', group: 'd', t: 56.3, title: 'Trouser cuff, left knee at its most bent (knee 90, foot flat)', cam: { knee: 'L' } });
-REV.push({ id: 're_ta_before', group: 'e', t: 69.5, title: 'Tibialis anterior, foot pulled up: before (no firming)', cam: { pos: [4.6, 8.4, 6.8], target: [4.9, 7.0, 1.1], fov: 28, focus: [4.2, 7.0, 1.3], aperture: 0 }, firmOff: true, noCaption: true });
-REV.push({ id: 're_ta_during', group: 'e', t: 69.5, title: 'Tibialis anterior: during the resistance (stands out on the front of the shin)', cam: { pos: [4.6, 8.4, 6.8], target: [4.9, 7.0, 1.1], fov: 28, focus: [4.2, 7.0, 1.3], aperture: 0 }, noCaption: true, diffWith: 're_ta_before' });
-REV.push({ id: 're_calf_before', group: 'e', t: 77.0, title: 'Calf, foot pushed down: before (no firming)', cam: { pos: [3.7, 6.7, 6.6], target: [3.7, 6.35, 0.9], fov: 28, focus: [3.6, 6.2, 1.0], aperture: 0 }, firmOff: true, noCaption: true });
-REV.push({ id: 're_calf_during', group: 'e', t: 77.0, title: 'Calf: during the resistance (firms)', cam: { pos: [3.7, 6.7, 6.6], target: [3.7, 6.35, 0.9], fov: 28, focus: [3.6, 6.2, 1.0], aperture: 0 }, noCaption: true, diffWith: 're_calf_before' });
+REV.push({ id: 'rd_cuff_R', group: 'd', t: 53.5, title: 'Trouser cuffs, right knee at its most bent (knee 90, foot flat); examiner hidden for this review view only', cam: { pos: [3.6, 11.6, 9.2], target: [0.9, 7.6, 0.0], fov: 28, focus: [1.2, 8.0, 0.6], aperture: 0 }, hideEx: true, noCaption: true });
+REV.push({ id: 'rd_cuff_L', group: 'd', t: 56.3, title: 'Trouser cuffs, left knee at its most bent (knee 90, foot flat); examiner hidden for this review view only', cam: { pos: [3.6, 11.6, -9.2], target: [0.9, 7.6, 0.0], fov: 28, focus: [1.2, 8.0, -0.6], aperture: 0 }, hideEx: true, noCaption: true });
+REV.push({ id: 're_ta_before', group: 'e', t: 69.5, title: 'Tibialis anterior, foot pulled up: before (no firming)', cam: { pos: [9.2, 8.9, 3.4], target: [4.0, 7.0, 1.25], fov: 28, focus: [4.0, 7.0, 1.3], aperture: 0 }, firmOff: true, noCaption: true, hideEx: true });
+REV.push({ id: 're_ta_during', group: 'e', t: 69.5, title: 'Tibialis anterior: during the resistance (stands out on the front of the shin)', cam: { pos: [9.2, 8.9, 3.4], target: [4.0, 7.0, 1.25], fov: 28, focus: [4.0, 7.0, 1.3], aperture: 0 }, noCaption: true, hideEx: true, diffWith: 're_ta_before' });
+REV.push({ id: 're_calf_before', group: 'e', t: 77.0, title: 'Calf, foot pushed down: before (no firming)', cam: { pos: [3.4, 6.35, 5.2], target: [3.6, 6.3, 0.9], fov: 28, focus: [3.6, 6.25, 1.3], aperture: 0 }, firmOff: true, noCaption: true, hideEx: true });
+REV.push({ id: 're_calf_during', group: 'e', t: 77.0, title: 'Calf: during the resistance (firms)', cam: { pos: [3.4, 6.35, 5.2], target: [3.6, 6.3, 0.9], fov: 28, focus: [3.6, 6.25, 1.3], aperture: 0 }, noCaption: true, hideEx: true, diffWith: 're_calf_before' });
 
 const { srv, url } = await serve();
 const browser = await launch({ gpu: false });
@@ -77,7 +77,7 @@ try {
     const t0 = Date.now();
     const r = await page.evaluate(({ p, n, W, H }) => {
       const Wd = window.WORLD, P = Wd.P, V = (x, y, z) => new THREE.Vector3(x, y, z);
-      window.FIRM_OFF = !!p.firmOff; window.CAPTIONS = !(p.noCaption || p.kind === 'review');
+      window.FIRM_OFF = !!p.firmOff; window.HIDE_EXAMINER = !!p.hideEx; window.CAPTIONS = !(p.noCaption || p.kind === 'review');
       // the camera: the scheduled shot (beat panels) or a review camera
       window.CAM_OVERRIDE = null; window.CAM_OVERRIDE_CHANGED = true; window.FORCE_POSE = true;
       Wd.update(p.t + 1e-7);                                   // pose the frame (the exact pose of time t: same pose clock)
@@ -99,7 +99,7 @@ try {
       const c2 = document.createElement('canvas'); c2.width = W; c2.height = H; const x = c2.getContext('2d'); x.drawImage(cv, 0, 0);
       const scr = (v) => { const q = v.clone().project(Wd.S.camera); return [(q.x + 1) / 2 * W, (1 - q.y) / 2 * H]; };
       const boxes = [];
-      const label = (txt, X, Y, col = '#fff7c2') => { x.font = '600 15px Fredoka, sans-serif'; const w = x.measureText(txt).width + 10; X = Math.min(X, W - w - 4); for (let k = 0; k < 20 && boxes.some((b) => X < b[0] + b[2] && X + w > b[0] && Y - 15 < b[1] + 23 && Y + 8 > b[1]); k++) Y += 23; boxes.push([X, Y - 15, w]); x.fillStyle = 'rgba(10,30,32,0.82)'; x.fillRect(X, Y - 15, w, 21); x.fillStyle = col; x.fillText(txt, X + 5, Y + 1); };
+      const label = (txt, X, Y, col = '#fff7c2') => { x.font = '600 15px Fredoka, sans-serif'; const w = x.measureText(txt).width + 10; X = Math.max(4, Math.min(X, W - w - 4)); for (let k = 0; k < 20 && boxes.some((b) => X < b[0] + b[2] && X + w > b[0] && Y - 15 < b[1] + 23 && Y + 8 > b[1]); k++) Y += 23; boxes.push([X, Y - 15, w]); x.fillStyle = 'rgba(10,30,32,0.82)'; x.fillRect(X, Y - 15, w, 21); x.fillStyle = col; x.fillText(txt, X + 5, Y + 1); };
       const arrow = (a, b, col) => { const [x1, y1] = scr(a), [x2, y2] = scr(b); x.strokeStyle = col; x.fillStyle = col; x.lineWidth = 2; x.beginPath(); x.moveTo(x1, y1); x.lineTo(x2, y2); x.stroke(); x.beginPath(); x.arc(x2, y2, 3.2, 0, 7); x.fill(); x.beginPath(); x.arc(x1, y1, 2.2, 0, 7); x.fill(); return [x1, y1]; };
       let ly = 26;
       if (p.gaps) for (const id of p.gaps) {

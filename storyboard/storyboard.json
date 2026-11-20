@@ -1,0 +1,2927 @@
+{
+ "panels": {
+  "b01a": {
+   "kind": "beat",
+   "id": "b01a",
+   "beat": 1,
+   "t": 0,
+   "what": "The CNS home shot, held still for 1 s (no breathing, no lamp flicker): reclined at 45 degrees on one pillow, trousers rolled above the knees, sheet folded at the foot, arms resting, the gloved hands resting flat at his right side.",
+   "camera": "SET.HOME_CNS, still 0-1.0 s",
+   "sound": "Room ambience fades in over 0.5 s",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b01a.jpg",
+   "samples": 16
+  },
+  "b01b": {
+   "kind": "beat",
+   "id": "b01b",
+   "beat": 1,
+   "t": 4.6,
+   "what": "A slow push-in toward both legs; his face stays in frame for the question in beat 2.",
+   "camera": "One continuous dolly from the home shot to \"overview\" (1.0-4.6 s)",
+   "sound": "Room ambience",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b01b.jpg",
+   "samples": 16
+  },
+  "b02a": {
+   "kind": "beat",
+   "id": "b02a",
+   "beat": 2,
+   "t": 5.9,
+   "what": "HOLD 5.0-6.5 s (the examiner asks about pain in the hips, knees or legs). He answers \"no\": silent visemes E-O-M at 5.85-6.45 s, no sound. No caption.",
+   "camera": "\"overview\", still",
+   "sound": "None (speech added later)",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b02a.jpg",
+   "samples": 16
+  },
+  "b02b": {
+   "kind": "beat",
+   "id": "b02b",
+   "beat": 2,
+   "t": 9.5,
+   "what": "The camera travels slowly along both legs: above the knees, the knees, the shins, the calves, the feet. Hands at rest.",
+   "camera": "One continuous move 6.5-12.7 s: insThigh, insKnee, insShin, insCalf, insFeet",
+   "sound": "Room ambience",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b02b.jpg",
+   "samples": 16
+  },
+  "b02c": {
+   "kind": "beat",
+   "id": "b02c",
+   "beat": 2,
+   "t": 12.7,
+   "what": "The feet, both lying the same way.",
+   "camera": "insFeet",
+   "sound": "Room ambience",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b02c.jpg",
+   "samples": 16
+  },
+  "b03a": {
+   "kind": "beat",
+   "id": "b03a",
+   "beat": 3,
+   "t": 13.7,
+   "what": "HOLD 13.0-14.5 s (the examiner asks him to let his legs go floppy). No caption.",
+   "camera": "Hard cut to \"toneR\": from his right side, low, at knee height, the whole leg",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b03a.jpg",
+   "samples": 16
+  },
+  "b03b": {
+   "kind": "beat",
+   "id": "b03b",
+   "beat": 3,
+   "t": 15.6,
+   "what": "The examiner's right palm on the front of the lower thigh and knee rolls the leg: externally rotated (hipRot +25), the foot flops out.",
+   "camera": "toneR, still",
+   "sound": "Soft mattress rustle on each turn",
+   "legs": {
+    "R": {
+     "hipFlex": 0.4393,
+     "hipAbd": 0,
+     "hipRot": 25,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": -5.594489714435975,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b03b.jpg",
+   "samples": 16
+  },
+  "b03c": {
+   "kind": "beat",
+   "id": "b03c",
+   "beat": 3,
+   "t": 16.6,
+   "what": "Rolled in (hipRot -25), the foot flops in; twice in all (15.1-19.1 s).",
+   "camera": "toneR",
+   "sound": "Soft rustle",
+   "legs": {
+    "R": {
+     "hipFlex": -1.0996,
+     "hipAbd": 0,
+     "hipRot": -25,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 5.594489714436005,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b03c.jpg",
+   "samples": 16
+  },
+  "b03d": {
+   "kind": "beat",
+   "id": "b03d",
+   "beat": 3,
+   "t": 20.5,
+   "what": "The hand slides under the knee (palm up), lifts it briskly (knee 20 -> 45 degrees in 0.4 s, about 15 cm): the heel slides up the bed and stays on it; then lowered gently.",
+   "camera": "toneR",
+   "sound": "Rustle of the heel sliding",
+   "legs": {
+    "R": {
+     "hipFlex": 23.9745,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 45,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b03d.jpg",
+   "samples": 16
+  },
+  "b04a": {
+   "kind": "beat",
+   "id": "b04a",
+   "beat": 4,
+   "t": 26.3,
+   "what": "Hard cut to his LEFT (the examiner has walked round): the same roll of the left leg.",
+   "camera": "\"toneL\": from his left side, across the bed",
+   "sound": "Soft rustles",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0.07573087163741865,
+     "hipAbd": 0,
+     "hipRot": 2.613211581691465,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": -7.596105278317983,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b04a.jpg",
+   "samples": 16
+  },
+  "b04b": {
+   "kind": "beat",
+   "id": "b04b",
+   "beat": 4,
+   "t": 30.7,
+   "what": "The left knee lifted briskly, the heel sliding on the bed; lowered; then a hard cut back to his right side (33.6 s).",
+   "camera": "toneL, then a cut to hipflexR",
+   "sound": "Rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 23.9794,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 45,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b04b.jpg",
+   "samples": 16
+  },
+  "b05a": {
+   "kind": "beat",
+   "id": "b05a",
+   "beat": 5,
+   "t": 34.7,
+   "what": "HOLD 34.0-35.5 s (instruction). No caption.",
+   "camera": "hipflexR: from his right side at bed height",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b05a.jpg",
+   "samples": 16
+  },
+  "b05b": {
+   "kind": "beat",
+   "id": "b05b",
+   "beat": 5,
+   "t": 37.5,
+   "what": "He lifts his straight right leg about 30 cm (hipFlex 21); the examiner's palm presses down just above the knee; he holds (the leg gives 2.5 mm, then holds).",
+   "camera": "hipflexR",
+   "sound": "Rustle as the leg lifts",
+   "legs": {
+    "R": {
+     "hipFlex": 20.6,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b05b.jpg",
+   "samples": 16
+  },
+  "b05c": {
+   "kind": "beat",
+   "id": "b05c",
+   "beat": 5,
+   "t": 40.3,
+   "what": "Hard cut to his LEFT: the same.",
+   "camera": "hipflexL",
+   "sound": "Rustle as the leg is lowered",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 20.6,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b05c.jpg",
+   "samples": 16
+  },
+  "b06a": {
+   "kind": "beat",
+   "id": "b06a",
+   "beat": 6,
+   "t": 42.7,
+   "what": "HOLD 42.0-43.5 s. No caption.",
+   "camera": "hipextR: from his right side, low",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b06a.jpg",
+   "samples": 16
+  },
+  "b06b": {
+   "kind": "beat",
+   "id": "b06b",
+   "beat": 6,
+   "t": 45.5,
+   "what": "The examiner's palm under his right heel lifts it 5 cm; he pushes down into the hand and holds (the hand does not rise).",
+   "camera": "hipextR",
+   "sound": "Rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 3.1116,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b06b.jpg",
+   "samples": 16
+  },
+  "b06c": {
+   "kind": "beat",
+   "id": "b06c",
+   "beat": 6,
+   "t": 48.3,
+   "what": "Hard cut to his LEFT: the same.",
+   "camera": "hipextL",
+   "sound": "Rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 3.1187,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b06c.jpg",
+   "samples": 16
+  },
+  "b07a": {
+   "kind": "beat",
+   "id": "b07a",
+   "beat": 7,
+   "t": 50.7,
+   "what": "HOLD 50.0-51.5 s. No caption.",
+   "camera": "kneeflexR: from his right side",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b07a.jpg",
+   "samples": 16
+  },
+  "b07b": {
+   "kind": "beat",
+   "id": "b07b",
+   "beat": 7,
+   "t": 53.5,
+   "what": "Knee bent, foot flat on the bed; the palm cups the back of the heel; he pulls the heel in and holds (the hamstrings firm).",
+   "camera": "kneeflexR",
+   "sound": "Rustle as the heel slides up",
+   "legs": {
+    "R": {
+     "hipFlex": 51.4663,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 89.65,
+     "ankle": -39.42150508838257,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b07b.jpg",
+   "samples": 16
+  },
+  "b07c": {
+   "kind": "beat",
+   "id": "b07c",
+   "beat": 7,
+   "t": 56.3,
+   "what": "Hard cut to his LEFT: the same.",
+   "camera": "kneeflexL",
+   "sound": "Rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 51.4807,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 89.65,
+     "ankle": -39.48183862218068,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b07c.jpg",
+   "samples": 16
+  },
+  "b08a": {
+   "kind": "beat",
+   "id": "b08a",
+   "beat": 8,
+   "t": 58.7,
+   "what": "HOLD 58.0-59.5 s. No caption.",
+   "camera": "kneeextR: from his right side",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b08a.jpg",
+   "samples": 16
+  },
+  "b08b": {
+   "kind": "beat",
+   "id": "b08b",
+   "beat": 8,
+   "t": 62,
+   "what": "Knee bent 60 degrees over the examiner's left forearm (heel on the bed); the right palm on the lower shin; he straightens against it and holds (the quadriceps firms).",
+   "camera": "kneeextR",
+   "sound": "Rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 32.3508408,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 60.42,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b08b.jpg",
+   "samples": 16
+  },
+  "b08c": {
+   "kind": "beat",
+   "id": "b08c",
+   "beat": 8,
+   "t": 64.6,
+   "what": "Hard cut to his LEFT: the same.",
+   "camera": "kneeextL",
+   "sound": "Rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 32.3553408,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 60.42,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b08c.jpg",
+   "samples": 16
+  },
+  "b09a": {
+   "kind": "beat",
+   "id": "b09a",
+   "beat": 9,
+   "t": 66.7,
+   "what": "HOLD 66.0-67.5 s. No caption.",
+   "camera": "dorsiR: from his right side at foot height",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b09a.jpg",
+   "samples": 16
+  },
+  "b09b": {
+   "kind": "beat",
+   "id": "b09b",
+   "beat": 9,
+   "t": 69.3,
+   "what": "He pulls the foot up (ankle +15); the palm presses down on the top of the foot; he holds (tibialis anterior stands out).",
+   "camera": "dorsiR",
+   "sound": "Very soft rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b09b.jpg",
+   "samples": 16
+  },
+  "b09c": {
+   "kind": "beat",
+   "id": "b09c",
+   "beat": 9,
+   "t": 71.7,
+   "what": "Hard cut to his LEFT: the same.",
+   "camera": "dorsiL",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b09c.jpg",
+   "samples": 16
+  },
+  "b10a": {
+   "kind": "beat",
+   "id": "b10a",
+   "beat": 10,
+   "t": 74.2,
+   "what": "HOLD 73.5-75.0 s. No caption.",
+   "camera": "plantarR: from his right side at foot height",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b10a.jpg",
+   "samples": 16
+  },
+  "b10b": {
+   "kind": "beat",
+   "id": "b10b",
+   "beat": 10,
+   "t": 77,
+   "what": "The palm flat on the ball of the foot; he pushes down like a pedal (ankle -20) and holds (the calf firms).",
+   "camera": "plantarR",
+   "sound": "Very soft rustle",
+   "legs": {
+    "R": {
+     "hipFlex": 0.3653,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -19,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b10b.jpg",
+   "samples": 16
+  },
+  "b10c": {
+   "kind": "beat",
+   "id": "b10c",
+   "beat": 10,
+   "t": 79.3,
+   "what": "Hard cut to his LEFT: the same; then a hard cut back to his right side (81.0 s).",
+   "camera": "plantarL",
+   "sound": "None",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0.3373,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -19,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b10c.jpg",
+   "samples": 16
+  },
+  "b11a": {
+   "kind": "beat",
+   "id": "b11a",
+   "beat": 11,
+   "t": 82.6,
+   "what": "Both legs straight, the hands at rest; the camera pulls back.",
+   "camera": "One continuous move plantarR -> home (81.3-84.0 s)",
+   "sound": "Room ambience",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b11a.jpg",
+   "samples": 16
+  },
+  "b11b": {
+   "kind": "beat",
+   "id": "b11b",
+   "beat": 11,
+   "t": 84.98,
+   "what": "The CNS home shot, held still for the last second: pixel-identical to the first frame.",
+   "camera": "SET.HOME_CNS, still 84.0-85.0 s",
+   "sound": "Room ambience fades out over the last 0.5 s",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/b11b.jpg",
+   "samples": 16
+  },
+  "ra_plan": {
+   "kind": "review",
+   "id": "ra_plan",
+   "group": "a",
+   "t": 2,
+   "title": "Plan: his RIGHT and LEFT, the examiner on his right, and where the examiner stands for the left-side tests",
+   "cam": "plan",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "check": {
+    "R_z": 0.99,
+    "L_z": -0.99
+   },
+   "file": "panels/ra_plan.jpg",
+   "samples": 8
+  },
+  "rb_tone_R_15.6": {
+   "kind": "review",
+   "id": "rb_tone_R_15.6",
+   "group": "b",
+   "t": 15.6,
+   "title": "Tone, right leg: roll out (hipRot +25)",
+   "cam": "contact:tone_R",
+   "gaps": {
+    "tone_R": {
+     "palm": {
+      "mm": 0.61,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 4.05,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 0.44,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 0.21,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 0.06,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 8.01,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 23.07,
+      "leg": "R"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0.4393,
+     "hipAbd": 0,
+     "hipRot": 25,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": -5.594489714435975,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rb_tone_R_15.6.jpg",
+   "samples": 8
+  },
+  "rb_tone_R_16.6": {
+   "kind": "review",
+   "id": "rb_tone_R_16.6",
+   "group": "b",
+   "t": 16.6,
+   "title": "Tone, right leg: roll in (hipRot -25)",
+   "cam": "contact:tone_R",
+   "gaps": {
+    "tone_R": {
+     "palm": {
+      "mm": 0.61,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 4.05,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 0.44,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 0.21,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 0.06,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 8.01,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 17.37,
+      "leg": "R"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": -1.0996,
+     "hipAbd": 0,
+     "hipRot": -25,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 5.594489714436005,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rb_tone_R_16.6.jpg",
+   "samples": 8
+  },
+  "rb_knee_R_20.5": {
+   "kind": "review",
+   "id": "rb_knee_R_20.5",
+   "group": "b",
+   "t": 20.5,
+   "title": "Tone, right leg: knee lift, highest point (the scheduled shot: the whole leg and the heel)",
+   "cam": null,
+   "gaps": {
+    "knee_R": {
+     "palm": {
+      "mm": 0.07,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 13.85,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 23.71,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 16.62,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 1.64,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 11.08,
+      "leg": "R"
+     }
+    },
+    "heelMattress": 0.05
+   },
+   "heel": "R",
+   "legs": {
+    "R": {
+     "hipFlex": 23.9745,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 45,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rb_knee_R_20.5.jpg",
+   "samples": 8
+  },
+  "rb_tone_L_25.8": {
+   "kind": "review",
+   "id": "rb_tone_L_25.8",
+   "group": "b",
+   "t": 25.8,
+   "title": "Tone, left leg: roll out (hipRot +25)",
+   "cam": "contact:tone_L",
+   "gaps": {
+    "tone_L": {
+     "palm": {
+      "mm": 0.61,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 4.05,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 0.44,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 0.21,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 0.06,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 8.01,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 27.77,
+      "leg": "L"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0.4333,
+     "hipAbd": 0,
+     "hipRot": 25,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": -5.59448971443598,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rb_tone_L_25.8.jpg",
+   "samples": 8
+  },
+  "rb_tone_L_26.8": {
+   "kind": "review",
+   "id": "rb_tone_L_26.8",
+   "group": "b",
+   "t": 26.8,
+   "title": "Tone, left leg: roll in (hipRot -25)",
+   "cam": "contact:tone_L",
+   "gaps": {
+    "tone_L": {
+     "palm": {
+      "mm": 0.61,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 4.05,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 0.44,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 0.21,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 0.06,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 8.01,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 17.84,
+      "leg": "L"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": -1.0946,
+     "hipAbd": 0,
+     "hipRot": -25,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 5.59448971443598,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rb_tone_L_26.8.jpg",
+   "samples": 8
+  },
+  "rb_knee_L_30.7": {
+   "kind": "review",
+   "id": "rb_knee_L_30.7",
+   "group": "b",
+   "t": 30.7,
+   "title": "Tone, left leg: knee lift, highest point (the scheduled shot: the whole leg and the heel)",
+   "cam": null,
+   "gaps": {
+    "knee_L": {
+     "palm": {
+      "mm": 0.07,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 13.85,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 23.71,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 16.62,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 1.64,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 11.66,
+      "leg": "L"
+     }
+    },
+    "heelMattress": 0.05
+   },
+   "heel": "L",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 23.9794,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 45,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rb_knee_L_30.7.jpg",
+   "samples": 8
+  },
+  "rc_hipflex_R": {
+   "kind": "review",
+   "id": "rc_hipflex_R",
+   "group": "c",
+   "t": 37.5,
+   "title": "Hip flexion: palm on the front of the thigh just above the knee (right)",
+   "cam": "contact:hipflex_R",
+   "gaps": {
+    "hipflex_R": {
+     "palm": {
+      "mm": 0.14,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 1.57,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 0.09,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 0.11,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 5.39,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 14.98,
+      "leg": "R"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 20.6,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_hipflex_R.jpg",
+   "samples": 8
+  },
+  "rc_hipflex_L": {
+   "kind": "review",
+   "id": "rc_hipflex_L",
+   "group": "c",
+   "t": 40.3,
+   "title": "Hip flexion: palm on the front of the thigh just above the knee (left)",
+   "cam": "contact:hipflex_L",
+   "gaps": {
+    "hipflex_L": {
+     "palm": {
+      "mm": 0.14,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 1.57,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 0.09,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 0.11,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 5.39,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 15.34,
+      "leg": "L"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 20.6,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_hipflex_L.jpg",
+   "samples": 8
+  },
+  "rc_hipext_R": {
+   "kind": "review",
+   "id": "rc_hipext_R",
+   "group": "c",
+   "t": 45.5,
+   "title": "Hip extension: palm under the heel, heel 5 cm up (right)",
+   "cam": "contact:hipext_R",
+   "gaps": {
+    "hipext_R": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 3.89,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 1.73,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 13.28,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 18.89,
+      "leg": "R"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 3.1116,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_hipext_R.jpg",
+   "samples": 8
+  },
+  "rc_hipext_L": {
+   "kind": "review",
+   "id": "rc_hipext_L",
+   "group": "c",
+   "t": 48.3,
+   "title": "Hip extension: palm under the heel, heel 5 cm up (left)",
+   "cam": "contact:hipext_L",
+   "gaps": {
+    "hipext_L": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 3.89,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 1.73,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 13.28,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 16.86,
+      "leg": "L"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 3.1187,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_hipext_L.jpg",
+   "samples": 8
+  },
+  "rc_kneeflex_R": {
+   "kind": "review",
+   "id": "rc_kneeflex_R",
+   "group": "c",
+   "t": 53.5,
+   "title": "Knee flexion: palm cupping the back of the heel, foot flat (right)",
+   "cam": "contact:kneeflex_R",
+   "gaps": {
+    "kneeflex_R": {
+     "palm": {
+      "mm": 0.11,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 30.55,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 41.06,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 30.4,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 14.61,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 22.13,
+      "leg": "R"
+     }
+    },
+    "heelMattress": 0.05
+   },
+   "heel": "R",
+   "legs": {
+    "R": {
+     "hipFlex": 51.4663,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 89.65,
+     "ankle": -39.42150508838257,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_kneeflex_R.jpg",
+   "samples": 8
+  },
+  "rc_kneeflex_L": {
+   "kind": "review",
+   "id": "rc_kneeflex_L",
+   "group": "c",
+   "t": 56.3,
+   "title": "Knee flexion: palm cupping the back of the heel, foot flat (left)",
+   "cam": "contact:kneeflex_L",
+   "gaps": {
+    "kneeflex_L": {
+     "palm": {
+      "mm": 0.11,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 30.55,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 41.06,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 30.4,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 14.61,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 22.12,
+      "leg": "L"
+     }
+    },
+    "heelMattress": 0.05
+   },
+   "heel": "L",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 51.4807,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 89.65,
+     "ankle": -39.48183862218068,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_kneeflex_L.jpg",
+   "samples": 8
+  },
+  "rc_kneeext_R": {
+   "kind": "review",
+   "id": "rc_kneeext_R",
+   "group": "c",
+   "t": 62,
+   "title": "Knee extension: palm on the lower shin; the knee over the other forearm (right)",
+   "cam": "contact:kneeext_R",
+   "gaps": {
+    "kneeext_R": {
+     "palm": {
+      "mm": 0.16,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 34.05,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 40.51,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 36.31,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 24.22,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 43.82,
+      "leg": "R"
+     }
+    },
+    "kneeextAux_R": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 2.38,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 14.11,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 27.81,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 28.85,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 1.19,
+      "leg": "R"
+     }
+    },
+    "heelMattress": 0.05
+   },
+   "heel": "R",
+   "legs": {
+    "R": {
+     "hipFlex": 32.3508408,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 60.42,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_kneeext_R.jpg",
+   "samples": 8
+  },
+  "rc_kneeext_L": {
+   "kind": "review",
+   "id": "rc_kneeext_L",
+   "group": "c",
+   "t": 64.6,
+   "title": "Knee extension: palm on the lower shin; the knee over the other forearm (left)",
+   "cam": "contact:kneeext_L",
+   "gaps": {
+    "kneeext_L": {
+     "palm": {
+      "mm": 0.16,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 34.05,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 40.51,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 36.31,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 24.22,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 43.9,
+      "leg": "L"
+     }
+    },
+    "kneeextAux_L": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 2.38,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 14.11,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 27.81,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 28.85,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 0.54,
+      "leg": "L"
+     }
+    },
+    "heelMattress": 0.05
+   },
+   "heel": "L",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 32.3553408,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 60.42,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_kneeext_L.jpg",
+   "samples": 8
+  },
+  "rc_dorsi_R": {
+   "kind": "review",
+   "id": "rc_dorsi_R",
+   "group": "c",
+   "t": 69.3,
+   "title": "Ankle dorsiflexion: palm on the top of the foot (right)",
+   "cam": "contact:dorsi_R",
+   "gaps": {
+    "dorsi_R": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 34.61,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 36.12,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 28.36,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 13.27,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 0.4,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 22.11,
+      "leg": "R"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_dorsi_R.jpg",
+   "samples": 8
+  },
+  "rc_dorsi_L": {
+   "kind": "review",
+   "id": "rc_dorsi_L",
+   "group": "c",
+   "t": 71.7,
+   "title": "Ankle dorsiflexion: palm on the top of the foot (left)",
+   "cam": "contact:dorsi_L",
+   "gaps": {
+    "dorsi_L": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 34.61,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 36.12,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 28.36,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 13.27,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 0.4,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 20.25,
+      "leg": "L"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_dorsi_L.jpg",
+   "samples": 8
+  },
+  "rc_plantar_R": {
+   "kind": "review",
+   "id": "rc_plantar_R",
+   "group": "c",
+   "t": 77,
+   "title": "Plantar flexion: palm on the ball of the foot (right)",
+   "cam": "contact:plantar_R",
+   "gaps": {
+    "plantar_R": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "R"
+     },
+     "index": {
+      "mm": 38.42,
+      "leg": "R"
+     },
+     "middle": {
+      "mm": 35.96,
+      "leg": "R"
+     },
+     "ring": {
+      "mm": 13.56,
+      "leg": "R"
+     },
+     "little": {
+      "mm": 0.73,
+      "leg": "R"
+     },
+     "thumb": {
+      "mm": 30.1,
+      "leg": "R"
+     },
+     "forearm": {
+      "mm": 23.01,
+      "leg": "R"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0.3653,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -19,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_plantar_R.jpg",
+   "samples": 8
+  },
+  "rc_plantar_L": {
+   "kind": "review",
+   "id": "rc_plantar_L",
+   "group": "c",
+   "t": 79.3,
+   "title": "Plantar flexion: palm on the ball of the foot (left)",
+   "cam": "contact:plantar_L",
+   "gaps": {
+    "plantar_L": {
+     "palm": {
+      "mm": 0.05,
+      "leg": "L"
+     },
+     "index": {
+      "mm": 38.42,
+      "leg": "L"
+     },
+     "middle": {
+      "mm": 35.96,
+      "leg": "L"
+     },
+     "ring": {
+      "mm": 13.56,
+      "leg": "L"
+     },
+     "little": {
+      "mm": 0.73,
+      "leg": "L"
+     },
+     "thumb": {
+      "mm": 30.1,
+      "leg": "L"
+     },
+     "forearm": {
+      "mm": 23,
+      "leg": "L"
+     }
+    }
+   },
+   "heel": null,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0.3373,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -19,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "file": "panels/rc_plantar_L.jpg",
+   "samples": 8
+  },
+  "rd_cuff_R": {
+   "kind": "review",
+   "id": "rd_cuff_R",
+   "group": "d",
+   "t": 53.5,
+   "title": "Trouser cuffs, right knee at its most bent (knee 90, foot flat); examiner hidden for this review view only",
+   "cam": {
+    "pos": [
+     3.6,
+     11.6,
+     9.2
+    ],
+    "target": [
+     0.9,
+     7.6,
+     0
+    ],
+    "fov": 28,
+    "focus": [
+     1.2,
+     8,
+     0.6
+    ],
+    "aperture": 0
+   },
+   "hideEx": true,
+   "noCaption": true,
+   "legs": {
+    "R": {
+     "hipFlex": 51.4663,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 89.65,
+     "ankle": -39.42150508838257,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/rd_cuff_R.jpg",
+   "samples": 8
+  },
+  "rd_cuff_L": {
+   "kind": "review",
+   "id": "rd_cuff_L",
+   "group": "d",
+   "t": 56.3,
+   "title": "Trouser cuffs, left knee at its most bent (knee 90, foot flat); examiner hidden for this review view only",
+   "cam": {
+    "pos": [
+     3.6,
+     11.6,
+     -9.2
+    ],
+    "target": [
+     0.9,
+     7.6,
+     0
+    ],
+    "fov": 28,
+    "focus": [
+     1.2,
+     8,
+     -0.6
+    ],
+    "aperture": 0
+   },
+   "hideEx": true,
+   "noCaption": true,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 51.4807,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 89.65,
+     "ankle": -39.48183862218068,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/rd_cuff_L.jpg",
+   "samples": 8
+  },
+  "re_ta_before": {
+   "kind": "review",
+   "id": "re_ta_before",
+   "group": "e",
+   "t": 69.5,
+   "title": "Tibialis anterior, foot pulled up: before (no firming)",
+   "cam": {
+    "pos": [
+     9.2,
+     8.9,
+     3.4
+    ],
+    "target": [
+     4,
+     7,
+     1.25
+    ],
+    "fov": 28,
+    "focus": [
+     4,
+     7,
+     1.3
+    ],
+    "aperture": 0
+   },
+   "firmOff": true,
+   "noCaption": true,
+   "hideEx": true,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/re_ta_before.jpg",
+   "samples": 8
+  },
+  "re_ta_during": {
+   "kind": "review",
+   "id": "re_ta_during",
+   "group": "e",
+   "t": 69.5,
+   "title": "Tibialis anterior: during the resistance (stands out on the front of the shin)",
+   "cam": {
+    "pos": [
+     9.2,
+     8.9,
+     3.4
+    ],
+    "target": [
+     4,
+     7,
+     1.25
+    ],
+    "fov": 28,
+    "focus": [
+     4,
+     7,
+     1.3
+    ],
+    "aperture": 0
+   },
+   "noCaption": true,
+   "hideEx": true,
+   "diffWith": "re_ta_before",
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/re_ta_during.jpg",
+   "samples": 8
+  },
+  "re_calf_before": {
+   "kind": "review",
+   "id": "re_calf_before",
+   "group": "e",
+   "t": 77,
+   "title": "Calf, foot pushed down: before (no firming)",
+   "cam": {
+    "pos": [
+     3.4,
+     6.35,
+     5.2
+    ],
+    "target": [
+     3.6,
+     6.3,
+     0.9
+    ],
+    "fov": 28,
+    "focus": [
+     3.6,
+     6.25,
+     1.3
+    ],
+    "aperture": 0
+   },
+   "firmOff": true,
+   "noCaption": true,
+   "hideEx": true,
+   "legs": {
+    "R": {
+     "hipFlex": 0.3653,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -19,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/re_calf_before.jpg",
+   "samples": 8
+  },
+  "re_calf_during": {
+   "kind": "review",
+   "id": "re_calf_during",
+   "group": "e",
+   "t": 77,
+   "title": "Calf: during the resistance (firms)",
+   "cam": {
+    "pos": [
+     3.4,
+     6.35,
+     5.2
+    ],
+    "target": [
+     3.6,
+     6.3,
+     0.9
+    ],
+    "fov": 28,
+    "focus": [
+     3.6,
+     6.25,
+     1.3
+    ],
+    "aperture": 0
+   },
+   "noCaption": true,
+   "hideEx": true,
+   "diffWith": "re_calf_before",
+   "legs": {
+    "R": {
+     "hipFlex": 0.3653,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -19,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/re_calf_during.jpg",
+   "samples": 8
+  }
+ },
+ "caps": [
+  {
+   "t0": 1.4,
+   "t1": 4.7,
+   "text": "Motor system: the legs",
+   "place": "top"
+  },
+  {
+   "t0": 7,
+   "t1": 12.8,
+   "text": "Look: no wasting, no fasciculation; the legs lie equally",
+   "place": "top"
+  },
+  {
+   "t0": 15.3,
+   "t1": 24.7,
+   "text": "Tone: roll the leg, lift the knee briskly - the heel slides on the bed: normal",
+   "place": "top"
+  },
+  {
+   "t0": 25.4,
+   "t1": 33.4,
+   "text": "Same on the left: normal tone",
+   "place": "top"
+  },
+  {
+   "t0": 35.6,
+   "t1": 41.8,
+   "text": "Hip flexion (L1, L2): lift your leg, don't let me push it down - full power",
+   "place": "top"
+  },
+  {
+   "t0": 43.6,
+   "t1": 49.8,
+   "text": "Hip extension (L5, S1): push down into the bed - full power",
+   "place": "top"
+  },
+  {
+   "t0": 51.6,
+   "t1": 57.8,
+   "text": "Knee flexion (L5, S1): pull your heel in - full power",
+   "place": "top"
+  },
+  {
+   "t0": 59.6,
+   "t1": 65.8,
+   "text": "Knee extension (L3, L4): straighten, push me away - full power",
+   "place": "top"
+  },
+  {
+   "t0": 67.6,
+   "t1": 73.3,
+   "text": "Ankle dorsiflexion (L4, L5): pull your foot up - full power",
+   "place": "top"
+  },
+  {
+   "t0": 75.1,
+   "t1": 80.8,
+   "text": "Plantar flexion (S1): push down like a pedal - full power",
+   "place": "top"
+  }
+ ],
+ "beats": [
+  {
+   "n": 1,
+   "name": "Position",
+   "t0": 0,
+   "t1": 5
+  },
+  {
+   "n": 2,
+   "name": "Inspection",
+   "t0": 5,
+   "t1": 13,
+   "hold": [
+    5,
+    6.5
+   ]
+  },
+  {
+   "n": 3,
+   "name": "Tone - right leg",
+   "t0": 13,
+   "t1": 25,
+   "hold": [
+    13,
+    14.5
+   ]
+  },
+  {
+   "n": 4,
+   "name": "Tone - left leg",
+   "t0": 25,
+   "t1": 34
+  },
+  {
+   "n": 5,
+   "name": "Hip flexion (L1, L2)",
+   "t0": 34,
+   "t1": 42,
+   "hold": [
+    34,
+    35.5
+   ]
+  },
+  {
+   "n": 6,
+   "name": "Hip extension (L5, S1)",
+   "t0": 42,
+   "t1": 50,
+   "hold": [
+    42,
+    43.5
+   ]
+  },
+  {
+   "n": 7,
+   "name": "Knee flexion (L5, S1)",
+   "t0": 50,
+   "t1": 58,
+   "hold": [
+    50,
+    51.5
+   ]
+  },
+  {
+   "n": 8,
+   "name": "Knee extension (L3, L4)",
+   "t0": 58,
+   "t1": 66,
+   "hold": [
+    58,
+    59.5
+   ]
+  },
+  {
+   "n": 9,
+   "name": "Ankle dorsiflexion (L4, L5)",
+   "t0": 66,
+   "t1": 73.5,
+   "hold": [
+    66,
+    67.5
+   ]
+  },
+  {
+   "n": 10,
+   "name": "Plantar flexion (S1)",
+   "t0": 73.5,
+   "t1": 81,
+   "hold": [
+    73.5,
+    75
+   ]
+  },
+  {
+   "n": 11,
+   "name": "End",
+   "t0": 81,
+   "t1": 85
+  }
+ ]
+}
