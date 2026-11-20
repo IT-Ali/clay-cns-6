@@ -41,7 +41,7 @@
     const I = tri ? null : new Uint32Array(ni);
     let off = 0, io = 0;
     for (const m of meshes) {
-      m.updateMatrixWorld(true);
+      m.updateWorldMatrix(true, false);
       const g = m.geometry, A = g.attributes.position, Nn = g.attributes.normal, M = m.matrixWorld, NM = new THREE.Matrix3().getNormalMatrix(M);
       for (let i = 0; i < A.count; i++) {
         const gi = off + i;
@@ -142,7 +142,7 @@
   CONTACT.partGap = (sk, meshes, stride = 1, reach = 0.1) => {
     let best = { gap: Infinity, at: null, skin: null }, nNear = 0; const faraway = [];
     for (const m of meshes) {
-      m.updateMatrixWorld(true); const A = m.geometry.attributes.position;
+      m.updateWorldMatrix(true, false); const A = m.geometry.attributes.position;
       for (let i = 0; i < A.count; i += stride) {
         pv.fromBufferAttribute(A, i).applyMatrix4(m.matrixWorld);
         const r = CONTACT.dist(sk, pv, reach);
@@ -166,7 +166,7 @@
   // ---------------------------------------------------------------- anchors and surface frames on the leg
   // the vertex of the posed skin nearest a world point (used once, at the solve)
   CONTACT.nearestVertex = (P, leg, p) => {
-    const m = P.legMeshes[leg]; m.updateMatrixWorld(true);
+    const m = P.legMeshes[leg]; m.updateWorldMatrix(true, false);
     const A = m.geometry.attributes.position, v = V(0, 0, 0); let best = 0, bd = Infinity;
     for (let i = 0; i < A.count; i++) { v.fromBufferAttribute(A, i).applyMatrix4(m.matrixWorld); const d = v.distanceToSquared(p); if (d < bd) { bd = d; best = i; } }
     return best;
@@ -182,7 +182,7 @@
     patchCache.set(key, out); return out;
   };
   CONTACT.vertex = (P, leg, vi, rad) => {
-    const m = P.legMeshes[leg]; m.updateMatrixWorld(true);
+    const m = P.legMeshes[leg]; m.updateWorldMatrix(true, false);
     const p = V(0, 0, 0).fromBufferAttribute(m.geometry.attributes.position, vi).applyMatrix4(m.matrixWorld);
     const N = m.geometry.attributes.normal, n = V(0, 0, 0), t = V(0, 0, 0), NM = new THREE.Matrix3().getNormalMatrix(m.matrixWorld);
     for (const [i, w] of patch(m, vi, rad)) n.addScaledVector(t.fromBufferAttribute(N, i), w);
@@ -238,43 +238,48 @@
   };
 
   // ---------------------------------------------------------------- the solver
-  // 1. for a few small turns of the hand (roll about its fingers, pitch of the fingers off the skin) the hand is moved
-  //    along the skin normal by bisection until the deepest point of the WHOLE hand and forearm is TARGET above the
-  //    skin (so nothing is ever inside); the turn where the named part (the palm) is the one touching wins;
-  // 2. each finger then bends at its knuckle toward the skin until its pad rests on it too (fingers kept together),
-  //    and the hand is settled again by bisection.
-  CONTACT.solve = (P, arm, spec, o = {}) => {
+  // 1. the hand moves along the skin normal until the named part (spec.touch, default the palm) is TARGET above the
+  //    skin; the thumb lies alongside, swinging away if it would go in; 2. each finger bends at its knuckle toward the
+  //    skin until its pad rests on it too (fingers kept together, never a claw); 3. nothing anywhere (hand or forearm)
+  //    is inside: the hand is lifted by the deepest part. spec.rollSearch: a few turns of the hand about its fingers are
+  //    tried and the one where the named part ends up touching wins.
+  const solveOnce = (P, arm, spec, sk, roll) => {
     const touch = spec.touch || 'palm', T = CONTACT.TARGET;
-    const sol = { offset: 0.03, roll: 0, pitch: 0, curl: {}, thumb: (spec.pose.thumb || [0.08, 0, 0.05, 0.03]).slice() };
+    const sol = { offset: 0.03, roll, pitch: 0, curl: {}, thumb: (spec.pose.thumb || [0.08, 0, 0.05, 0.03]).slice() };
     for (const k of ['index', 'middle', 'ring', 'little']) sol.curl[k] = ((spec.pose.curl && spec.pose.curl[k]) || spec.pose.all).slice();
-    const center = CONTACT.vertex(P, spec.leg, spec.vi, spec.patch).p, sk = CONTACT.legSkin(P, spec.leg, center, 2.8);
-    const allMin = (stride) => { const g = CONTACT.gaps(sk, arm, null, stride); return { g, mn: Math.min(...Object.values(g).map((x) => x.gap)) }; };
-    const settle = (stride) => {
-      let lo = -0.15, hi = 1.0;
-      for (let k = 0; k < 20; k++) { sol.offset = (lo + hi) / 2; CONTACT.apply(P, arm, spec, sol); if (allMin(stride).mn > T) hi = sol.offset; else lo = sol.offset; }
-      sol.offset = hi; CONTACT.apply(P, arm, spec, sol); return allMin(stride).g;
-    };
-    // 1. the turn
-    const rolls = spec.rollSearch || [0, -10, 10, -20, 20, -30, 30], pitches = spec.pitchSearch || [0, -8, 8];
-    let best = null;
-    for (const r of rolls) for (const pt of pitches) {
-      sol.roll = r; sol.pitch = pt; const g = settle(4), score = g[touch].gap + 0.0004 * (Math.abs(r) + Math.abs(pt)) / 10;
-      if (!best || score < best.score) best = { score, r, pt };
+    const lim = spec.curlLimit || [-0.1, 0.45];
+    const fingers = spec.settle === false ? [] : (spec.settleFingers || ['index', 'middle', 'ring', 'little']);
+    for (let it = 0; it < 14; it++) {
+      CONTACT.apply(P, arm, spec, sol);
+      const pp = CONTACT.parts(arm), g = CONTACT.partGap(sk, pp[touch], 1, 0.12);
+      sol.offset += K.clamp(T - g.gap, -0.15, 0.15);
+      if (it >= 4 && spec.thumbSettle !== false) {
+        const gt = CONTACT.partGap(sk, pp.thumb, 1, 0.12), th = sol.thumb, tg = K.clamp((gt.gap - T) / 2, -0.02, 0.01);
+        th[0] = K.clamp(th[0] + tg / 0.5, -0.45, 0.5); th[2] = K.clamp(th[2] + tg / 0.35, -0.45, 0.5); th[3] = K.clamp(th[3] + tg / 0.6, -0.3, 0.4);
+      }
+      if (it >= 4 && fingers.length) {
+        for (const k of fingers) {
+          const gf = CONTACT.partGap(sk, pp[k], 3, 0.12), c = sol.curl[k], d = K.clamp((gf.gap - T) / 0.6, -0.12, 0.12);
+          c[0] = K.clamp(c[0] + d, lim[0], lim[1]); c[1] = K.clamp(c[1] + d * 0.5, -0.05, 0.9); c[2] = K.clamp(c[2] + d * 0.3, -0.05, 0.6);
+        }
+        const ks = ['index', 'middle', 'ring', 'little'], m0 = ks.reduce((m, k) => m + sol.curl[k][0], 0) / 4;
+        for (const k of ks) { const c = sol.curl[k]; c[0] = K.clamp(c[0], m0 - 0.12, m0 + 0.12); c[1] = K.clamp(c[1], m0 * 0.5 - 0.1, m0 * 0.5 + 0.1); }
+      }
     }
-    sol.roll = best.r; sol.pitch = best.pt;
-    // 2. the fingers toward the skin, together
-    const fingers = spec.settle === false ? [] : (spec.settleFingers || ['index', 'middle', 'ring', 'little']), lim = spec.curlLimit || [-0.1, 0.45];
-    let g = settle(2);
-    for (let it = 0; it < 8 && fingers.length; it++) {
-      for (const k of fingers) { const c = sol.curl[k], d = K.clamp((g[k].gap - T) / 0.6, -0.1, 0.1); c[0] = K.clamp(c[0] + d, lim[0], lim[1]); c[1] = K.clamp(c[1] + d * 0.5, -0.05, 0.9); c[2] = K.clamp(c[2] + d * 0.3, -0.05, 0.6); }
-      const ks = ['index', 'middle', 'ring', 'little'], m0 = ks.reduce((m, k) => m + sol.curl[k][0], 0) / 4;
-      for (const k of ks) { const c = sol.curl[k]; c[0] = K.clamp(c[0], m0 - 0.12, m0 + 0.12); c[1] = K.clamp(c[1], m0 * 0.5 - 0.1, m0 * 0.5 + 0.1); }
-      g = settle(2);
-    }
-    g = settle(1);
-    sol.gaps = Object.fromEntries(Object.entries(g).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)]));   // mm
-    sol.hist = [best.r, best.pt];
+    // never inside: lift by the deepest part (hand and forearm)
+    CONTACT.apply(P, arm, spec, sol);
+    let all = CONTACT.gaps(sk, arm, null, 1), mn = Math.min(...Object.values(all).map((x) => x.gap));
+    for (let k = 0; k < 10 && mn < T; k++) { sol.offset += (T - mn) * 1.05; CONTACT.apply(P, arm, spec, sol); all = CONTACT.gaps(sk, arm, null, 1); mn = Math.min(...Object.values(all).map((x) => x.gap)); }
+    sol.gaps = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)]));   // mm
+    sol.score = all[touch].gap;
     return sol;
+  };
+  CONTACT.solve = (P, arm, spec) => {
+    const center = CONTACT.vertex(P, spec.leg, spec.vi, spec.patch).p, sk = CONTACT.legSkin(P, spec.leg, center, 2.8);
+    let best = null;
+    for (const r of spec.rollSearch || [0]) { const sol = solveOnce(P, arm, spec, sk, r); if (!best || sol.score < best.score - 1e-5) best = sol; }
+    CONTACT.apply(P, arm, spec, best);
+    return best;
   };
 
   // gaps in mm for a review panel: every part of the hand (and forearm) with its nearest skin point
