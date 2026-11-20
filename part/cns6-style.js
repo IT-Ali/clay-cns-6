@@ -100,7 +100,7 @@
         // tone: the palm across the front of the lower thigh and knee, fingers down over the knee (the roll)
         tone: { anchor: ['patella', 'tibialTuberosity', 0.2], seg: 'thigh', angle: 15, back: [0, 0, 0, -0.5, 0.62, 0.65], pose: PAL, leg: 'rest' },
         // tone: palm up in the hollow behind the knee, fingers across under it (the brisk lift)
-        knee: { anchor: ['knee', null, 0, [0.05, -0.6, 0]], seg: 'thigh', angle: -90, rollSearch: [0, -15, 15, -30, 30], curlLimit: [-0.1, 0.8], back: [0, 0, 0, -0.1, 0.3, 1], pose: PALT, patch: 0.15, leg: 'lift45', slide: 1.2, slidePose: true },
+        knee: { anchor: ['knee', null, 0, [0.05, -0.6, 0]], seg: 'thigh', angle: -90, rollSearch: [0, -15, 15, -30, 30], curlLimit: [-0.1, 0.8], back: [0, 0, 0, -0.6, 0.35, 0.7], pose: PALT, patch: 0.15, leg: 'lift45', slide: 1.2, slidePose: true },
         // hip flexion: palm on the front of the thigh just above the knee, pressing down
         hipflex: { anchor: ['patella', 'tibialTuberosity', 0.1], seg: 'thigh', angle: 12, back: [0, 0, 0, -0.5, 0.62, 0.65], pose: PAL, leg: 'hipflexUp' },
         // hip extension: palm up under the heel, fingers along the Achilles toward his knee (the heel rests in the palm)
@@ -122,15 +122,15 @@
 
       const MUSC = {
         // [landmark(s) for the centre, lerp, along-leg sigma, around sigma, max swell] (world units; 0.02 = 2 mm)
-        quadriceps: { at: ['patella', 'quadriceps', 0.3], sx: 0.32, sr: 0.3, amp: 0.016 },
-        hamstrings: { at: ['knee', null, 0, [-0.35, -0.5, 0]], sx: 0.38, sr: 0.22, amp: 0.014 },
-        tibialisAnterior: { at: ['tibialisAnterior', null, 0], sx: 0.75, sr: 0.13, amp: 0.02 },
-        calf: { at: ['calf', null, 0], sx: 0.6, sr: 0.32, amp: 0.02 },
+        quadriceps: { at: ['patella', 'quadriceps', 0.3], sx: 0.32, sr: 0.3, amp: 0.025 },
+        hamstrings: { at: ['knee', null, 0, [-0.35, -0.5, 0]], sx: 0.38, sr: 0.22, amp: 0.02 },
+        tibialisAnterior: { at: ['tibialisAnterior', null, 0], sx: 0.9, sr: 0.11, amp: 0.045 },
+        calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v6';
+      const SOLVE_VERSION = 'cns6-solve-v7';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
-      const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC, ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });
+      const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
       if (root.SOLVE_MODE) SOLVED = solveAll();
       else {
@@ -329,7 +329,11 @@
           const kn = K.lerp(0, up.knee, u);
           st = test === 'kneeext' ? liftState(side, kn) : (u < 1 ? mix(liftState(side, kn), up, K.smooth(0.6, 1, u)) : up);
         } else st = mix({}, up, u);
-        if (tq >= rs[0] && tq < bk[0]) st = addGive(st, test, giveAt(tq, rs));
+        if (tq >= rs[0] && tq < bk[0]) {
+          const g = giveAt(tq, rs);
+          // knee extension: the knee gives with the heel still ON the bed (the lift table re-seats the heel)
+          st = test === 'kneeext' ? liftState(side, st.knee + GIVE.kneeext.knee * g) : addGive(st, test, g);
+        }
         return st;
       }
       function legAt(side, tq) {
@@ -377,7 +381,7 @@
         const r = firmRegion(side, f.muscle), N = g.attributes.normal.array, n = r.idx.length;
         const base = new Float32Array(n * 3), out = new Float32Array(n * 3);
         for (let k = 0; k < n; k++) {
-          const i = r.idx[k], s = r.amp * f.u * r.w[k];
+          const i = r.idx[k], s = r.amp * f.u * r.w[k] * K.smooth(-0.55, 0.05, N[3 * i + 1]);   // never swells down into the bed
           base[3 * k] = A[3 * i]; base[3 * k + 1] = A[3 * i + 1]; base[3 * k + 2] = A[3 * i + 2];
           A[3 * i] += N[3 * i] * s; A[3 * i + 1] += N[3 * i + 1] * s; A[3 * i + 2] += N[3 * i + 2] * s;
           out[3 * k] = A[3 * i]; out[3 * k + 1] = A[3 * i + 1]; out[3 * k + 2] = A[3 * i + 2];
@@ -415,8 +419,11 @@
         if (atSlide && spec.slidePose) { keep = P.leg(side); P.setLeg(side, slidePoseOf(name, side)); }
         const pz = CONTACT.apply(P, arm, spec, C.sol);
         if (keep) P.setLeg(side, keep);
-        const back = spec.forearmUnder ? V(...C.forearmBack) : pz.back;
-        return { pos: arm.hand.group.position.clone(), quat: arm.hand.group.quaternion.clone(), pose: CONTACT.handPose(spec, C.sol), back, sleeve: spec.sleeve, fd: pz.fd.clone(), slide: spec.slide || 0 };
+        const back = spec.forearmUnder ? V(...C.forearmBack) : pz.back, sz = side === 'R' ? 1 : -1;
+        // the upper arm rises to the standing examiner's shoulder, leaning the way the forearm leans (to his head or
+        // his feet), so it leaves the frame at the top corner and never stands between the camera and the contact
+        const sleeve = spec.forearmUnder ? V(-0.55, 0.7, 0.45 * sz).normalize().toArray() : V(back.x * 0.75, 0.85, 0.5 * sz).normalize().toArray();
+        return { pos: arm.hand.group.position.clone(), quat: arm.hand.group.quaternion.clone(), pose: CONTACT.handPose(spec, C.sol), back, sleeve, fd: pz.fd.clone(), slide: spec.slide || 0 };
       };
       const lerpArr = (a, b, u) => a.map((x, i) => K.lerp(x, b[i] == null ? x : b[i], u));
       const poseMix = (a, b, u) => {
@@ -516,11 +523,11 @@
         insShin: shot([4.3, 9.6, 8.2], [4.3, 6.8, 0.0], [4.3, 6.9, 0.8], 0.035),
         insCalf: shot([4.9, 7.0, 8.6], [4.4, 6.35, 0.0], [4.2, 6.3, 0.9], 0.035),
         insFeet: shot([12.2, 9.4, 5.2], [7.4, 7.2, 0.0], [7.5, 7.3, 0.4], 0.035),
-        toneR: shot([3.6, 8.1, 14.2], [3.1, 7.0, 0.9], [2.6, 7.0, 1.0], 0.04),
+        toneR: shot([5.4, 8.3, 14.0], [2.9, 7.0, 0.9], [2.5, 7.0, 1.0], 0.04),
         hipflexR: shot([3.6, 9.0, 14.6], [3.0, 7.8, 0.9], [2.6, 7.6, 1.0], 0.04),
         hipextR: shot([5.4, 7.4, 10.4], [6.0, 6.8, 0.9], [6.9, 6.6, 1.0], 0.035),
-        kneeflexR: shot([6.6, 8.8, 12.2], [3.7, 7.6, 0.9], [4.5, 6.9, 1.0], 0.04),
-        kneeextR: shot([6.2, 8.8, 13.2], [3.4, 7.6, 0.6], [4.6, 7.3, 1.0], 0.04),
+        kneeflexR: shot([8.4, 8.6, 11.6], [3.9, 7.5, 0.9], [4.5, 6.9, 1.0], 0.04),
+        kneeextR: shot([8.2, 8.9, 12.6], [3.6, 7.6, 0.6], [4.4, 7.4, 1.0], 0.04),
         dorsiR: shot([7.4, 7.9, 8.8], [6.2, 7.3, 0.9], [7.0, 7.4, 1.1], 0.03),
         plantarR: shot([9.6, 8.0, 8.6], [6.9, 7.3, 0.9], [7.7, 7.6, 1.2], 0.03),
       };
@@ -563,7 +570,7 @@
           const lr = still ? {} : legAt('R', tq), ll = still ? {} : legAt('L', tq);
           P.setLeg('R', lr); P.setLeg('L', ll);
           for (const h of ['R', 'L']) setHand(h, still ? restOf(h, 'R', true) : handAt(h, tq));
-          applyFirm('R', still ? null : firmAt('R', tq)); applyFirm('L', still ? null : firmAt('L', tq));
+          const firmOn = !still && !root.FIRM_OFF; applyFirm('R', firmOn ? firmAt('R', tq) : null); applyFirm('L', firmOn ? firmAt('L', tq) : null);
           P.setFace(still ? {} : faceAt(tq));
           P.breathe(still ? 0 : (tq - HOME_HOLD) * BREATH_K);
           root.NP = NEURO.points(P);
