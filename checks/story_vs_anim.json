@@ -1,0 +1,47 @@
+[
+ {
+  "beat": 3,
+  "panel": "b03a",
+  "frame": 413,
+  "t": 13.7667,
+  "meanDiff": 2.36,
+  "maxDiff": 63,
+  "pixelsOver8": 15368
+ },
+ {
+  "beat": 5,
+  "panel": "b05a",
+  "frame": 1043,
+  "t": 34.7667,
+  "meanDiff": 2.27,
+  "maxDiff": 54,
+  "pixelsOver8": 14799
+ },
+ {
+  "beat": 7,
+  "panel": "b07a",
+  "frame": 1523,
+  "t": 50.7667,
+  "meanDiff": 2.17,
+  "maxDiff": 51,
+  "pixelsOver8": 13017
+ },
+ {
+  "beat": 8,
+  "panel": "b08a",
+  "frame": 1763,
+  "t": 58.7667,
+  "meanDiff": 2.25,
+  "maxDiff": 57,
+  "pixelsOver8": 14204
+ },
+ {
+  "beat": 9,
+  "panel": "b09a",
+  "frame": 2003,
+  "t": 66.7667,
+  "meanDiff": 1.98,
+  "maxDiff": 59,
+  "pixelsOver8": 8295
+ }
+]

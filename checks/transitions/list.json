@@ -1,0 +1,135 @@
+[
+ {
+  "kind": "move",
+  "name": "home-overview",
+  "at": 1,
+  "from": 0.75,
+  "to": 4.85
+ },
+ {
+  "kind": "cut",
+  "name": "overview",
+  "at": 6.5,
+  "from": 5.5,
+  "to": 7.5
+ },
+ {
+  "kind": "move",
+  "name": "overview-insFeet",
+  "at": 6.5,
+  "from": 6.25,
+  "to": 12.95
+ },
+ {
+  "kind": "cut",
+  "name": "toneR",
+  "at": 13,
+  "from": 12,
+  "to": 14
+ },
+ {
+  "kind": "cut",
+  "name": "toneL",
+  "at": 25,
+  "from": 24,
+  "to": 26
+ },
+ {
+  "kind": "cut",
+  "name": "hipflexR",
+  "at": 33.6,
+  "from": 32.6,
+  "to": 34.6
+ },
+ {
+  "kind": "cut",
+  "name": "hipflexL",
+  "at": 39.5,
+  "from": 38.5,
+  "to": 40.5
+ },
+ {
+  "kind": "cut",
+  "name": "hipextR",
+  "at": 42,
+  "from": 41,
+  "to": 43
+ },
+ {
+  "kind": "cut",
+  "name": "hipextL",
+  "at": 47.6,
+  "from": 46.6,
+  "to": 48.6
+ },
+ {
+  "kind": "cut",
+  "name": "kneeflexR",
+  "at": 50,
+  "from": 49,
+  "to": 51
+ },
+ {
+  "kind": "cut",
+  "name": "kneeflexL",
+  "at": 55.7,
+  "from": 54.7,
+  "to": 56.7
+ },
+ {
+  "kind": "cut",
+  "name": "kneeextR",
+  "at": 58,
+  "from": 57,
+  "to": 59
+ },
+ {
+  "kind": "cut",
+  "name": "kneeextL",
+  "at": 64.1,
+  "from": 63.099999999999994,
+  "to": 65.1
+ },
+ {
+  "kind": "cut",
+  "name": "dorsiR",
+  "at": 66,
+  "from": 65,
+  "to": 67
+ },
+ {
+  "kind": "cut",
+  "name": "dorsiL",
+  "at": 71,
+  "from": 70,
+  "to": 72
+ },
+ {
+  "kind": "cut",
+  "name": "plantarR",
+  "at": 73.5,
+  "from": 72.5,
+  "to": 74.5
+ },
+ {
+  "kind": "cut",
+  "name": "plantarL",
+  "at": 78.7,
+  "from": 77.7,
+  "to": 79.7
+ },
+ {
+  "kind": "cut",
+  "name": "plantarR",
+  "at": 81,
+  "from": 80,
+  "to": 82
+ },
+ {
+  "kind": "move",
+  "name": "plantarR-home",
+  "at": 81.3,
+  "from": 81.05,
+  "to": 84.25
+ }
+]

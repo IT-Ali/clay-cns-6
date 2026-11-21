@@ -130,7 +130,7 @@
         calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v15';
+      const SOLVE_VERSION = 'cns6-solve-v16';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
       const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
@@ -445,7 +445,16 @@
       const REST_POSE = { all: [0.16, 0.22, 0.12], fan: { index: 0.05, middle: 0, ring: -0.05, little: -0.1 }, thumb: [0.12, 0, 0.1, 0.06] };
       // a hand resting flat on the mattress edge: 'home' = exactly the home shot (forearm level, sleeve down toward the
       // camera); otherwise the standing examiner's arm (the same hand, the forearm rising to the elbow, the sleeve up)
+      // for the ankle beats (9, 10) the resting hands lie on the mattress edge nearer his hip, out of the low ankle shots
+      const HIP_EX = {};
+      for (const h of ['R', 'L']) {
+        const base = HOME.exRest(h, 'cns', SH), dx = h === 'R' ? -3.7 : -3.3, x = base.at.x + dx, z = base.at.z;
+        const st = Object.assign({}, base, { at: V(x, hs(x, z) + 0.012, z), back: V(-0.35, -0.05, 0.94).normalize() });
+        HIP_EX[h] = HOME.solveEx(EX, h, st); HIP_EX[h].back = V(-0.35, -0.05, 0.94).normalize();
+      }
+      HOME.apply(P, EX, SH, 'cns');                 // (solveEx moved the hands: back to the home state)
       const restOf = (h, bedSide, home) => {
+        if (bedSide === 'RH') { const r = HIP_EX[h]; return { pos: r.wrist.clone(), quat: r.quat.clone(), pose: r.pose, back: r.back.clone(), sleeve: SLEEVE_HOME.R }; }
         if (bedSide === 'R') { const r = HOME_EX[h]; return { pos: r.wrist.clone(), quat: r.quat.clone(), pose: r.pose, back: r.back.clone(), sleeve: SLEEVE_HOME.R }; }
         const r = SOLVED.rest[h]; return { pos: V(...r.wrist), quat: new THREE.Quaternion(...r.quat), pose: r.pose, back: V(...r.back), sleeve: SLEEVE_HOME.L };
       };
@@ -507,9 +516,10 @@
         }
         cut('R', TONE.L.cutR, RR); cut('L', TONE.L.cutR, RR);
       }
+      const ANKLE = { dorsi: 1, plantar: 1 }, RHIP = { rest: 'RH' };
       for (const [test, W] of Object.entries(POWER)) {
         for (const side of ['R', 'L']) {
-          const w = WORK[side], a = AUX[side], rest = side === 'R' ? RR : RL, c = { c: test + '_' + side }, R = side === 'R';
+          const w = WORK[side], a = AUX[side], rest = side === 'R' ? (ANKLE[test] ? RHIP : RR) : RL, c = { c: test + '_' + side }, R = side === 'R';
           const off = R ? W.off : W.offL;
           if (R) { key(w, W.hand[0], rest); key(w, W.hand[1], c); } else { cut(w, W.cutL, c); if (test !== 'kneeext') cut(a, W.cutL, RL); }
           if (test === 'hipext') {
@@ -523,7 +533,8 @@
             key(a, ao[0], ax); key(a, ao[0] + (ao[1] - ao[0]) * 0.55, { c: ax.c, out: 1 }); key(a, ao[1], rest);
           }
         }
-        cut('R', W.cutR, RR); cut('L', W.cutR, RR);
+        const nextRest = test === 'kneeext' || test === 'dorsi' ? RHIP : RR;   // the ankle beats start with the hands nearer his hip
+        cut('R', W.cutR, nextRest); cut('L', W.cutR, nextRest);
       }
       for (const h of ['R', 'L']) track[h].sort((p, q) => p[0] - q[0] || (q[2].cut ? 1 : 0) - (p[2].cut ? 1 : 0));
       const same = (p, q) => p.rest === q.rest && !!p.home === !!q.home && p.c === q.c && !!p.out === !!q.out;
