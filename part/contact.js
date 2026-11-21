@@ -266,19 +266,27 @@
       const thumb = k === 'thumb', lo = thumb ? -1.2 : -0.5, hi = thumb ? 1.4 : 1.6, c0 = 0, set = (c) => { if (thumb) sol.thumb = thumbAt(tb, c); else sol.curl[k] = fingerCurl(c); };
       const cs = [], gs = [];
       for (let c = lo; c <= hi + 1e-6; c += 0.1) { set(c); cs.push(c); gs.push(gapOf(k)); }
-      let best = null;
+      // candidate boundaries, nearest the natural bend first; a boundary is a real touch only if the digit comes down
+      // onto the skin there (just outside it, it is within 1.5 mm): a jump from far off to deep inside (a digit that
+      // swings into a toe, say) is not a touch and is skipped
+      const cands = [];
       for (let i = 0; i < cs.length - 1; i++) {
         if ((gs[i] > T) === (gs[i + 1] > T)) continue;
-        const d = Math.min(Math.abs(cs[i] - c0), Math.abs(cs[i + 1] - c0));
-        if (!best || d < best.d) best = { d, out: gs[i] > T ? cs[i] : cs[i + 1], inn: gs[i] > T ? cs[i + 1] : cs[i] };
+        cands.push({ d: Math.min(Math.abs(cs[i] - c0), Math.abs(cs[i + 1] - c0)), out: gs[i] > T ? cs[i] : cs[i + 1], inn: gs[i] > T ? cs[i + 1] : cs[i] });
       }
+      cands.sort((p, q) => p.d - q.d);
+      for (const cd of cands) {
+        let a = cd.out, z = cd.inn;
+        for (let j = 0; j < 14; j++) { const m = (a + z) / 2; set(m); if (gapOf(k) > T) a = m; else z = m; }
+        set(a); const g = gapOf(k);
+        if (g <= CONTACT.LIMIT) { sol.digits[k] = { c: +a.toFixed(4), state: 'on skin' }; return; }
+      }
+      const best = null;
       if (!best) {
-        if (gs.every((g) => g > T)) { const c = thumb ? CONTACT.THUMB_CURLED : CONTACT.FINGER_CURLED; set(c); sol.digits[k] = { c: +c.toFixed(3), state: 'curled' }; return; }
-        let im = 0; gs.forEach((g, i) => { if (g > gs[im]) im = i; }); set(cs[im]); sol.digits[k] = { c: +cs[im].toFixed(3), state: 'inside at every bend' }; return;
+        const cc = thumb ? CONTACT.THUMB_CURLED : CONTACT.FINGER_CURLED; set(cc);
+        if (gapOf(k) > T) { sol.digits[k] = { c: +cc.toFixed(3), state: 'curled' }; return; }
+        let im = 0; gs.forEach((g, i) => { if (g > gs[im]) im = i; }); set(cs[im]); sol.digits[k] = { c: +cs[im].toFixed(3), state: gs[im] > T ? 'FAIL: no touch and cannot curl' : 'inside at every bend' }; return;
       }
-      let a = best.out, z = best.inn;
-      for (let j = 0; j < 14; j++) { const m = (a + z) / 2; set(m); if (gapOf(k) > T) a = m; else z = m; }
-      set(a); sol.digits[k] = { c: +a.toFixed(4), state: 'on skin' };
     };
     const digits = spec.settle === false ? [] : [...(spec.settleFingers || FK), 'thumb'];
     let lastLift = 0;

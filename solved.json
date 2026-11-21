@@ -1,6 +1,6 @@
 {
- "hash": "7df41ef9",
- "version": "cns6-solve-v11",
+ "hash": "2361cf37",
+ "version": "cns6-solve-v12",
  "made": "build machine",
  "legs": {
   "R": {
@@ -962,78 +962,77 @@
    "forearmMm": 0.296
   },
   "dorsi_R": {
-   "vi": 42170,
+   "vi": 42556,
    "sol": {
-    "offset": 0.8224464962725702,
+    "offset": 0.07452500949904378,
     "roll": 0,
     "pitch": 0,
     "curl": {
      "index": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.1433593749999997,
+      1.0861914062499998,
+      0.6860156249999998
      ],
      "middle": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.2997192382812501,
+      1.2347332763671877,
+      0.77983154296875
      ],
      "ring": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.327203369140625,
+      1.2608432006835937,
+      0.796322021484375
      ],
      "little": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.1820068359375,
+      1.122906494140625,
+      0.7092041015625
      ]
     },
     "thumb": [
-     0.85,
+     -0.17108825683593754,
      0,
-     0.7100000000000001,
-     0.5800000000000001
+     -0.16521850585937503,
+     -0.14934875488281255
     ]
    },
    "gapsMm": {
-    "palm": 75.222,
-    "index": 36.44,
-    "middle": 31.498,
-    "ring": 34.631,
-    "little": 45.308,
-    "thumb": 16.661,
-    "forearm": 85.331
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 15.143
    },
    "digits": {
     "index": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 36.44
+     "c": 1.1434,
+     "state": "on skin",
+     "mm": 0.05
     },
     "middle": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 31.498
+     "c": 1.2997,
+     "state": "on skin",
+     "mm": 0.05
     },
     "ring": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 34.631
+     "c": 1.3272,
+     "state": "on skin",
+     "mm": 0.05
     },
     "little": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 45.308
+     "c": 1.182,
+     "state": "on skin",
+     "mm": 0.05
     },
     "thumb": {
-     "c": 1.1,
-     "state": "curled",
-     "mm": 16.661
+     "c": -0.3587,
+     "state": "on skin",
+     "mm": 0.05
     }
    },
-   "culprit": "thumb (lifted 75.13 mm)",
-   "beyondToeTipsMm": -13.9
+   "beyondToeTipsMm": -11.1
   },
   "plantar_R": {
    "vi": 42216,
@@ -1622,78 +1621,77 @@
    "forearmMm": 0.069
   },
   "dorsi_L": {
-   "vi": 42170,
+   "vi": 42556,
    "sol": {
-    "offset": 0.8224464962725702,
+    "offset": 0.07452500949904378,
     "roll": 0,
     "pitch": 0,
     "curl": {
      "index": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.1433593749999997,
+      1.0861914062499998,
+      0.6860156249999998
      ],
      "middle": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.2997192382812501,
+      1.2347332763671877,
+      0.77983154296875
      ],
      "ring": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.327203369140625,
+      1.2608432006835937,
+      0.796322021484375
      ],
      "little": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.1820068359375,
+      1.122906494140625,
+      0.7092041015625
      ]
     },
     "thumb": [
-     0.85,
+     -0.17108825683593754,
      0,
-     0.7100000000000001,
-     0.5800000000000001
+     -0.16521850585937503,
+     -0.14934875488281255
     ]
    },
    "gapsMm": {
-    "palm": 75.222,
-    "index": 36.44,
-    "middle": 31.498,
-    "ring": 34.631,
-    "little": 45.308,
-    "thumb": 16.661,
-    "forearm": 87.925
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 15.143
    },
    "digits": {
     "index": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 36.44
+     "c": 1.1434,
+     "state": "on skin",
+     "mm": 0.05
     },
     "middle": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 31.498
+     "c": 1.2997,
+     "state": "on skin",
+     "mm": 0.05
     },
     "ring": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 34.631
+     "c": 1.3272,
+     "state": "on skin",
+     "mm": 0.05
     },
     "little": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 45.308
+     "c": 1.182,
+     "state": "on skin",
+     "mm": 0.05
     },
     "thumb": {
-     "c": 1.1,
-     "state": "curled",
-     "mm": 16.661
+     "c": -0.3587,
+     "state": "on skin",
+     "mm": 0.05
     }
    },
-   "culprit": "thumb (lifted 75.13 mm)",
-   "beyondToeTipsMm": -13.9
+   "beyondToeTipsMm": -11.1
   },
   "plantar_L": {
    "vi": 42216,
@@ -1724,10 +1722,10 @@
      ]
     },
     "thumb": [
-     0.19421997070312497,
+     0.5949896240234376,
      0,
-     0.14790283203125,
-     0.11158569335937499
+     0.49141967773437506,
+     0.39784973144531255
     ]
    },
    "gapsMm": {
@@ -1736,7 +1734,7 @@
     "middle": 0.05,
     "ring": 0.05,
     "little": 0.05,
-    "thumb": 39,
+    "thumb": 0.05,
     "forearm": 19.716
    },
    "digits": {
@@ -1761,9 +1759,9 @@
      "mm": 0.05
     },
     "thumb": {
-     "c": 0.1632,
-     "state": "FAIL: floating",
-     "mm": 39
+     "c": 0.7357,
+     "state": "on skin",
+     "mm": 0.05
     }
    }
   }
@@ -1909,27 +1907,27 @@
   "L plantarDown {\"ankle\":-30,\"hipFlex\":0.88} mattress gaps (mm) {\"ankleDeg\":-29.7,\"heelMm\":-5.83,\"ballMm\":84.04,\"lowestLowerLegMm\":-5.83,\"lowestAnyMm\":-5.83}",
   "L footFlat {\"knee\":90,\"ankle\":-39.48,\"hipFlex\":51.69} mattress gaps (mm) {\"ankleDeg\":-39.3,\"heelMm\":5.33,\"ballMm\":6.83,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.81}",
   "L footFlatGive {\"knee\":89.65,\"ankle\":-39.48,\"hipFlex\":51.48} mattress gaps (mm) {\"ankleDeg\":-39.3,\"heelMm\":5.26,\"ballMm\":7.16,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.81}",
-  "tone_R vi 17304 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":21.836}",
-  "knee_R vi 17162 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":11.071} slide lift 19.5",
-  "hipflex_R vi 17112 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":14.999}",
-  "hipext_R vi 35875 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":11.429} slide lift 2.6",
-  "kneeflex_R vi 33480 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":20.87}",
-  "kneeext_R vi 30074 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":37.288}",
-  "kneeextAux_R vi 18072 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":27.443} forearm 0.296",
-  "dorsi_R vi 42170 gaps(mm) {\"palm\":75.222,\"index\":36.44,\"middle\":31.498,\"ring\":34.631,\"little\":45.308,\"thumb\":16.661,\"forearm\":85.331}",
+  "tone_R kept from the previous solve",
+  "knee_R kept from the previous solve",
+  "hipflex_R kept from the previous solve",
+  "hipext_R kept from the previous solve",
+  "kneeflex_R kept from the previous solve",
+  "kneeext_R kept from the previous solve",
+  "kneeextAux_R kept from the previous solve",
+  "dorsi_R vi 42556 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":15.143}",
   "plantar_R vi 42216 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":11.835,\"forearm\":5.168}",
-  "tone_L vi 17304 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":23.677}",
-  "knee_L vi 17162 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":11.659} slide lift 19.5",
-  "hipflex_L vi 17112 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":15.338}",
-  "hipext_L vi 35875 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.051,\"little\":0.05,\"thumb\":0.05,\"forearm\":11.431} slide lift 2.6",
-  "kneeflex_L vi 33480 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":20.868}",
-  "kneeext_L vi 30074 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":37.168}",
-  "kneeextAux_L vi 18072 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":27.443} forearm 0.069",
-  "dorsi_L vi 42170 gaps(mm) {\"palm\":75.222,\"index\":36.44,\"middle\":31.498,\"ring\":34.631,\"little\":45.308,\"thumb\":16.661,\"forearm\":87.925}",
-  "plantar_L vi 42216 gaps(mm) {\"palm\":15.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":39,\"forearm\":19.716}",
-  "solved in 1986.7 s"
+  "tone_L kept from the previous solve",
+  "knee_L kept from the previous solve",
+  "hipflex_L kept from the previous solve",
+  "hipext_L kept from the previous solve",
+  "kneeflex_L kept from the previous solve",
+  "kneeext_L kept from the previous solve",
+  "kneeextAux_L kept from the previous solve",
+  "dorsi_L vi 42556 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":15.143}",
+  "plantar_L vi 42216 gaps(mm) {\"palm\":15.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":19.716}",
+  "solved in 1190.9 s"
  ],
- "ms": 1986708,
+ "ms": 1190854,
  "firm": {
   "Rquadriceps": 14904,
   "Rhamstrings": 15626,
