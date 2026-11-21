@@ -43,7 +43,7 @@ const BEAT = [
   ['b09a', 9, 2003 / 30, 'HOLD 66.0-67.5 s. No caption.', 'dorsiR: from his right side at ankle height', 'None'],
   ['b09b', 9, 69.3, 'He pulls the foot up (ankle +15); the palm lies across the top of the middle of the foot (over the metatarsals), the fingers across the foot, pressing down; he holds (tibialis anterior stands out).', 'dorsiR: from his side at ankle height', 'Very soft rustle'],
   ['b09c', 9, 71.7, 'Hard cut to his LEFT: the same.', 'dorsiL', 'None'],
-  ['b10a', 10, 74.2, 'HOLD 73.5-75.0 s. No caption.', 'plantarR: from his right side at ankle height', 'None'],
+  ['b10a', 10, 74.2, 'HOLD 73.53-75.0 s. No caption.', 'plantarR: from his right side at ankle height', 'None'],
   ['b10b', 10, 77.0, 'The palm flat on the ball of the foot; he pushes the foot clearly down like a pedal (ankle -30) and holds (the calf firms).', 'plantarR: from his side at ankle height', 'Very soft rustle'],
   ['b10c', 10, 79.3, 'Hard cut to his LEFT: the same; then a hard cut back to his right side (81.0 s).', 'plantarL', 'None'],
   ['b11a', 11, 82.6, 'Both legs straight; the hands slide back to their home places at his right side as the camera pulls back.', 'One continuous move plantarR -> home (81.3-84.0 s)', 'Room ambience'],
@@ -112,7 +112,7 @@ try {
         // ON the skin (< 1.5 mm, arrow to the skin) or curled into the hand (dot, its distance to the skin)
         const dig = (Wd.SOLVED.contacts[id] && Wd.SOLVED.contacts[id].digits) || {};
         out.gaps[id] = Object.fromEntries(Object.entries(res).map(([k, v]) => [k, { mm: +(v.gap * 100).toFixed(2), leg: v.leg, state: k === 'palm' || k === 'forearm' ? null : (v.gap * 100 < 1.5 && v.gap >= 0 ? 'on skin' : dig[k] && dig[k].state === 'curled' ? 'curled' : 'FLOATING') }]));
-        for (const k of ['palm', 'thumb', 'index', 'middle', 'ring', 'little', ...(aux ? ['forearm'] : [])]) {
+        for (const k of aux ? ['forearm'] : ['palm', 'thumb', 'index', 'middle', 'ring', 'little']) {   // the arm under the knee: its glove lies on the mattress (solved.json report), the forearm on the knee
           const v = res[k]; if (!v || !v.at) continue;
           const mm = v.gap * 100, st = out.gaps[id][k].state, pre = aux && k !== 'forearm' ? 'other hand ' : '';
           if (st === 'curled') { const [X, Y] = scr(v.at); x.fillStyle = '#9fc4ff'; x.beginPath(); x.arc(X, Y, 3.2, 0, 7); x.fill(); label(`${pre}${k} curled into the hand (${mm.toFixed(1)} mm)`, X + 6, Y - 6, '#9fc4ff'); continue; }

@@ -14,7 +14,8 @@ const { srv, url } = await serve();
 const browser = await launch({ gpu: false });
 try {
   const page = await openPage(browser, url + `?render=1&samples=1&w=${TW}&h=${TH}&captions=1`);
-  const cuts = await page.evaluate(() => window.WORLD.RUNS.slice(1).map((r) => ({ at: r[0][0], name: r[0][1] })));
+  // a hard cut: a new run whose first shot differs from where the previous run ended (6.5 s continues the overview)
+  const cuts = await page.evaluate(() => { const R = window.WORLD.RUNS; return R.slice(1).filter((r, i) => r[0][1] !== R[i][R[i].length - 1][1]).map((r) => ({ at: window.WORLD.runAt(r[0][0] + 0.2).t0, name: r[0][1] })); });
   const all = [];
   for (const cut of cuts) {
     const f0 = Math.round(cut.at * 30), frames = [];
@@ -38,9 +39,11 @@ try {
     }, { frames, cut, TW, TH });
     const R = res.rows, ch = (k) => R.slice(1).map((r, j) => r[k] !== R[j][k]);   // changed vs the previous frame (index j+1)
     const cam = ch('camRun'), legs = ch('legs'), hands = ch('hands'), camF = R[1 + cam.indexOf(true)]?.frame;
-    // at the cut frame (index 3): camera, legs and hands all change; on the frames just before (index 2) and just after
-    // (index 4) neither the pose nor the hands change (a 15 per second step lands on the cut frame, not beside it)
-    const ok = camF === R[3].frame && cam.filter(Boolean).length === 1 && legs[2] === hands[2] && !legs[1] && !hands[1] && !legs[3] && !hands[3];
+    // the camera changes once, at the cut frame (index 3); the legs and the hands change only on the pose steps (every 2nd
+    // frame at 30 fps), which fall ON the cut frame, never on the frame just before or just after it, so no frame shows the
+    // new camera with the old pose or hands (or the old camera with the new ones)
+    const odd = (arr) => arr.some((c, j) => c && (j + 1 - 3) % 2 !== 0);
+    const ok = camF === R[3].frame && cam.filter(Boolean).length === 1 && !odd(legs) && !odd(hands);
     const rec = { cut: cut.name, at: +cut.at.toFixed(4), cutFrame: R[3].frame, cameraChangesAt: camF, legsChangeAt: R.slice(1).filter((r, j) => legs[j]).map((r) => r.frame), handsChangeAt: R.slice(1).filter((r, j) => hands[j]).map((r) => r.frame), onPoseGrid: Math.abs(cut.at * 15 - Math.round(cut.at * 15)) < 1e-6, ok, frames: R.map((r) => ({ frame: r.frame, t: r.t, poseTime: r.poseTime, camRun: r.camRun, cam: r.cam })) };
     all.push(rec);
     fs.writeFileSync(path.join(OUT, `cut_${cut.at.toFixed(3)}_${cut.name}.jpg`), Buffer.from(res.jpg, 'base64'));

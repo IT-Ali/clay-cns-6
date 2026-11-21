@@ -67,6 +67,7 @@ ffmpeg 6 on Windows). The ambience fades in over the first 0.5 s and out over th
 | `render.mjs` | `npm run preview` / `npm start` |
 | `tools/solve.mjs` | `npm run solve`, build machine only |
 | `tools/storyboard.mjs` | Storyboard and review panels, rendered by seeking the style |
+| `tools/framecheck.mjs`, `tools/cutframes.mjs`, `tools/transitions.mjs`, `tools/storyvsanim.mjs`, `tools/homecheck.mjs` | Build checks: contacts at their animation frames, the frames at every hard cut (1/30 s), the transition strips (1/8 s), storyboard vs animation, first vs last frame. Results in `checks/`, `story_vs_anim.png`, `home-check.json` |
 | `vendor/fonts/` | Fredoka, kept locally so captions never depend on the network |
 
 Units: 1 world unit = 10 cm. His head is at screen left, his right side faces the camera, and the examiner stands on

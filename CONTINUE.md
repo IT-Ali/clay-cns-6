@@ -3,35 +3,43 @@
 How a new session picks this up. The full prompt is in the user's upload `soft-clay-cns-part6-motor-legs-prompt.txt`.
 The MY CONTENT section is the spec; follow it exactly.
 
-## State (round 2: storyboard fixes and build checks; stopped for the user's review)
+## State (round 3: two small fixes after the build review; stopped for the user's review)
 
-Round 1 storyboard was reviewed: leg poses, cameras, captions, left side, cuffs, tibialis anterior, home check and lib/
-approved. Round 2 fixed:
-- [x] Floating fingers: every digit of a working hand is solved on its own (bisection over its bend; a boundary that
-  jumps from far off to deep inside is rejected; no reach -> curled into the hand). solved.json lists each digit's
-  state and gap. All 18 contacts: palm and all five digits on the skin at 0.05 mm, nothing inside.
-- [x] Inside/outside of the skin and toes decided by their own normals (the rolled cuff by the bone axis); thumb
-  metacarpal counted with the thumb.
-- [x] Dorsiflexion: palm across the middle of the top of the foot, fingers across; 11 mm short of the toe tips.
-- [x] Plantar flexion -30 degrees (measured -29.7), dorsiflexion +15 (+14.9); both filmed from the side at ankle
-  height; review panel f shows the two holds side by side with the measured angles.
-- [x] Sleeves (b06, b08, b10): working arms rise steeply to a top corner; resting hands lie nearer his hip during the
-  close shots (both sides), so no resting sleeve stands next to the low cameras; a travelling arm stays raised until
-  the hand is nearly down (no sweep at the lens).
-- [x] Storyboard re-rendered and republished: https://claude.ai/artifact/AhX8aCaa6X3ZSCM6kUfCgx (copy in storyboard/)
-- [x] checks/contact-frames.json (`node tools/framecheck.mjs`): every contact at its animation frames (give, roll
-  extremes, top of the lift): all OK
-- [x] story_vs_anim.png (`node tools/storyvsanim.mjs`), beats 3, 5, 7, 8, 9: same frames (mean diff ~2/255, JPEG)
-- [x] TRANSITIONS SCAN (`node tools/transitions.mjs`): 19 strips in checks/transitions/, checked: no pans through empty
-  teal, no sleeve or forearm across the lens, hands settled at every cut, captions clear of the contacts
-- [x] home-check.json (`node tools/homecheck.mjs`): first vs last frame 0 differing pixels
-- [x] `npm run preview` tested in software on 3 frames (sound -14.9 LUFS)
+Round 2 build was reviewed ("nearly approved"). Round 3 fixed:
+- [x] One-frame pose pop at the left cuts: every hard cut now sits ON the 1/15 s pose grid (`G(t)` in the style: the
+  first pose step at or after t). 39.5, 55.7, 64.1, 73.5 and 78.7 moved +1/30 s to 39.5333, 55.7333, 64.1333, 73.5333,
+  78.7333, with the left-side resist windows that start at the cut and the beat 9/10 boundary (and beat 10's hold) moved
+  with them. Captions do not change at cuts, so their times stay. In addition the shot on screen is chosen on the pose
+  clock (`runAt` uses `SET.poseTime`), so camera, legs and hands can only change together.
+- [x] `tools/cutframes.mjs`: the frames at every hard cut, 1/30 s apart, 3 each side, rendered on the render.mjs path:
+  checks/transitions/cut_*.jpg and cuts.json (camera run, legs and hands per frame; they change on the same frame)
+- [x] Knee extension, the arm under the knee (b08b right, b08c left): now from the FAR side. The glove lies on the
+  mattress under the knee on the camera side (0.05 mm), the forearm touches the hollow of the knee (0.05 mm), and the
+  forearm and sleeve rise behind his knee and leave the frame at the top edge. Solved by `solveAux` (kneeextAux_R/L in
+  solved.json, with its report). Its way in: over the raised knee, fingers turned down, edge-on down into the gap
+  between his legs, the hand turns flat and slides under the knee while the forearm pivots through a gate point between
+  his legs (`auxPath`, `auxLever`); out is the same backwards. Every frame of it measured: never inside either leg.
+  Stills: checks/kneeext-arm-path.jpg. The storyboard artifact still shows the round-2 arm in b08b/b08c (no storyboard
+  round was asked for).
+- [x] checks/contact-frames.json (`node tools/framecheck.mjs`), the arm under the knee checked by its own rules
+- [x] TRANSITIONS SCAN refreshed (1/8 s strips) and the cut frames (1/30 s)
+- [x] story_vs_anim.png (beats 3, 5, 7, 8, 9), home-check.json, `npm run preview` on 3 frames
 - [x] PC zip (git archive: no node_modules, no frames)
 - [ ] NEXT: the user's review; then the user renders `npm run preview -- --beats 3,8` on the PC, then the full part,
   then `npm start`
 
-Notes: `node tools/solve.mjs` takes about 45 min in software (`--only a,b` re-solves those contacts and keeps the rest;
-`--only none` runs the leg tables and the mirror step only).
+Solve: solved.json is stamped `cns6-solve-v17`. Times are NOT in the solve hash (only SPECS, muscles, roll, knee lift and
+the contact target), so retiming needs no re-solve. Changing SPECS or SOLVE_VERSION does: re-solve what changed with
+`node tools/solve.mjs --only a,b` (`--only none`: legs, the arm under the knee, the mirror step and the rests).
+
+## Round 2 (done)
+
+- Floating fingers: every digit solved on its own; all 18 contacts palm and five digits on the skin at 0.05 mm.
+- Dorsiflexion palm across the middle of the top of the foot; plantar -30 / dorsiflexion +15, both from the side at
+  ankle height; sleeves rise to a top corner; resting hands nearer his hip in the close shots.
+- Storyboard: https://claude.ai/artifact/AhX8aCaa6X3ZSCM6kUfCgx (copy in storyboard/)
+
+Notes: `node tools/solve.mjs` takes about 45 min in software.
 
 ## Commands (build machine, no GPU)
 
@@ -52,6 +60,14 @@ node tools/dbg.mjs <outdir> "16.0:toneR,20.5:tl" 640 360 1
 ```
 
 `tl` uses the scheduled camera; a shot name forces that shot; `auto:<contact>` gives a close view.
+
+```bash
+node tools/framecheck.mjs
+```
+
+```bash
+node tools/cutframes.mjs
+```
 
 ```bash
 node render.mjs preview --software --frames 3

@@ -51,7 +51,7 @@
     hipflex: { t: 34.0, move: [35.5, 36.3], hand: [36.2, 36.8], resist: [36.8, 38.5], off: [38.5, 39.0], back: [38.7, 39.3], cutL: G(39.5), resistL: [G(39.5), 41.1], offL: [41.1, 41.5], backL: [41.3, 41.9], cutR: 42.0 },
     hipext: { t: 42.0, hand: [43.5, 44.1], heelUp: [43.6, 43.85], move: [44.2, 44.7], resist: [44.7, 46.3], back: [46.3, 46.8], off: [46.8, 47.1], heelDown: [47.05, 47.3], rest: [47.1, 47.55], cutL: 47.6, resistL: [47.6, 49.0], backL: [49.0, 49.4], offL: [49.4, 49.7], heelDownL: [49.65, 49.9], restL: [49.7, 49.98], cutR: 50.0 },
     kneeflex: { t: 50.0, move: [51.5, 52.4], hand: [52.3, 52.9], resist: [52.9, 54.5], off: [54.5, 55.0], back: [54.7, 55.5], cutL: G(55.7), resistL: [G(55.7), 57.2], offL: [57.2, 57.6], backL: [57.4, 57.95], cutR: 58.0 },
-    kneeext: { t: 58.0, move: [59.5, 60.3], aux: [60.3, 61.0], hand: [60.7, 61.2], resist: [61.2, 62.8], off: [62.8, 63.2], auxOff: [63.0, 63.7], back: [63.45, 64.05], cutL: G(64.1), resistL: [G(64.1), 65.3], offL: [65.3, 65.6], auxOffL: [65.35, 65.8], backL: [65.62, 65.98], cutR: 66.0 },
+    kneeext: { t: 58.0, move: [59.5, 60.3], aux: [59.8, 61.0], hand: [60.7, 61.2], resist: [61.2, 62.8], off: [62.8, 63.2], auxOff: [62.9, 63.9, 0.4], back: [63.45, 64.05], cutL: G(64.1), resistL: [G(64.1), 65.3], offL: [65.3, 65.6], auxOffL: [65.3, 65.96, 0.36], backL: [65.62, 65.98], cutR: 66.0 },
     dorsi: { t: 66.0, move: [67.5, 68.0], hand: [67.9, 68.5], resist: [68.5, 70.1], off: [70.1, 70.5], back: [70.3, 70.8], cutL: 71.0, resistL: [71.0, 72.5], offL: [72.5, 72.9], backL: [72.7, 73.2], cutR: G(73.5) },
     plantar: { t: G(73.5), hand: [75.0, 75.6], move: [75.6, 76.1], resist: [76.1, 77.7], back: [77.7, 78.2], off: [78.1, 78.6], cutL: G(78.7), resistL: [G(78.7), 80.1], backL: [80.1, 80.5], offL: [80.4, 80.85], cutR: 81.0 },
   };
@@ -485,11 +485,19 @@
       // a contact's hand transform on the leg as it is now; atSlide: on the leg at its slide height instead (the hand
       // coming in under the knee or the heel, or leaving again, is placed where the slid-in hand will be)
       const slidePoseOf = (name, side) => { const C = SOLVED.contacts[name + '_' + side]; return name === 'knee' ? liftState(side, C.slideLift) : { hipFlex: C.slideLift }; };
+      // the arm under the knee, its way in and out (motion only, not solved): the wrist comes down between his legs at
+      // z = AUX_ZOUT (his legs: the raised knee from z 0.33, the other leg to z -0.26), the forearm passes the gate at
+      // z = AUX_ZGATE on the solved forearm line; AUX_TOP is the height of the crossing above the raised knee (top 9.1)
+      const AUX_ZOUT = 0.06, AUX_ZGATE = -0.15, AUX_TOP = 11.6, AUX_LOW = 7.95;
       const contactOf = (h, id, atSlide) => {
         const [name, side] = id.split('_'), C = SOLVED.contacts[id];
-        if (SPECS[name].aux) {   // the forearm under the knee: a solved transform; it slides in and out along its own axis
-          const back = V(...C.back), sz = side === 'R' ? 1 : -1;
-          return { pos: V(...C.wrist), quat: new THREE.Quaternion(...C.quat), pose: C.pose, back, sleeve: V(-0.35, 0.92, 0.2 * sz).normalize().toArray(), fd: V(-back.x, -back.y * (window.AUX_DIRY ?? AUX_DIRY), -back.z).normalize(), slide: window.AUX_SLIDE || AUX_SLIDE, aux: true };   // in and out level along the mattress
+        if (SPECS[name].aux) {
+          // the forearm under the knee (from the far side): a solved transform. It comes and goes flat along the mattress,
+          // between his legs and under the knee (fd, level), the forearm always passing through one GATE point between his
+          // legs on the solved forearm line, so the wrist bends and the glove stays flat on the mattress
+          const back = V(...C.back), sz = side === 'R' ? 1 : -1, pos = V(...C.wrist), fd = V(-back.x, 0, -back.z).normalize();
+          const gate = pos.clone().addScaledVector(back, (pos.z - sz * AUX_ZGATE) / -back.z);
+          return { pos, quat: new THREE.Quaternion(...C.quat), pose: C.pose, back, sleeve: V(-0.35, 0.92, 0.2 * sz).normalize().toArray(), fd, slide: (pos.z - sz * AUX_ZOUT) / fd.z, gate, sz, aux: true };
         }
         const spec = specFor(name, side, C.vi), arm = EX[h];
         let keep = null;
@@ -518,7 +526,6 @@
       };
       // states: { rest: 'R'|'L' } a resting hand on his right / left; { c: id } on a contact; { c: id, out: 1 } the same hand
       // slid back out along its fingers (by the contact's `slide` distance), at the slide height
-      const AUX_SLIDE = 2.4, AUX_DIRY = 0.5;     // how far the arm under the knee slides along the mattress (motion only, not solved)
       const evalState = (h, s) => {
         if (s.rest) return restOf(h, s.rest);
         const st = contactOf(h, s.c, !!s.out);
@@ -564,57 +571,66 @@
           if (test === 'kneeext') {
             const ax = { c: 'kneeextAux_' + side }, ao = R ? W.auxOff : W.auxOffL;
             if (R) { key(a, W.aux[0], rest); key(a, W.aux[1], ax); } else cut(a, W.cutL, ax);
-            key(a, ao[0], ax); key(a, ao[0] + (ao[1] - ao[0]) * 0.55, { c: ax.c, out: 1 }); key(a, ao[1], rest);
+            key(a, ao[0], ax); key(a, ao[0] + (ao[1] - ao[0]) * ao[2], { c: ax.c, out: 1 }); key(a, ao[1], rest);   // ao[2]: the share of the slide out
           }
         }
         cut('R', W.cutR, RHIP); cut('L', W.cutR, RHIP);
       }
       for (const h of ['R', 'L']) track[h].sort((p, q) => p[0] - q[0] || (q[2].cut ? 1 : 0) - (p[2].cut ? 1 : 0));
       const same = (p, q) => p.rest === q.rest && p.c === q.c && !!p.out === !!q.out;
-      const AUX_TOP = 10.7;      // above the bent knee (its top is about 9.1) with the glove and forearm clear
+      const auxLever = (o, pos) => o.gate.clone().sub(pos).normalize();          // the forearm through the gate
       const auxPath = (rest, o, w) => {
-        // w 0..1 from the rest to the slid-out point: up (0-0.3), across (0.3-0.7), down (0.7-1)
-        const up = rest.pos.clone(); up.y = AUX_TOP; const over = o.pos.clone(); over.y = AUX_TOP;
-        let pos;
-        if (w < 0.3) pos = rest.pos.clone().lerp(up, ease(w / 0.3));
-        else if (w < 0.7) pos = up.clone().lerp(over, ease((w - 0.3) / 0.4));
-        else pos = over.clone().lerp(o.pos, ease((w - 0.7) / 0.3));
-        const va = 1 - Math.pow(1 - Math.min(1, w / 0.3), 3);          // the arm takes its final direction while it rises
-        return { pos, quat: rest.quat.clone().slerp(o.quat, va), pose: poseMix(poseMix(rest.pose, REST_POSE, Math.sin(Math.PI * w)), o.pose, w), back: rest.back.clone().lerp(o.back, va).normalize(), sleeve: V(...rest.sleeve).lerp(V(...o.sleeve), va).normalize().toArray() };
+        // w 0..1 from the rest to the slid-out point (between his legs, flat on the mattress):
+        //   0-0.25 up from the rest, the hand turning palm down;  0.25-0.5 across above the raised knee;
+        //   0.5-0.6 the fingers turn down (the hand edge-on);  0.6-0.85 down into the gap between his legs;
+        //   0.85-1 the hand turns flat, fingers under the knee, the fingertips gliding on the mattress, the wrist coming down
+        const f = V(0.25, 0, o.sz).normalize(), Qd = new THREE.Quaternion().setFromUnitVectors(f, V(0, -1, 0)).multiply(o.quat);
+        const Bd = V(0.05, 1, -0.3 * o.sz).normalize(), up = rest.pos.clone(); up.y = AUX_TOP;
+        const hi = V(o.pos.x, AUX_TOP, o.pos.z), lo = V(o.pos.x, AUX_LOW, o.pos.z);
+        const seg = (a, b) => K.clamp((w - a) / (b - a)), va = 1 - Math.pow(1 - seg(0, 0.25), 3);
+        let pos, quat, back;
+        if (w < 0.25) { pos = rest.pos.clone().lerp(up, ease(seg(0, 0.25))); quat = rest.quat.clone().slerp(o.quat, va); back = rest.back.clone().lerp(Bd, va).normalize(); }
+        else if (w < 0.5) { pos = up.clone().lerp(hi, ease(seg(0.25, 0.5))); quat = o.quat.clone(); back = Bd.clone(); }
+        else if (w < 0.6) { pos = hi.clone(); quat = o.quat.clone().slerp(Qd, ease(seg(0.5, 0.6))); back = Bd.clone(); }
+        else if (w < 0.85) { pos = hi.clone().lerp(lo, ease(seg(0.6, 0.85))); quat = Qd.clone(); back = Bd.clone(); }
+        else {
+          const v = ease(seg(0.85, 1)), th = v * Math.PI / 2;
+          pos = o.pos.clone(); pos.y = o.pos.y + (AUX_LOW - o.pos.y) * Math.cos(th);
+          quat = Qd.clone().slerp(o.quat, v); back = Bd.clone().lerp(auxLever(o, o.pos), v).normalize();
+        }
+        const pose = poseMix(poseMix(rest.pose, REST_POSE, Math.sin(Math.PI * Math.min(1, w / 0.5)) * (w < 0.5 ? 1 : 0)), o.pose, Math.min(1, w / 0.5));
+        return { pos, quat, pose, back, sleeve: V(...rest.sleeve).lerp(V(...o.sleeve), va).normalize().toArray() };
       };
       const handAt = (h, tq) => {
         const tr = track[h]; let i = 0; while (i < tr.length - 1 && tr[i + 1][0] <= tq) i++;
         const [t0, s0] = tr[i], nx = tr[i + 1];
         if (!nx || nx[2].cut || same(s0, nx[1])) return evalState(h, s0);
         const u = K.clamp((tq - t0) / (nx[0] - t0)), s1 = nx[1];
-        // the arm under the knee: from the rest it lifts straight up clear of the bent knee, crosses above it to the far
-        // side, comes down there, then slides in under the knee along its forearm (a small drop that closes to zero keeps
-        // the glove clear of the hollow of the knee); coming out is the same path backwards
+        // the arm under the knee: from the rest over the raised knee, down between his legs, then flat along the mattress
+        // in under the knee (auxPath, auxLever); coming out is the same path backwards
         const auxIn = s1.c && !s1.out && SPECS[s1.c.split('_')[0]].aux && s0.rest, auxOut = s0.c && s0.out && SPECS[s0.c.split('_')[0]].aux && s1.rest;
         if (auxIn || auxOut) {
           const rest = evalState(h, auxIn ? s0 : s1), o = evalState(h, { c: (auxIn ? s1 : s0).c, out: 1 }), k = 0.62;
           if (auxOut) return auxPath(rest, o, 1 - u);
           if (u < k) return auxPath(rest, o, ease(u / k));
           const bi = contactOf(h, s1.c, true), v = K.ease.out((u - k) / (1 - k)), pos = o.pos.clone().lerp(bi.pos, v);
-          pos.y -= 0.03 * Math.sin(Math.PI * v);
-          return { pos, quat: bi.quat, pose: bi.pose, back: bi.back, sleeve: bi.sleeve };
+          return { pos, quat: bi.quat, pose: bi.pose, back: auxLever(bi, pos), sleeve: bi.sleeve };
         }
         if (s1.c && s1.out && s0.c === s1.c && SPECS[s0.c.split('_')[0]].aux) {   // sliding out along the forearm, the same drop
-          const a = evalState(h, s0), b = evalState(h, s1), v = ease(u), pos = a.pos.clone().lerp(b.pos, v); pos.y -= 0.03 * Math.sin(Math.PI * v);
-          return Object.assign(a, { pos });
+          const a = evalState(h, s0), b = evalState(h, s1), v = ease(u), pos = a.pos.clone().lerp(b.pos, v);
+          return Object.assign(a, { pos, back: auxLever(a, pos) });
         }
         // into a sliding contact: arc to the slid-out point, then straight in along the fingers
         if (s1.c && !s1.out && SPECS[s1.c.split('_')[0]].slide && !(s0.c === s1.c)) {
           const b = evalState(h, s1), bo = evalState(h, { c: s1.c, out: 1 }), a = evalState(h, s0), k = 0.62;
-          if (u < k) return arc(a, bo, ease(u / k), bo.aux ? 2.1 : 0.45);
+          if (u < k) return arc(a, bo, ease(u / k), 0.45);
           const bi = contactOf(h, s1.c, true), v = K.ease.out((u - k) / (1 - k)), pos = bo.pos.clone().lerp(bi.pos, v);
-          if (bi.aux) pos.y -= 0.03 * Math.sin(Math.PI * v);
           return { pos, quat: bi.quat, pose: bi.pose, back: bi.back, sleeve: bi.sleeve };
         }
         // sliding back out along the fingers
         if (s1.out && s0.c === s1.c) { const b = evalState(h, s1), a = contactOf(h, s0.c, true), v = ease(u); return Object.assign(a, { pos: a.pos.clone().lerp(b.pos, v) }); }
         const e0 = evalState(h, s0), e1 = evalState(h, s1);
-        return arc(e0, e1, ease(u), s0.rest && s1.rest ? 0 : e0.aux || e1.aux ? 2.1 : 0.45);
+        return arc(e0, e1, ease(u), s0.rest && s1.rest ? 0 : 0.45);
       };
 
       // ------------------------------------------------------------ THE FACE (silent "no" in the inspection hold)

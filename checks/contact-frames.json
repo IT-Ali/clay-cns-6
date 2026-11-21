@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-21T05:46:54.551Z",
+ "checked": "2026-11-21T09:09:56.965Z",
  "allOk": true,
  "rows": [
   {
@@ -332,19 +332,15 @@
    "t": 62,
    "ok": true,
    "gapsMm": {
-    "palm": 0.05,
-    "index": 0.05,
-    "middle": 0.05,
-    "ring": 0.05,
-    "little": 0.05,
-    "thumb": 0.05,
-    "forearm": 1.19
+    "forearmKnee": 0.64,
+    "gloveMattress": 0.05,
+    "deepestInLegs": 0.64
    },
    "leg": {
-    "hipFlex": 0,
+    "hipFlex": 32.3508408,
     "hipAbd": 0,
     "hipRot": 0,
-    "knee": 0,
+    "knee": 60.42,
     "ankle": 0,
     "ankleInv": 0,
     "bigToe": 0,
@@ -382,19 +378,15 @@
    "t": 64.6,
    "ok": true,
    "gapsMm": {
-    "palm": 0.05,
-    "index": 0.05,
-    "middle": 0.05,
-    "ring": 0.05,
-    "little": 0.05,
-    "thumb": 0.05,
-    "forearm": 0.54
+    "forearmKnee": 0.64,
+    "gloveMattress": 0.05,
+    "deepestInLegs": 0.64
    },
    "leg": {
-    "hipFlex": 0,
+    "hipFlex": 32.3553408,
     "hipAbd": 0,
     "hipRot": 0,
-    "knee": 0,
+    "knee": 60.42,
     "ankle": 0,
     "ankleInv": 0,
     "bigToe": 0,
