@@ -62,7 +62,10 @@
       for (let i = 0; i < I.length; i++) list[fill[I[i]]++] = (i / 3) | 0;
       tri = { start: cnt, list, I }; adjCache.set(key, tri);
     }
-    return { meshes, W, WN, grid, tri, nSkin: meshes[0].geometry.attributes.position.count };
+    // which vertices decide their side by the bone axis: only the trouser leg (the rolled cuff's normals are not reliable);
+    // the skin and the toes by their own normals
+    const axisV = new Uint8Array(n); { let o = 0; for (const m of meshes) { const c = m.geometry.attributes.position.count; if (/^trouser/.test(m.name || '')) axisV.fill(1, o, o + c); o += c; } }
+    return { meshes, W, WN, grid, tri, axisV };
   };
   CONTACT.legSkin = (P, leg, center, R) => Object.assign(CONTACT.skin(CONTACT.surfaces(P, leg), center, R), { axes: CONTACT.axes(P, leg), P, leg });
   // closest point on triangle (Ericson, Real-Time Collision Detection 5.1.5)
@@ -100,10 +103,10 @@
     }
     // the sign: outside if p lies beyond the surface point as seen from the leg's bone axis (robust for the skin, the
     // rolled cuff and the toes, whatever their normals); far inside (no surface within reach) falls back on P.legSDF
-    // the skin (the first mesh) has reliable outward normals: its side is decided by the triangle's own normal (right
-    // in the folds too, e.g. between the top of the foot and the shin); the rolled cuff and the toes by the bone axis
+    // the skin and the toes have reliable outward normals: their side is decided by the triangle's own normal (right in
+    // the folds too, e.g. between the top of the foot and the shin); the rolled trouser cuff by the bone axis
     let sgn = 1;
-    if (mi < sk.nSkin || !sk.axes) sgn = Math.sign(p.clone().sub(mat).dot(mn)) || 1;
+    if (!sk.axisV[mi] || !sk.axes) sgn = Math.sign(p.clone().sub(mat).dot(mn)) || 1;
     else { const ax = axisPoint(sk.axes, mat), out = mat.clone().sub(ax); sgn = Math.sign(p.clone().sub(mat).dot(out)) || 1; }
     return { d: sgn * Math.sqrt(md), at: mat, n: mn };
   };
@@ -116,7 +119,7 @@
     const at = V(W[3 * best], W[3 * best + 1], W[3 * best + 2]), dv = p.clone().sub(at);
     let sa = 1; if (sk.axes) { const ax = axisPoint(sk.axes, at); sa = Math.sign(dv.dot(at.clone().sub(ax))) || 1; }
     const sn = Math.sign(dv.dot(V(sk.WN[3 * best], sk.WN[3 * best + 1], sk.WN[3 * best + 2]))) || 1;
-    const inside = best < sk.nSkin ? sn < 0 : (sa < 0 && sn < 0);
+    const inside = !sk.axisV[best] ? sn < 0 : (sa < 0 && sn < 0);
     return { d: (inside ? -1 : 1) * Math.sqrt(bd), at };
   };
   const segPt = (a, b, p) => { const ab2 = b.clone().sub(a), u = K.clamp(p.clone().sub(a).dot(ab2) / ab2.lengthSq()); return a.clone().addScaledVector(ab2, u); };
