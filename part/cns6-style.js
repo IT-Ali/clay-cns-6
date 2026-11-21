@@ -116,7 +116,7 @@
         // the foot toward its inner border; nothing over the toes, nothing beyond the toe tips (checked at the solve)
         dorsi: { anchor: ['dorsum', 'toeTip', 0.35, 'skin'], seg: 'foot', patch: 0.1, angle: 90, rollSearch: [0, 10, 20, 30, -10, -20], back: [0, 0, 0, -0.45, 0.7, 0.55], pose: PAL, leg: 'dorsiUp', toeCheck: true },
         // plantar flexion: the palm flat on the ball of the foot, fingers up toward the toes
-        plantar: { anchor: ['ball', 'sole', 0.3, 'skin'], seg: 'foot', patch: 0.1, rollSearch: [0, 10, -10, 20, -20, 30, -30, 40, -40], angle: -95, back: [0, 0, 0, 0.5, 0.82, 0.28], sleeveZ: 0.25, pose: PAL, leg: 'plantarDown' },
+        plantar: { anchor: ['ball', 'sole', 0.4, 'skin'], seg: 'foot', patch: 0.1, rollSearch: [40, -40, 30, -30, 20, -20], angle: -95, back: [0, 0, 0, 0.5, 0.82, 0.28], sleeveZ: 0.25, pose: PAL, leg: 'plantarDown' },
       };
       const mirrorSpec = (sp) => Object.assign({}, sp, { angle: -sp.angle, back: [sp.back[0], -sp.back[1], sp.back[2], sp.back[3], sp.back[4], -sp.back[5]] });
       // roles: the examiner's hand nearer his feet does the test; the other one rests (or goes under the knee)
@@ -130,7 +130,7 @@
         calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v14';
+      const SOLVE_VERSION = 'cns6-solve-v15';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
       const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
