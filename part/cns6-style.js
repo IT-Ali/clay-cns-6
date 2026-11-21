@@ -13,6 +13,9 @@
   // ================================================================ CONTENT (the story, in order; times in seconds)
   const D = 85.0;
   const HOME_HOLD = 1.0;                     // the CNS home shot, still, at both ends
+  // every hard cut sits ON the 1/15 s pose grid (the clay, the legs and the hands step at 15 per second), so the new
+  // camera, the new pose and the hands all change on the same frame: G(t) is the first pose step at or after t
+  const G = (t) => Math.ceil(t * 15 - 1e-6) / 15;
   const BEATS = [
     { n: 1, name: 'Position', t0: 0, t1: 5 },
     { n: 2, name: 'Inspection', t0: 5, t1: 13, hold: [5.0, 6.5] },
@@ -22,8 +25,8 @@
     { n: 6, name: 'Hip extension (L5, S1)', t0: 42, t1: 50, hold: [42.0, 43.5] },
     { n: 7, name: 'Knee flexion (L5, S1)', t0: 50, t1: 58, hold: [50.0, 51.5] },
     { n: 8, name: 'Knee extension (L3, L4)', t0: 58, t1: 66, hold: [58.0, 59.5] },
-    { n: 9, name: 'Ankle dorsiflexion (L4, L5)', t0: 66, t1: 73.5, hold: [66.0, 67.5] },
-    { n: 10, name: 'Plantar flexion (S1)', t0: 73.5, t1: 81, hold: [73.5, 75.0] },
+    { n: 9, name: 'Ankle dorsiflexion (L4, L5)', t0: 66, t1: G(73.5), hold: [66.0, 67.5] },
+    { n: 10, name: 'Plantar flexion (S1)', t0: G(73.5), t1: 81, hold: [G(73.5), 75.0] },
     { n: 11, name: 'End', t0: 81, t1: 85 },
   ];
   const CAPTIONS = [
@@ -45,12 +48,12 @@
   //   resist he holds against the hand: the limb gives GIVE_MM, then holds firm; the muscle firms
   //   off    the hand leaves; back the limb goes back to rest;  cutL/cutR the hard cuts to his left / back to his right
   const POWER = {
-    hipflex: { t: 34.0, move: [35.5, 36.3], hand: [36.2, 36.8], resist: [36.8, 38.5], off: [38.5, 39.0], back: [38.7, 39.3], cutL: 39.5, resistL: [39.5, 41.1], offL: [41.1, 41.5], backL: [41.3, 41.9], cutR: 42.0 },
+    hipflex: { t: 34.0, move: [35.5, 36.3], hand: [36.2, 36.8], resist: [36.8, 38.5], off: [38.5, 39.0], back: [38.7, 39.3], cutL: G(39.5), resistL: [G(39.5), 41.1], offL: [41.1, 41.5], backL: [41.3, 41.9], cutR: 42.0 },
     hipext: { t: 42.0, hand: [43.5, 44.1], heelUp: [43.6, 43.85], move: [44.2, 44.7], resist: [44.7, 46.3], back: [46.3, 46.8], off: [46.8, 47.1], heelDown: [47.05, 47.3], rest: [47.1, 47.55], cutL: 47.6, resistL: [47.6, 49.0], backL: [49.0, 49.4], offL: [49.4, 49.7], heelDownL: [49.65, 49.9], restL: [49.7, 49.98], cutR: 50.0 },
-    kneeflex: { t: 50.0, move: [51.5, 52.4], hand: [52.3, 52.9], resist: [52.9, 54.5], off: [54.5, 55.0], back: [54.7, 55.5], cutL: 55.7, resistL: [55.7, 57.2], offL: [57.2, 57.6], backL: [57.4, 57.95], cutR: 58.0 },
-    kneeext: { t: 58.0, move: [59.5, 60.3], aux: [60.2, 60.8], hand: [60.6, 61.2], resist: [61.2, 62.8], off: [62.8, 63.2], auxOff: [63.0, 63.5], back: [63.3, 64.0], cutL: 64.1, resistL: [64.1, 65.3], offL: [65.3, 65.6], auxOffL: [65.4, 65.75], backL: [65.6, 65.98], cutR: 66.0 },
-    dorsi: { t: 66.0, move: [67.5, 68.0], hand: [67.9, 68.5], resist: [68.5, 70.1], off: [70.1, 70.5], back: [70.3, 70.8], cutL: 71.0, resistL: [71.0, 72.5], offL: [72.5, 72.9], backL: [72.7, 73.2], cutR: 73.5 },
-    plantar: { t: 73.5, hand: [75.0, 75.6], move: [75.6, 76.1], resist: [76.1, 77.7], back: [77.7, 78.2], off: [78.1, 78.6], cutL: 78.7, resistL: [78.7, 80.1], backL: [80.1, 80.5], offL: [80.4, 80.85], cutR: 81.0 },
+    kneeflex: { t: 50.0, move: [51.5, 52.4], hand: [52.3, 52.9], resist: [52.9, 54.5], off: [54.5, 55.0], back: [54.7, 55.5], cutL: G(55.7), resistL: [G(55.7), 57.2], offL: [57.2, 57.6], backL: [57.4, 57.95], cutR: 58.0 },
+    kneeext: { t: 58.0, move: [59.5, 60.3], aux: [60.3, 61.0], hand: [60.7, 61.2], resist: [61.2, 62.8], off: [62.8, 63.2], auxOff: [63.0, 63.7], back: [63.45, 64.05], cutL: G(64.1), resistL: [G(64.1), 65.3], offL: [65.3, 65.6], auxOffL: [65.35, 65.8], backL: [65.62, 65.98], cutR: 66.0 },
+    dorsi: { t: 66.0, move: [67.5, 68.0], hand: [67.9, 68.5], resist: [68.5, 70.1], off: [70.1, 70.5], back: [70.3, 70.8], cutL: 71.0, resistL: [71.0, 72.5], offL: [72.5, 72.9], backL: [72.7, 73.2], cutR: G(73.5) },
+    plantar: { t: G(73.5), hand: [75.0, 75.6], move: [75.6, 76.1], resist: [76.1, 77.7], back: [77.7, 78.2], off: [78.1, 78.6], cutL: G(78.7), resistL: [G(78.7), 80.1], backL: [80.1, 80.5], offL: [80.4, 80.85], cutR: 81.0 },
   };
   // tone (beats 3 and 4)
   const TONE = {
@@ -110,7 +113,10 @@
         // knee extension: the palm on the front of the lower shin just above the ankle
         kneeext: { anchor: ['shinMid', 'ankle', 0.62, 'out'], seg: 'shank', angle: 90, sleeveZ: 0.25, back: [0, 0, 0, 0.42, 0.84, 0.34], pose: PAL, leg: 'knee60' },
         // knee extension, the other hand: palm on his other knee, the forearm under the bent knee (solved: forearm touches)
-        kneeextAux: { other: true, anchor: ['patella', 'tibialTuberosity', 0.5], seg: 'thigh', angle: 60, back: [0, 0, 0, 0, 0.4, 1], pose: PAL, leg: 'knee60', forearmUnder: true, slide: 3.4 },
+        // knee extension, the other hand: the forearm under the bent knee, coming in from the FAR side along its own axis
+        // (an arc over the knee, then a slide); the glove rests flat on the mattress on the camera side of the knee, in
+        // view; the forearm touches the hollow of the knee (gap TARGET); the upper arm rises from the far side to the top
+        kneeextAux: { aux: true, slide: 3.0 },
         // ankle dorsiflexion: the palm on the top of the foot, fingers toward the toes, pressing it down
         // ankle dorsiflexion: the palm across the top of the middle of the foot (over the metatarsals), the fingers across
         // the foot toward its inner border; nothing over the toes, nothing beyond the toe tips (checked at the solve)
@@ -130,7 +136,7 @@
         calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v16';
+      const SOLVE_VERSION = 'cns6-solve-v17';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
       const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
@@ -206,9 +212,10 @@
           P.setLeg(side, {});
         }
         // the anchors (vertices of the skin, found at rest) and the contacts, solved at their test poses
-        const ONLY = root.SOLVE_ONLY, PREV = root.SOLVED_PREV;
+        const ONLY = root.SOLVE_ONLY, PREV = root.SOLVED_PREV; SOLVED_LEGS_NOW = out.legs;
         for (const side of ['R', 'L']) {
           for (const [id, sp0] of Object.entries(SPECS)) {
+            if (sp0.aux) continue;                     // solved below (solveAux)
             if (ONLY && PREV && PREV.contacts && PREV.contacts[id + '_' + side] && !ONLY.includes(id)) { out.contacts[id + '_' + side] = PREV.contacts[id + '_' + side]; log(id + '_' + side + ' kept from the previous solve'); continue; }
             const sp = side === 'R' ? sp0 : mirrorSpec(sp0), leg = sp.other ? (side === 'R' ? 'L' : 'R') : side;
             P.setLeg('R', {}); P.setLeg('L', {});
@@ -219,7 +226,7 @@
             const vi = CONTACT.nearestVertex(P, leg, p);
             P.setLeg(side, out.legs[side].pose[sp.leg]);
             const spec = specFor(id, side, vi);
-            const arm = EX[sp.forearmUnder ? AUX[side] : WORK[side]];
+            const arm = EX[WORK[side]];
             const sol = CONTACT.solve(P, arm, spec);
             const rec = { vi, sol: { offset: sol.offset, roll: sol.roll, pitch: sol.pitch, curl: sol.curl, thumb: sol.thumb }, gapsMm: sol.gaps, digits: sol.digits, culprit: sol.culprit };
             if (sp.toeCheck) {      // how far the hand reaches past the toe tips, along the foot (must be < 0)
@@ -227,22 +234,24 @@
               arm.hand.group.traverse((m) => { if (!m.isMesh) return; m.updateWorldMatrix(true, false); const A = m.geometry.attributes.position; for (let i = 0; i < A.count; i++) { v.fromBufferAttribute(A, i).applyMatrix4(m.matrixWorld); mx = Math.max(mx, v.dot(u) - tip); } });
               rec.beyondToeTipsMm = +(mx * 100).toFixed(1);
             }
-            if (sp.forearmUnder) Object.assign(rec, solveForearm(side, spec, sol));
             if (sp.slidePose) Object.assign(rec, solveSlide(id, side, spec, sol, hg, out.legs[side]));
             out.contacts[id + '_' + side] = rec;
             log(id + '_' + side + ' vi ' + vi + ' gaps(mm) ' + JSON.stringify(rec.gapsMm) + (rec.forearmMm != null ? ' forearm ' + rec.forearmMm : '') + (rec.slideMm != null ? ' slide lift ' + rec.slideLift : ''));
           }
           P.setLeg('R', {}); P.setLeg('L', {});
         }
+        for (const side of ['R', 'L']) { out.contacts['kneeextAux_' + side] = solveAux(side); log('kneeextAux_' + side + ' ' + JSON.stringify(out.contacts['kneeextAux_' + side].report)); }
+        P.setLeg('R', {}); P.setLeg('L', {});
         // mirror step: the legs and the hands are exact mirrors, so when one side of a contact did not solve cleanly and the
         // other did, the clean side's solution (roll mirrored) is tried on it, measured from the meshes, and kept only if
         // every part passes
         const valid = (rec) => rec && rec.gapsMm.palm <= 1.5 && rec.gapsMm.palm >= 0 && Object.values(rec.digits || {}).every((d) => (d.state === 'on skin' && d.mm <= 1.5 && d.mm >= 0) || (d.state === 'curled' && d.mm > 0)) && Object.values(rec.gapsMm).every((g) => g >= 0);
         for (const id of Object.keys(SPECS)) {
+          if (SPECS[id].aux) continue;
           const r = out.contacts[id + '_R'], l = out.contacts[id + '_L'];
           for (const [bad, good, side] of [[r, l, 'R'], [l, r, 'L']]) {
             if (!bad || !good || valid(bad) || !valid(good)) continue;
-            const spec = specFor(id, side, bad.vi), arm = EX[SPECS[id].forearmUnder ? AUX[side] : WORK[side]];
+            const spec = specFor(id, side, bad.vi), arm = EX[WORK[side]];
             P.setLeg('R', {}); P.setLeg('L', {}); P.setLeg(side, out.legs[side].pose[SPECS[id].leg]);
             const sol = JSON.parse(JSON.stringify(good.sol)); sol.roll = -(good.sol.roll || 0);
             CONTACT.apply(P, arm, spec, sol);
@@ -283,26 +292,36 @@
       }
       // the forearm under the bent knee: the hand rests on his other knee; the forearm is tipped up until it touches the
       // underside of the bent knee (gap TARGET), aimed across under the hollow of the knee
-      function solveForearm(side, spec, sol) {
-        const arm = EX[AUX[side]], sz = side === 'R' ? 1 : -1, sk = CONTACT.legSkin(P, side, null);
-        CONTACT.apply(P, arm, spec, sol);
-        const fore = () => CONTACT.parts(arm).forearm;
-        const gapAt = (bx, by, stride = 2) => { CONTACT.follow(arm, V(bx, by, sz).normalize(), spec.sleeve); return CONTACT.partGap(sk, fore(), stride, 0.12).gap; };
-        // a grid of yaws (bx) and tilts (by): the forearm runs under the bent knee and touches it (smallest gap >= 0)
-        let best = null;
-        for (let bx = -0.7; bx <= 0.31; bx += 0.05) for (let by = -0.3; by <= 0.91; by += 0.05) {
-          const g = gapAt(bx, by); if (g >= 0 && (!best || g < best.g)) best = { g, bx, by };
+      var SOLVED_LEGS_NOW = null;   // (var: used by solveAll, which runs before this line)
+      function solveAux(side) {
+        const sz = side === 'R' ? 1 : -1, h = AUX[side], arm = EX[h], other = side === 'R' ? 'L' : 'R';
+        P.setLeg(other, {}); P.setLeg(side, SOLVED_LEGS_NOW[side].pose.knee60);
+        const knee = P.legPoint(side, 'knee'), pop = knee.clone().add(V(0, -0.5, 0));
+        const skS = CONTACT.legSkin(P, side, null), skO = CONTACT.legSkin(P, other, null), T = CONTACT.TARGET;
+        const HP = ['palm', 'index', 'middle', 'ring', 'little', 'thumb'];
+        for (const dz of [1.0, 1.15, 1.3, 1.45, 1.6]) {
+          const x = knee.x - 0.05, z = knee.z + sz * dz;
+          const r = HOME.solveEx(EX, h, { contact: 'palm', at: V(x, hs(x, z) + 0.012, z), quat: HANDS.quat(V(0.25, 0, sz).normalize(), V(0, 1, 0)), pose: HOME.CNS.exPose, back: V(0, 0.8, -sz).normalize(), rest: { surface: hs } });
+          const place = (back) => { arm.hand.pose(r.pose); arm.hand.group.position.copy(r.wrist); arm.hand.group.quaternion.copy(r.quat); arm.hand.group.updateMatrixWorld(true); CONTACT.follow(arm, back, null); };
+          place(V(0, 0.8, -sz).normalize());
+          const handMin = (sk) => Math.min(...Object.values(CONTACT.gaps(sk, arm, HP, 2)).map((v) => v.gap));
+          if (handMin(skS) < 0.01 || handMin(skO) < 0.01) continue;            // the glove must lie clear of both legs
+          const gapAt = (bx, by, stride = 2) => { place(V(bx, by, -sz).normalize()); const g = CONTACT.partGap(skS, CONTACT.parts(arm).forearm, stride, 0.12), o = CONTACT.partGap(skO, CONTACT.parts(arm).forearm, stride, 0.12); return { g: g.gap, at: g.skin, o: o.gap }; };
+          // the forearm under the hollow of the knee: the tilt where it just touches there (not the calf, not the other leg)
+          let best = null;
+          for (let bx = -0.5; bx <= 0.51; bx += 0.1) for (let by = 0.2; by <= 3.01; by += 0.1) {
+            const q = gapAt(bx, by); if (q.g >= 0 && q.o >= 0.01 && q.at && q.at.distanceTo(pop) < 0.75 && (!best || q.g < best.g)) best = { g: q.g, bx, by };
+          }
+          if (!best) continue;
+          let lo = best.by, hi = best.by + 0.1;                 // lo: clear; hi: steeper, touching
+          for (let k = 0; k < 26; k++) { const m = (lo + hi) / 2; if (gapAt(best.bx, m, 1).g >= T) lo = m; else hi = m; }
+          const fin = gapAt(best.bx, lo, 1), back = V(best.bx, lo, -sz).normalize();
+          place(back);
+          const hg = HOME.handGaps(arm.hand, hs), mat = Math.min(...Object.values(hg).map((v) => v.gap));
+          const report = { forearmKneeMm: +(fin.g * 100).toFixed(3), forearmOtherLegMm: +(fin.o * 100).toFixed(1), gloveLegMm: +(Math.min(handMin(skS), handMin(skO)) * 100).toFixed(1), gloveMattressMm: +(mat * 100).toFixed(3), palmMattressMm: +(hg.palm.gap * 100).toFixed(3), handOut: dz };
+          return { aux: true, wrist: r.wrist.toArray(), quat: r.quat.toArray(), pose: r.pose, back: back.toArray(), report };
         }
-        if (!best) return { forearmBack: V(0, 0.3, sz).normalize().toArray(), forearmMm: null, forearmFail: true };
-        // refine the tilt to the touch (gap TARGET) by bisection between a touching and a clear tilt
-        let hi = best.by, lo = null;                      // hi: clear; lo: the neighbouring tilt that touches (inside)
-        for (const d of [0.05, -0.05]) if (lo == null && gapAt(best.bx, best.by + d, 1) < CONTACT.TARGET) lo = best.by + d;
-        if (lo == null) lo = best.by + 0.05;
-        for (let k = 0; k < 24; k++) { const m = (lo + hi) / 2, g = gapAt(best.bx, m, 1); if (g >= CONTACT.TARGET) hi = m; else lo = m; }
-        let g = gapAt(best.bx, hi, 1);
-        for (let k = 0; k < 60 && g < CONTACT.TARGET; k++) { const up = gapAt(best.bx, hi + 0.002, 1), dn = gapAt(best.bx, hi - 0.002, 1); hi += up > dn ? 0.002 : -0.002; g = Math.max(up, dn); }
-        g = gapAt(best.bx, hi, 1);
-        return { forearmBack: V(best.bx, hi, sz).normalize().toArray(), forearmMm: +(g * 100).toFixed(3) };
+        return { aux: true, fail: true, report: { fail: 'no clear place for the arm under the knee' } };
       }
       // slide-in under the knee or the heel: how high the leg must already be so the back of the hand clears the mattress
       function solveSlide(id, side, spec, sol, hg, L2) {
@@ -467,15 +486,20 @@
       // coming in under the knee or the heel, or leaving again, is placed where the slid-in hand will be)
       const slidePoseOf = (name, side) => { const C = SOLVED.contacts[name + '_' + side]; return name === 'knee' ? liftState(side, C.slideLift) : { hipFlex: C.slideLift }; };
       const contactOf = (h, id, atSlide) => {
-        const [name, side] = id.split('_'), C = SOLVED.contacts[id], spec = specFor(name, side, C.vi), arm = EX[h];
+        const [name, side] = id.split('_'), C = SOLVED.contacts[id];
+        if (SPECS[name].aux) {   // the forearm under the knee: a solved transform; it slides in and out along its own axis
+          const back = V(...C.back), sz = side === 'R' ? 1 : -1;
+          return { pos: V(...C.wrist), quat: new THREE.Quaternion(...C.quat), pose: C.pose, back, sleeve: V(-0.35, 0.92, 0.2 * sz).normalize().toArray(), fd: V(-back.x, -back.y * (window.AUX_DIRY ?? AUX_DIRY), -back.z).normalize(), slide: window.AUX_SLIDE || AUX_SLIDE, aux: true };   // in and out level along the mattress
+        }
+        const spec = specFor(name, side, C.vi), arm = EX[h];
         let keep = null;
         if (atSlide && spec.slidePose) { keep = P.leg(side); P.setLeg(side, slidePoseOf(name, side)); }
         const pz = CONTACT.apply(P, arm, spec, C.sol);
         if (keep) P.setLeg(side, keep);
-        const back = spec.forearmUnder ? V(...C.forearmBack) : pz.back, sz = side === 'R' ? 1 : -1;
+        const back = pz.back, sz = side === 'R' ? 1 : -1;
         // the upper arm rises to the standing examiner's shoulder, leaning the way the forearm leans (to his head or
         // his feet), so it leaves the frame at the top corner and never stands between the camera and the contact
-        const sleeve = spec.forearmUnder ? V(-0.3, 0.92, 0.25 * sz).normalize().toArray() : V(back.x * 0.75, 0.85, (spec.sleeveZ || 0.5) * sz).normalize().toArray();
+        const sleeve = V(back.x * 0.75, 0.85, (spec.sleeveZ || 0.5) * sz).normalize().toArray();
         return { pos: arm.hand.group.position.clone(), quat: arm.hand.group.quaternion.clone(), pose: CONTACT.handPose(spec, C.sol), back, sleeve, fd: pz.fd.clone(), slide: spec.slide || 0 };
       };
       const lerpArr = (a, b, u) => a.map((x, i) => K.lerp(x, b[i] == null ? x : b[i], u));
@@ -494,6 +518,7 @@
       };
       // states: { rest: 'R'|'L' } a resting hand on his right / left; { c: id } on a contact; { c: id, out: 1 } the same hand
       // slid back out along its fingers (by the contact's `slide` distance), at the slide height
+      const AUX_SLIDE = 2.4, AUX_DIRY = 0.5;     // how far the arm under the knee slides along the mattress (motion only, not solved)
       const evalState = (h, s) => {
         if (s.rest) return restOf(h, s.rest);
         const st = contactOf(h, s.c, !!s.out);
@@ -546,21 +571,50 @@
       }
       for (const h of ['R', 'L']) track[h].sort((p, q) => p[0] - q[0] || (q[2].cut ? 1 : 0) - (p[2].cut ? 1 : 0));
       const same = (p, q) => p.rest === q.rest && p.c === q.c && !!p.out === !!q.out;
+      const AUX_TOP = 10.7;      // above the bent knee (its top is about 9.1) with the glove and forearm clear
+      const auxPath = (rest, o, w) => {
+        // w 0..1 from the rest to the slid-out point: up (0-0.3), across (0.3-0.7), down (0.7-1)
+        const up = rest.pos.clone(); up.y = AUX_TOP; const over = o.pos.clone(); over.y = AUX_TOP;
+        let pos;
+        if (w < 0.3) pos = rest.pos.clone().lerp(up, ease(w / 0.3));
+        else if (w < 0.7) pos = up.clone().lerp(over, ease((w - 0.3) / 0.4));
+        else pos = over.clone().lerp(o.pos, ease((w - 0.7) / 0.3));
+        const va = 1 - Math.pow(1 - Math.min(1, w / 0.3), 3);          // the arm takes its final direction while it rises
+        return { pos, quat: rest.quat.clone().slerp(o.quat, va), pose: poseMix(poseMix(rest.pose, REST_POSE, Math.sin(Math.PI * w)), o.pose, w), back: rest.back.clone().lerp(o.back, va).normalize(), sleeve: V(...rest.sleeve).lerp(V(...o.sleeve), va).normalize().toArray() };
+      };
       const handAt = (h, tq) => {
         const tr = track[h]; let i = 0; while (i < tr.length - 1 && tr[i + 1][0] <= tq) i++;
         const [t0, s0] = tr[i], nx = tr[i + 1];
         if (!nx || nx[2].cut || same(s0, nx[1])) return evalState(h, s0);
         const u = K.clamp((tq - t0) / (nx[0] - t0)), s1 = nx[1];
+        // the arm under the knee: from the rest it lifts straight up clear of the bent knee, crosses above it to the far
+        // side, comes down there, then slides in under the knee along its forearm (a small drop that closes to zero keeps
+        // the glove clear of the hollow of the knee); coming out is the same path backwards
+        const auxIn = s1.c && !s1.out && SPECS[s1.c.split('_')[0]].aux && s0.rest, auxOut = s0.c && s0.out && SPECS[s0.c.split('_')[0]].aux && s1.rest;
+        if (auxIn || auxOut) {
+          const rest = evalState(h, auxIn ? s0 : s1), o = evalState(h, { c: (auxIn ? s1 : s0).c, out: 1 }), k = 0.62;
+          if (auxOut) return auxPath(rest, o, 1 - u);
+          if (u < k) return auxPath(rest, o, ease(u / k));
+          const bi = contactOf(h, s1.c, true), v = K.ease.out((u - k) / (1 - k)), pos = o.pos.clone().lerp(bi.pos, v);
+          pos.y -= 0.03 * Math.sin(Math.PI * v);
+          return { pos, quat: bi.quat, pose: bi.pose, back: bi.back, sleeve: bi.sleeve };
+        }
+        if (s1.c && s1.out && s0.c === s1.c && SPECS[s0.c.split('_')[0]].aux) {   // sliding out along the forearm, the same drop
+          const a = evalState(h, s0), b = evalState(h, s1), v = ease(u), pos = a.pos.clone().lerp(b.pos, v); pos.y -= 0.03 * Math.sin(Math.PI * v);
+          return Object.assign(a, { pos });
+        }
         // into a sliding contact: arc to the slid-out point, then straight in along the fingers
         if (s1.c && !s1.out && SPECS[s1.c.split('_')[0]].slide && !(s0.c === s1.c)) {
           const b = evalState(h, s1), bo = evalState(h, { c: s1.c, out: 1 }), a = evalState(h, s0), k = 0.62;
-          if (u < k) return arc(a, bo, ease(u / k));
-          const bi = contactOf(h, s1.c, true), v = K.ease.out((u - k) / (1 - k));
-          return { pos: bo.pos.clone().lerp(bi.pos, v), quat: bi.quat, pose: bi.pose, back: bi.back, sleeve: bi.sleeve };
+          if (u < k) return arc(a, bo, ease(u / k), bo.aux ? 2.1 : 0.45);
+          const bi = contactOf(h, s1.c, true), v = K.ease.out((u - k) / (1 - k)), pos = bo.pos.clone().lerp(bi.pos, v);
+          if (bi.aux) pos.y -= 0.03 * Math.sin(Math.PI * v);
+          return { pos, quat: bi.quat, pose: bi.pose, back: bi.back, sleeve: bi.sleeve };
         }
         // sliding back out along the fingers
         if (s1.out && s0.c === s1.c) { const b = evalState(h, s1), a = contactOf(h, s0.c, true), v = ease(u); return Object.assign(a, { pos: a.pos.clone().lerp(b.pos, v) }); }
-        return arc(evalState(h, s0), evalState(h, s1), ease(u), s0.rest && s1.rest ? 0 : 0.45);
+        const e0 = evalState(h, s0), e1 = evalState(h, s1);
+        return arc(e0, e1, ease(u), s0.rest && s1.rest ? 0 : e0.aux || e1.aux ? 2.1 : 0.45);
       };
 
       // ------------------------------------------------------------ THE FACE (silent "no" in the inspection hold)
@@ -594,16 +648,19 @@
       const RUNS = [
         [[0, 'home'], [HOME_HOLD, 'home'], [4.6, 'overview']],
         [[6.5, 'overview'], [7.7, 'insThigh'], [8.9, 'insKnee'], [10.0, 'insShin'], [11.1, 'insCalf'], [12.7, 'insFeet']],
-        [[13.0, 'toneR']], [[25.0, 'toneL']], [[33.6, 'hipflexR']], [[39.5, 'hipflexL']],
-        [[42.0, 'hipextR']], [[47.6, 'hipextL']], [[50.0, 'kneeflexR']], [[55.7, 'kneeflexL']],
-        [[58.0, 'kneeextR']], [[64.1, 'kneeextL']], [[66.0, 'dorsiR']], [[71.0, 'dorsiL']],
-        [[73.5, 'plantarR']], [[78.7, 'plantarL']],
+        [[13.0, 'toneR']], [[25.0, 'toneL']], [[33.6, 'hipflexR']], [[G(39.5), 'hipflexL']],
+        [[42.0, 'hipextR']], [[47.6, 'hipextL']], [[50.0, 'kneeflexR']], [[G(55.7), 'kneeflexL']],
+        [[58.0, 'kneeextR']], [[G(64.1), 'kneeextL']], [[66.0, 'dorsiR']], [[71.0, 'dorsiL']],
+        [[G(73.5), 'plantarR']], [[G(78.7), 'plantarL']],
         [[81.0, 'plantarR'], [81.3, 'plantarR'], [D - HOME_HOLD, 'home'], [D, 'home']],
       ];
       const vec = (c) => [...c.pos, ...c.target, ...(Array.isArray(c.focus) ? c.focus : c.target), c.fov, c.aperture];
-      const runs = RUNS.map((r, i) => ({ t0: r[0][0], t1: i + 1 < RUNS.length ? RUNS[i + 1][0][0] : Infinity, keys: r, f: r.length > 1 ? K.path(r.map(([t, n]) => [t, vec(SHOTS[n])])) : null }));
+      const runs = RUNS.map((r, i) => ({ t0: G(r[0][0]), t1: i + 1 < RUNS.length ? G(RUNS[i + 1][0][0]) : Infinity, keys: r, f: r.length > 1 ? K.path(r.map(([t, n]) => [t, vec(SHOTS[n])])) : null }));
+      // which run (shot) is on decides on the POSE clock (the 1/15 s pose steps the clay and the hands use), so a hard cut
+      // lands on the same frame as the new pose and hands; inside a run the camera moves on real time
+      const runAt = (t) => { const tq = SET.poseTime(t); return runs.find((q) => tq >= q.t0 && tq < q.t1) || runs[runs.length - 1]; };
       const camAt = (t) => {
-        const r = runs.find((q) => t >= q.t0 && t < q.t1) || runs[runs.length - 1];
+        const r = runAt(t);
         if (!r.f) return SHOTS[r.keys[0][1]];
         if (t <= r.keys[0][0]) return SHOTS[r.keys[0][1]];
         if (t >= r.keys[r.keys.length - 1][0]) return SHOTS[r.keys[r.keys.length - 1][1]];
@@ -648,7 +705,7 @@
         if (on) CAPTION.at(ctx, t, CAPTIONS, W, Hh);
       };
       // handles for the storyboard, the review panels and the checks (the SAME objects the video uses)
-      root.WORLD = { S, P, SH, EX, bed, L, SHOTS, RUNS, camAt, legAt, handAt, firmAt, SOLVED, SPECS, specFor, contactOf, setHand, update, homeLock, track, interp, mirrorShot, HOME_EX, restOf };
+      root.WORLD = { S, P, SH, EX, bed, L, SHOTS, RUNS, camAt, runAt, legAt, handAt, firmAt, SOLVED, SPECS, specFor, contactOf, setHand, update, homeLock, track, interp, mirrorShot, HOME_EX, restOf };
       return { update, overlay };
     },
 

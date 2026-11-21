@@ -13,8 +13,17 @@ try {
     const C = [['tone_R', 15.6], ['tone_R', 16.6], ['knee_R', 20.5], ['tone_L', 25.8], ['tone_L', 26.8], ['knee_L', 30.7], ['hipflex_R', 37.5], ['hipflex_L', 40.3], ['hipext_R', 45.5], ['hipext_L', 48.3], ['kneeflex_R', 53.5], ['kneeflex_L', 56.3], ['kneeext_R', 62.0], ['kneeextAux_R', 62.0], ['kneeext_L', 64.6], ['kneeextAux_L', 64.6], ['dorsi_R', 69.3], ['dorsi_L', 71.7], ['plantar_R', 77.0], ['plantar_L', 79.3]];
     for (const [id, t] of C) {
       window.FORCE_POSE = true; W.update(t + 1e-6); window.FORCE_POSE = false;
-      const [name, side] = id.split('_'), aux = name === 'kneeextAux', h = aux ? (side === 'R' ? 'L' : 'R') : side, leg = aux ? (side === 'R' ? 'L' : 'R') : side;
-      const r = CONTACT.review(P, W.EX[h], aux ? [leg, side] : [leg]), g = Object.fromEntries(Object.entries(r).map(([k, v]) => [k, +(v.gap * 100).toFixed(2)]));
+      const [name, side] = id.split('_'), aux = name === 'kneeextAux', h = aux ? (side === 'R' ? 'L' : 'R') : side, leg = side;
+      if (aux) {
+        // the examiner's other forearm under the tested knee (from the far side): the forearm touches the knee 0-1.5 mm,
+        // the glove lies on the mattress 0-1.5 mm, and no part of that hand or arm is inside either leg
+        const rk = CONTACT.review(P, W.EX[h], [side]), rb = CONTACT.review(P, W.EX[h], ['R', 'L']);
+        const mat = HOME.handGaps(W.EX[h].hand, (x, z) => W.SH.heightAt(x, z)), mm = (v) => +(v * 100).toFixed(2);
+        const g = { forearmKnee: mm(rk.forearm.gap), gloveMattress: mm(Math.min(...Object.values(mat).map((v) => v.gap))), deepestInLegs: mm(Math.min(...Object.values(rb).map((v) => v.gap))) };
+        out.push({ contact: id, t, ok: g.forearmKnee >= 0 && g.forearmKnee <= 1.5 && g.gloveMattress >= 0 && g.gloveMattress <= 1.5 && g.deepestInLegs >= 0, gapsMm: g, leg: P.leg(leg) });
+        continue;
+      }
+      const r = CONTACT.review(P, W.EX[h], [leg]), g = Object.fromEntries(Object.entries(r).map(([k, v]) => [k, +(v.gap * 100).toFixed(2)]));
       out.push({ contact: id, t, ok: ['palm', 'thumb', 'index', 'middle', 'ring', 'little'].every((k) => g[k] >= 0 && g[k] <= 1.5) && g.forearm >= 0, gapsMm: g, leg: P.leg(leg) });
     }
     return out;
