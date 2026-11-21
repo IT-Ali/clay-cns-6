@@ -54,6 +54,10 @@
       window.SOLVED = await r.json();
     }
     window.SOLVE_MODE = q.get('solve') === '1';
+    if (window.SOLVE_MODE && q.get('only')) {     // re-solve only these contacts; the others are kept from solved.json
+      window.SOLVE_ONLY = q.get('only').split(',');
+      const r = await fetch('solved.json?v=' + Date.now()).catch(() => null); if (r && r.ok) window.SOLVED_PREV = await r.json();
+    }
     const style = window.CNS6;
     const canvas = document.getElementById('c');
     const W = +(q.get('w') || 1920), H = +(q.get('h') || 1080);

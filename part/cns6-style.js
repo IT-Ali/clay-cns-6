@@ -114,7 +114,7 @@
         // ankle dorsiflexion: the palm on the top of the foot, fingers toward the toes, pressing it down
         // ankle dorsiflexion: the palm across the top of the middle of the foot (over the metatarsals), the fingers across
         // the foot toward its inner border; nothing over the toes, nothing beyond the toe tips (checked at the solve)
-        dorsi: { anchor: ['dorsum', 'toeTip', 0.05, 'skin'], seg: 'foot', patch: 0.1, angle: 90, back: [0, 0, 0, -0.45, 0.7, 0.55], pose: PAL, leg: 'dorsiUp', toeCheck: true },
+        dorsi: { anchor: ['dorsum', 'toeTip', 0.25, 'skin'], seg: 'foot', patch: 0.1, angle: 90, back: [0, 0, 0, -0.45, 0.7, 0.55], pose: PAL, leg: 'dorsiUp', toeCheck: true },
         // plantar flexion: the palm flat on the ball of the foot, fingers up toward the toes
         plantar: { anchor: ['ball', 'sole', 0.3, 'skin'], seg: 'foot', patch: 0.1, rollSearch: [0, -15, 15, -30, 30], angle: -95, back: [0, 0, 0, 0.5, 0.82, 0.28], sleeveZ: 0.25, pose: PAL, leg: 'plantarDown' },
       };
@@ -130,7 +130,7 @@
         calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v9';
+      const SOLVE_VERSION = 'cns6-solve-v10';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
       const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
@@ -206,8 +206,10 @@
           P.setLeg(side, {});
         }
         // the anchors (vertices of the skin, found at rest) and the contacts, solved at their test poses
+        const ONLY = root.SOLVE_ONLY, PREV = root.SOLVED_PREV;
         for (const side of ['R', 'L']) {
           for (const [id, sp0] of Object.entries(SPECS)) {
+            if (ONLY && PREV && PREV.contacts && PREV.contacts[id + '_' + side] && !ONLY.includes(id)) { out.contacts[id + '_' + side] = PREV.contacts[id + '_' + side]; log(id + '_' + side + ' kept from the previous solve'); continue; }
             const sp = side === 'R' ? sp0 : mirrorSpec(sp0), leg = sp.other ? (side === 'R' ? 'L' : 'R') : side;
             P.setLeg('R', {}); P.setLeg('L', {});
             const [a, b, u, extra] = sp.anchor;
@@ -219,7 +221,7 @@
             const spec = specFor(id, side, vi);
             const arm = EX[sp.forearmUnder ? AUX[side] : WORK[side]];
             const sol = CONTACT.solve(P, arm, spec);
-            const rec = { vi, sol: { offset: sol.offset, roll: sol.roll, pitch: sol.pitch, curl: sol.curl, thumb: sol.thumb }, gapsMm: sol.gaps, digits: sol.digits };
+            const rec = { vi, sol: { offset: sol.offset, roll: sol.roll, pitch: sol.pitch, curl: sol.curl, thumb: sol.thumb }, gapsMm: sol.gaps, digits: sol.digits, culprit: sol.culprit };
             if (sp.toeCheck) {      // how far the hand reaches past the toe tips, along the foot (must be < 0)
               const u = P.legPoint(leg, 'toeTip').sub(P.legPoint(leg, 'heelBack')).normalize(), tip = P.legPoint(leg, 'toeTip').dot(u); let mx = -Infinity; const v = V(0, 0, 0);
               arm.hand.group.traverse((m) => { if (!m.isMesh) return; m.updateWorldMatrix(true, false); const A = m.geometry.attributes.position; for (let i = 0; i < A.count; i++) { v.fromBufferAttribute(A, i).applyMatrix4(m.matrixWorld); mx = Math.max(mx, v.dot(u) - tip); } });

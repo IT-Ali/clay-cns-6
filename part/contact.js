@@ -260,7 +260,7 @@
     // 1. the palm
     for (let it = 0; it < 10; it++) sol.offset += K.clamp(T - gapOf(touch), -0.15, 0.15);
     const settleDigit = (k) => {
-      const thumb = k === 'thumb', lo = thumb ? -0.6 : -0.35, hi = thumb ? 1.4 : 1.6, set = (c) => { if (thumb) sol.thumb = thumbAt(tb, c); else sol.curl[k] = fingerCurl(c); };
+      const thumb = k === 'thumb', lo = thumb ? -1.2 : -0.5, hi = thumb ? 1.4 : 1.6, set = (c) => { if (thumb) sol.thumb = thumbAt(tb, c); else sol.curl[k] = fingerCurl(c); };
       let prev = null, found = null;
       for (let c = lo; c <= hi + 1e-6; c += 0.1) { set(c); if (gapOf(k) <= T) { found = c; break; } prev = c; }
       if (found == null) { const c = thumb ? CONTACT.THUMB_CURLED : CONTACT.FINGER_CURLED; set(c); sol.digits[k] = { c: +c.toFixed(3), state: 'curled' }; return; }
@@ -270,16 +270,24 @@
       set(a); sol.digits[k] = { c: +a.toFixed(4), state: 'on skin' };
     };
     const digits = spec.settle === false ? [] : [...(spec.settleFingers || FK), 'thumb'];
-    for (let pass = 0; pass < 2; pass++) {
-      // 2. the digits
+    let lastLift = 0;
+    for (let pass = 0; pass < 4; pass++) {
+      // 1. the palm down onto the skin (again after a lift), 2. the digits, 3. never inside: lift by the deepest part
+      if (pass) for (let it = 0; it < 8; it++) sol.offset += K.clamp(T - gapOf(touch), -0.15, 0.15);
       for (const k of digits) settleDigit(k);
-      // 3. never inside: lift by the deepest part (hand and forearm)
       CONTACT.apply(P, arm, spec, sol);
       let all = CONTACT.gaps(sk, arm, null, 1), mn = Math.min(...Object.values(all).map((x) => x.gap)), lifted = 0;
+      const culprit = Object.entries(all).sort((p, q) => p[1].gap - q[1].gap)[0][0];
       for (let k = 0; k < 10 && mn < T; k++) { const d = (T - mn) * 1.05; sol.offset += d; lifted += d; CONTACT.apply(P, arm, spec, sol); all = CONTACT.gaps(sk, arm, null, 1); mn = Math.min(...Object.values(all).map((x) => x.gap)); }
       sol.gaps = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)]));   // mm
-      sol.score = all[touch].gap;
-      if (lifted < 0.0005) break;                 // the digits rest where they were settled
+      sol.score = all[touch].gap; lastLift = lifted;
+      if (lifted > 0.00005) sol.culprit = culprit + ' (lifted ' + (lifted * 100).toFixed(2) + ' mm)';
+      if (lifted < 0.00005) break;
+    }
+    if (lastLift >= 0.00005) {       // the last pass lifted the hand: settle the digits once more where the hand now is
+      for (const k of digits) settleDigit(k);
+      CONTACT.apply(P, arm, spec, sol); const all = CONTACT.gaps(sk, arm, null, 1);
+      sol.gaps = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)])); sol.score = all[touch].gap;
     }
     for (const k of Object.keys(sol.digits)) { sol.digits[k].mm = sol.gaps[k]; if (sol.digits[k].state === 'on skin' && sol.gaps[k] > CONTACT.LIMIT * 100) sol.digits[k].state = 'FAIL: floating'; }
     return sol;
