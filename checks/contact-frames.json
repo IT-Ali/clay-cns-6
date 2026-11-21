@@ -1,0 +1,506 @@
+{
+ "checked": "2026-11-21T04:50:23.769Z",
+ "allOk": true,
+ "rows": [
+  {
+   "contact": "tone_R",
+   "t": 15.6,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 21.52
+   },
+   "leg": {
+    "hipFlex": 0.4393,
+    "hipAbd": 0,
+    "hipRot": 25,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": -5.594489714435975,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "tone_R",
+   "t": 16.6,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 16.47
+   },
+   "leg": {
+    "hipFlex": -1.0996,
+    "hipAbd": 0,
+    "hipRot": -25,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 5.594489714436005,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "knee_R",
+   "t": 20.5,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 11.07
+   },
+   "leg": {
+    "hipFlex": 23.9745,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 45,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "tone_L",
+   "t": 25.8,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 21.87
+   },
+   "leg": {
+    "hipFlex": 0.4333,
+    "hipAbd": 0,
+    "hipRot": 25,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": -5.59448971443598,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "tone_L",
+   "t": 26.8,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 16.93
+   },
+   "leg": {
+    "hipFlex": -1.0946,
+    "hipAbd": 0,
+    "hipRot": -25,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 5.59448971443598,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "knee_L",
+   "t": 30.7,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 11.66
+   },
+   "leg": {
+    "hipFlex": 23.9794,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 45,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "hipflex_R",
+   "t": 37.5,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 14.91
+   },
+   "leg": {
+    "hipFlex": 20.6,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "hipflex_L",
+   "t": 40.3,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 15.27
+   },
+   "leg": {
+    "hipFlex": 20.6,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "hipext_R",
+   "t": 45.5,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 11.39
+   },
+   "leg": {
+    "hipFlex": 3.1116,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "hipext_L",
+   "t": 48.3,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 11.4
+   },
+   "leg": {
+    "hipFlex": 3.1187,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "kneeflex_R",
+   "t": 53.5,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 20.81
+   },
+   "leg": {
+    "hipFlex": 51.4663,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 89.65,
+    "ankle": -39.42150508838257,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "kneeflex_L",
+   "t": 56.3,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 20.81
+   },
+   "leg": {
+    "hipFlex": 51.4807,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 89.65,
+    "ankle": -39.48183862218068,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "kneeext_R",
+   "t": 62,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 37.09
+   },
+   "leg": {
+    "hipFlex": 32.3508408,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 60.42,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "kneeextAux_R",
+   "t": 62,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 1.19
+   },
+   "leg": {
+    "hipFlex": 0,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "kneeext_L",
+   "t": 64.6,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 37.15
+   },
+   "leg": {
+    "hipFlex": 32.3553408,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 60.42,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "kneeextAux_L",
+   "t": 64.6,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 0.54
+   },
+   "leg": {
+    "hipFlex": 0,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 0,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "dorsi_R",
+   "t": 69.3,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 15.63
+   },
+   "leg": {
+    "hipFlex": 0,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 13.5,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "dorsi_L",
+   "t": 71.7,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 15.63
+   },
+   "leg": {
+    "hipFlex": 0,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": 13.5,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "plantar_R",
+   "t": 77,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 10.02
+   },
+   "leg": {
+    "hipFlex": 0.9091,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": -29,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  },
+  {
+   "contact": "plantar_L",
+   "t": 79.3,
+   "ok": true,
+   "gapsMm": {
+    "palm": 0.05,
+    "index": 0.05,
+    "middle": 0.05,
+    "ring": 0.05,
+    "little": 0.05,
+    "thumb": 0.05,
+    "forearm": 10
+   },
+   "leg": {
+    "hipFlex": 0.881,
+    "hipAbd": 0,
+    "hipRot": 0,
+    "knee": 0,
+    "ankle": -29,
+    "ankleInv": 0,
+    "bigToe": 0,
+    "toes": 0,
+    "fan": 0
+   }
+  }
+ ]
+}

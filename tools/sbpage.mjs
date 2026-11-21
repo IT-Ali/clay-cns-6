@@ -26,6 +26,7 @@ M.assumptions = [
   'Breathing: 13.7 breaths a minute, exactly 19 breaths between the two home holds, so it starts and stops on the home phase with no jump.',
   'Pupils: 3.5 mm outside the home frames (shared README for the CNS video); the home frames use setFace({}) exactly as the README home code.',
   "Grain: the stage's grain changes every frame; the home-lock frames use frame 0's grain, so the first and last frames are pixel-identical (and match frame 0 of the other parts).",
+  'Resting hands: in the push-in the gloved hands slide along the mattress edge to rest nearer his hip (and back in the pull-back), so no resting arm stands next to the low cameras of his legs. A travelling arm stays raised until the hand is nearly down, so it never swings toward the lens.',
   "The examiner's arms: resting hands keep the home-shot arm. A working forearm rises to the elbow and the upper arm rises toward a standing examiner's shoulder, leaning toward his head or feet, so it leaves the frame at a top corner rather than standing between the camera and the contact.",
   'Left-side shots look across the bed from his left; the series lamp is on his right, so his left side is in its soft shade (I did not add a light).',
   'Sound: only the room ambience and very soft rustles when his legs move, roll or slide. Normalising the whole mix to -15 LUFS (the MACHINE rule) raises the quiet room bed to that level, because nothing else is loud. Tell me if you prefer a fixed gain that matches the other parts.',

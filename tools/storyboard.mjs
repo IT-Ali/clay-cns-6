@@ -18,7 +18,7 @@ fs.mkdirSync(PAN, { recursive: true });
 // beat panels: [id, beat, time, what moves / changes, camera, sounds]
 const BEAT = [
   ['b01a', 1, 0.0, 'The CNS home shot, held still for 1 s (no breathing, no lamp flicker): reclined at 45 degrees on one pillow, trousers rolled above the knees, sheet folded at the foot, arms resting, the gloved hands resting flat at his right side.', 'SET.HOME_CNS, still 0-1.0 s', 'Room ambience fades in over 0.5 s'],
-  ['b01b', 1, 4.6, 'A slow push-in toward both legs; his face stays in frame for the question in beat 2.', 'One continuous dolly from the home shot to "overview" (1.0-4.6 s)', 'Room ambience'],
+  ['b01b', 1, 4.6, 'A slow push-in toward both legs; his face stays in frame for the question in beat 2. The gloved hands slide along the mattress edge to rest nearer his hip (one after the other), out of the low shots of his legs.', 'One continuous dolly from the home shot to "overview" (1.0-4.6 s)', 'Room ambience'],
   ['b02a', 2, 5.9, 'HOLD 5.0-6.5 s (the examiner asks about pain in the hips, knees or legs). He answers "no": silent visemes E-O-M at 5.85-6.45 s, no sound. No caption.', '"overview", still', 'None (speech added later)'],
   ['b02b', 2, 9.5, 'The camera travels slowly along both legs: above the knees, the knees, the shins, the calves, the feet. Hands at rest.', 'One continuous move 6.5-12.7 s: insThigh, insKnee, insShin, insCalf, insFeet', 'Room ambience'],
   ['b02c', 2, 12.7, 'The feet, both lying the same way.', 'insFeet', 'Room ambience'],
@@ -46,7 +46,7 @@ const BEAT = [
   ['b10a', 10, 74.2, 'HOLD 73.5-75.0 s. No caption.', 'plantarR: from his right side at ankle height', 'None'],
   ['b10b', 10, 77.0, 'The palm flat on the ball of the foot; he pushes the foot clearly down like a pedal (ankle -30) and holds (the calf firms).', 'plantarR: from his side at ankle height', 'Very soft rustle'],
   ['b10c', 10, 79.3, 'Hard cut to his LEFT: the same; then a hard cut back to his right side (81.0 s).', 'plantarL', 'None'],
-  ['b11a', 11, 82.6, 'Both legs straight, the hands at rest; the camera pulls back.', 'One continuous move plantarR -> home (81.3-84.0 s)', 'Room ambience'],
+  ['b11a', 11, 82.6, 'Both legs straight; the hands slide back to their home places at his right side as the camera pulls back.', 'One continuous move plantarR -> home (81.3-84.0 s)', 'Room ambience'],
   ['b11b', 11, 84.98, 'The CNS home shot, held still for the last second: pixel-identical to the first frame.', 'SET.HOME_CNS, still 84.0-85.0 s', 'Room ambience fades out over the last 0.5 s'],
 ];
 // review panels: { id, group, t, title, cam ('contact:<id>' close side view | 'plan' | object), gaps: [contactId], heel: side, firmOff }

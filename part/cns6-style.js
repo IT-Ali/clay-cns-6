@@ -443,20 +443,25 @@
       // A hand track is a list of [t, state]; between two different states the hand travels (relaxed, palm down, in a low
       // arc; into a contact marked `slide` it comes in along its fingers, under the knee or the heel); a cut jumps.
       const REST_POSE = { all: [0.16, 0.22, 0.12], fan: { index: 0.05, middle: 0, ring: -0.05, little: -0.1 }, thumb: [0.12, 0, 0.1, 0.06] };
-      // a hand resting flat on the mattress edge: 'home' = exactly the home shot (forearm level, sleeve down toward the
-      // camera); otherwise the standing examiner's arm (the same hand, the forearm rising to the elbow, the sleeve up)
-      // for the ankle beats (9, 10) the resting hands lie on the mattress edge nearer his hip, out of the low ankle shots
-      const HIP_EX = {};
+      // where the hands rest flat on the mattress edge: 'R' = exactly the home shot (his right); 'L' = its mirror on his
+      // left; during the close shots of the tests they rest nearer his hip ('RH' on his right, 'LH' on his left), out of
+      // the low shots of his legs, so no resting sleeve stands next to those cameras. They move there in the push-in and
+      // back in the pull-back (wide shots).
+      const HIP_EX = { RH: {}, LH: {} };
       for (const h of ['R', 'L']) {
         const base = HOME.exRest(h, 'cns', SH), dx = h === 'R' ? -3.7 : -3.3, x = base.at.x + dx, z = base.at.z;
-        const st = Object.assign({}, base, { at: V(x, hs(x, z) + 0.012, z), back: V(-0.35, -0.05, 0.94).normalize() });
-        HIP_EX[h] = HOME.solveEx(EX, h, st); HIP_EX[h].back = V(-0.35, -0.05, 0.94).normalize();
+        let st = Object.assign({}, base, { at: V(x, hs(x, z) + 0.012, z), back: V(-0.35, -0.05, 0.94).normalize() });
+        HIP_EX.RH[h] = HOME.solveEx(EX, h, st); HIP_EX.RH[h].back = V(-0.35, -0.05, 0.94).normalize();
+        // his left: the examiner's left hand is then the one nearer his feet (the mirror)
+        const [x0, z0] = HOME.CNS.ex[h === 'L' ? 'R' : 'L'], sx = h === 'L' ? -1 : 1, xl = x0 + (h === 'L' ? -3.7 : -3.3);
+        st = { contact: 'palm', at: V(xl, hs(xl, -z0) + 0.012, -z0), quat: HANDS.quat(V(sx * 0.55, 0, 0.83), V(0, 1, 0)), pose: HOME.CNS.exPose, back: V(-0.35, -0.05, -0.94).normalize(), rest: { surface: hs } };
+        HIP_EX.LH[h] = HOME.solveEx(EX, h, st); HIP_EX.LH[h].back = V(-0.35, -0.05, -0.94).normalize();
       }
       HOME.apply(P, EX, SH, 'cns');                 // (solveEx moved the hands: back to the home state)
-      const restOf = (h, bedSide, home) => {
-        if (bedSide === 'RH') { const r = HIP_EX[h]; return { pos: r.wrist.clone(), quat: r.quat.clone(), pose: r.pose, back: r.back.clone(), sleeve: SLEEVE_HOME.R }; }
-        if (bedSide === 'R') { const r = HOME_EX[h]; return { pos: r.wrist.clone(), quat: r.quat.clone(), pose: r.pose, back: r.back.clone(), sleeve: SLEEVE_HOME.R }; }
-        const r = SOLVED.rest[h]; return { pos: V(...r.wrist), quat: new THREE.Quaternion(...r.quat), pose: r.pose, back: V(...r.back), sleeve: SLEEVE_HOME.L };
+      const restOf = (h, bedSide) => {
+        if (bedSide === 'RH' || bedSide === 'LH') { const r = HIP_EX[bedSide][h]; return { pos: r.wrist.clone(), quat: r.quat.clone(), pose: r.pose, back: r.back.clone(), sleeve: bedSide === 'RH' ? SLEEVE_HOME.R : SLEEVE_HOME.L, isRest: true }; }
+        if (bedSide === 'R') { const r = HOME_EX[h]; return { pos: r.wrist.clone(), quat: r.quat.clone(), pose: r.pose, back: r.back.clone(), sleeve: SLEEVE_HOME.R, isRest: true }; }
+        const r = SOLVED.rest[h]; return { pos: V(...r.wrist), quat: new THREE.Quaternion(...r.quat), pose: r.pose, back: V(...r.back), sleeve: SLEEVE_HOME.L, isRest: true };
       };
       // a contact's hand transform on the leg as it is now; atSlide: on the leg at its slide height instead (the hand
       // coming in under the knee or the heel, or leaving again, is placed where the slid-in hand will be)
@@ -490,38 +495,42 @@
       // states: { rest: 'R'|'L' } a resting hand on his right / left; { c: id } on a contact; { c: id, out: 1 } the same hand
       // slid back out along its fingers (by the contact's `slide` distance), at the slide height
       const evalState = (h, s) => {
-        if (s.rest) return restOf(h, s.rest, s.home);
+        if (s.rest) return restOf(h, s.rest);
         const st = contactOf(h, s.c, !!s.out);
         if (s.out) st.pos.addScaledVector(st.fd, -st.slide);
         return st;
       };
       // a relaxed travel from A to B in a low arc (fingers together, a little curled, palm down), settling straight into B
+      // the arm: leaving a rest it rises first, coming to a rest it stays raised until the hand is nearly down, so a
+      // travelling forearm or sleeve never swings toward the lens
       const arc = (a, b, v, lift = 0.45) => {
         const pos = a.pos.clone().lerp(b.pos, v); pos.y += lift * Math.sin(Math.PI * v);
-        const sl = V(...a.sleeve).lerp(V(...b.sleeve), v).normalize().toArray();
-        return { pos, quat: a.quat.clone().slerp(b.quat, v), pose: poseMix(poseMix(a.pose, REST_POSE, Math.sin(Math.PI * v)), b.pose, v), back: a.back.clone().lerp(b.back, v).normalize(), sleeve: sl };
+        const va = b.isRest && !a.isRest ? v * v * v : a.isRest && !b.isRest ? 1 - Math.pow(1 - v, 3) : v;
+        const sl = V(...a.sleeve).lerp(V(...b.sleeve), va).normalize().toArray();
+        return { pos, quat: a.quat.clone().slerp(b.quat, v), pose: poseMix(poseMix(a.pose, REST_POSE, Math.sin(Math.PI * v)), b.pose, v), back: a.back.clone().lerp(b.back, va).normalize(), sleeve: sl };
       };
       // the hand tracks: [time, state, opts]; between two different states the hand travels; into a contact with a
       // `slide` it arcs to the slid-out point first and then comes in straight along its fingers (under the knee / heel /
       // the bent knee); opts.cut: the state starts here with no travel (a hard cut)
-      const RR = { rest: 'R' }, RL = { rest: 'L' }, RH = { rest: 'R', home: true };
-      const track = { R: [[0, RR, {}]], L: [[0, RR, {}]] };
+      const RR = { rest: 'R' }, RHIP = { rest: 'RH' }, LHIP = { rest: 'LH' };
+      // home spot -> nearer his hip during the push-in; back to the home spot in the pull-back (both wide shots)
+      // (one after the other, so the hands never pass each other: in, his-head-side hand first; out, the other first)
+      const track = { L: [[0, RR, {}], [1.5, RR, {}], [2.9, RHIP, {}], [82.3, RHIP, {}], [83.6, RR, {}]], R: [[0, RR, {}], [2.7, RR, {}], [4.2, RHIP, {}], [81.3, RHIP, {}], [82.6, RR, {}]] };
       const key = (h, t, s, o) => track[h].push([t, s, o || {}]);
       const cut = (h, t, s) => key(h, t, s, { cut: true });
       { // beat 3: tone, right leg (the examiner's right hand, nearer his feet); beat 4: his left leg (the examiner's left)
         for (const side of ['R', 'L']) {
-          const T = TONE[side], w = WORK[side], a = AUX[side], rest = side === 'R' ? RR : RL, tone = { c: 'tone_' + side }, kn = { c: 'knee_' + side };
-          if (side === 'R') { key(w, T.hand[0], rest); key(w, T.hand[1], tone); } else { cut(w, T.cut, tone); cut(a, T.cut, RL); }
+          const T = TONE[side], w = WORK[side], a = AUX[side], rest = side === 'R' ? RHIP : LHIP, tone = { c: 'tone_' + side }, kn = { c: 'knee_' + side };
+          if (side === 'R') { key(w, T.hand[0], rest); key(w, T.hand[1], tone); } else { cut(w, T.cut, tone); cut(a, T.cut, LHIP); }
           key(w, T.slide[0], tone); key(w, T.slide[1], kn); key(w, T.out[0], kn); key(w, T.out[1], { c: kn.c, out: 1 }); key(w, T.rest[1], rest);
         }
-        cut('R', TONE.L.cutR, RR); cut('L', TONE.L.cutR, RR);
+        cut('R', TONE.L.cutR, RHIP); cut('L', TONE.L.cutR, RHIP);
       }
-      const ANKLE = { dorsi: 1, plantar: 1 }, RHIP = { rest: 'RH' };
       for (const [test, W] of Object.entries(POWER)) {
         for (const side of ['R', 'L']) {
-          const w = WORK[side], a = AUX[side], rest = side === 'R' ? (ANKLE[test] ? RHIP : RR) : RL, c = { c: test + '_' + side }, R = side === 'R';
+          const w = WORK[side], a = AUX[side], rest = side === 'R' ? RHIP : LHIP, c = { c: test + '_' + side }, R = side === 'R';
           const off = R ? W.off : W.offL;
-          if (R) { key(w, W.hand[0], rest); key(w, W.hand[1], c); } else { cut(w, W.cutL, c); if (test !== 'kneeext') cut(a, W.cutL, RL); }
+          if (R) { key(w, W.hand[0], rest); key(w, W.hand[1], c); } else { cut(w, W.cutL, c); if (test !== 'kneeext') cut(a, W.cutL, LHIP); }
           if (test === 'hipext') {
             key(w, off[0], c); key(w, off[1], { c: c.c, out: 1 }); key(w, R ? W.rest[1] : W.restL[1], rest);
           } else {
@@ -533,11 +542,10 @@
             key(a, ao[0], ax); key(a, ao[0] + (ao[1] - ao[0]) * 0.55, { c: ax.c, out: 1 }); key(a, ao[1], rest);
           }
         }
-        const nextRest = test === 'kneeext' || test === 'dorsi' ? RHIP : RR;   // the ankle beats start with the hands nearer his hip
-        cut('R', W.cutR, nextRest); cut('L', W.cutR, nextRest);
+        cut('R', W.cutR, RHIP); cut('L', W.cutR, RHIP);
       }
       for (const h of ['R', 'L']) track[h].sort((p, q) => p[0] - q[0] || (q[2].cut ? 1 : 0) - (p[2].cut ? 1 : 0));
-      const same = (p, q) => p.rest === q.rest && !!p.home === !!q.home && p.c === q.c && !!p.out === !!q.out;
+      const same = (p, q) => p.rest === q.rest && p.c === q.c && !!p.out === !!q.out;
       const handAt = (h, tq) => {
         const tr = track[h]; let i = 0; while (i < tr.length - 1 && tr[i + 1][0] <= tq) i++;
         const [t0, s0] = tr[i], nx = tr[i + 1];
@@ -619,7 +627,7 @@
           // the frame order of the README: (recline, shrug, head: unchanged here) legs, arms, face and breathing, points
           const lr = still ? {} : legAt('R', tq), ll = still ? {} : legAt('L', tq);
           P.setLeg('R', lr); P.setLeg('L', ll);
-          for (const h of ['R', 'L']) setHand(h, still ? restOf(h, 'R', true) : handAt(h, tq));
+          for (const h of ['R', 'L']) setHand(h, still ? restOf(h, 'R') : handAt(h, tq));
           const firmOn = !still && !root.FIRM_OFF; applyFirm('R', firmOn ? firmAt('R', tq) : null); applyFirm('L', firmOn ? firmAt('L', tq) : null);
           P.setFace(still ? {} : faceAt(tq));
           P.breathe(still ? 0 : (tq - HOME_HOLD) * BREATH_K);
