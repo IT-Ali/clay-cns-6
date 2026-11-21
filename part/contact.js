@@ -107,13 +107,14 @@
   };
   // far from every surface within reach: the nearest of a sparse set of surface vertices, signed by the bone axis (so a
   // point deep inside is still caught); only its sign matters, and that it is beyond `reach`
-  CONTACT.far = (sk, p) => {   // { d (signed, approximate), at }
+  CONTACT.far = (sk, p) => {   // { d (signed, approximate), at }: inside only if the bone axis AND the skin normal agree
     const W = sk.W, n = W.length / 3; let best = -1, bd = Infinity;
-    for (let i = 0; i < n; i += 5) { const dx = W[3 * i] - p.x, dy = W[3 * i + 1] - p.y, dz = W[3 * i + 2] - p.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; best = i; } }
+    for (let i = 0; i < n; i += 3) { const dx = W[3 * i] - p.x, dy = W[3 * i + 1] - p.y, dz = W[3 * i + 2] - p.z, d = dx * dx + dy * dy + dz * dz; if (d < bd) { bd = d; best = i; } }
     if (best < 0) return null;
-    const at = V(W[3 * best], W[3 * best + 1], W[3 * best + 2]);
-    let sgn = 1; if (sk.axes) { const ax = axisPoint(sk.axes, at); sgn = Math.sign(p.clone().sub(at).dot(at.clone().sub(ax))) || 1; }
-    return { d: sgn * Math.sqrt(bd), at };
+    const at = V(W[3 * best], W[3 * best + 1], W[3 * best + 2]), dv = p.clone().sub(at);
+    let sa = 1; if (sk.axes) { const ax = axisPoint(sk.axes, at); sa = Math.sign(dv.dot(at.clone().sub(ax))) || 1; }
+    const sn = Math.sign(dv.dot(V(sk.WN[3 * best], sk.WN[3 * best + 1], sk.WN[3 * best + 2]))) || 1;
+    return { d: (sa < 0 && sn < 0 ? -1 : 1) * Math.sqrt(bd), at };
   };
   const segPt = (a, b, p) => { const ab2 = b.clone().sub(a), u = K.clamp(p.clone().sub(a).dot(ab2) / ab2.lengthSq()); return a.clone().addScaledVector(ab2, u); };
   const axisPoint = (axes, p) => { let best = null, bd = Infinity; for (const [a, b] of axes) { const c = segPt(a, b, p), d = c.distanceToSquared(p); if (d < bd) { bd = d; best = c; } } return best; };
@@ -138,7 +139,7 @@
   // the gap of a part: the deepest (or lowest) of its vertices relative to the surface. Vertices within `reach` are
   // measured exactly (point to triangle); the others are checked for being deep inside (signed by the bone axis), and
   // if NO vertex is within reach the part's distance is the nearest of a sample of them (so a gap is always a number)
-  CONTACT.partGap = (sk, meshes, stride = 1, reach = 0.1) => {
+  CONTACT.partGap = (sk, meshes, stride = 1, reach = 0.12) => {
     let best = { gap: Infinity, at: null, skin: null }, nNear = 0; const faraway = [];
     for (const m of meshes) {
       m.updateWorldMatrix(true, false); const A = m.geometry.attributes.position;
