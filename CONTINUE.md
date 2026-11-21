@@ -3,29 +3,35 @@
 How a new session picks this up. The full prompt is in the user's upload `soft-clay-cns-part6-motor-legs-prompt.txt`.
 The MY CONTENT section is the spec; follow it exactly.
 
-## State (round 1: storyboard)
+## State (round 2: storyboard fixes and build checks; stopped for the user's review)
 
-- [x] STEP 0: the attachments were checked and `lib/` matched the given md5s; `shared/`, `ref/` and `series/` were copied
-  unchanged from `series-shared-v5.zip`.
-- [x] `render.mjs` + `package.json` (MACHINE rules), `README.md`
-- [x] `part/contact.js`: the contact solver and mesh gap measurement
-- [x] `part/cns6-style.js`: all 11 beats, the schedule, shots, hand tracks, leg poses, muscle firming, sound, captions
-  switch, home lock (no breathing, no flicker, grain seed of frame 0)
-- [x] `solved.json` (made by `npm run solve`, about 6 min in software). Every contact gap is 0.05-0.61 mm; the forearm
-  under the knee is 0.3 / 0.07 mm. The log is the `log` array in the file.
-- [x] storyboard + review panels a-e (`tools/storyboard.mjs` renders them, `tools/sbpage.mjs` builds the page; a copy
-  is kept in `storyboard/`). Published: https://claude.ai/artifact/AhX8aCaa6X3ZSCM6kUfCgx
-- [ ] WAIT for the user's review of the storyboard
-- [ ] After approval: render the animation stills story_vs_anim.png (beats 3, 5, 7, 8, 9: the hold-middle frame next to
-  the storyboard panel). Note that the panels ARE frames of the style, so this checks it.
-- [ ] TRANSITIONS SCAN: at every camera change (RUNS in the style: the cuts at 13.0, 25.0, 33.6, 39.5, 42.0, 47.6, 50.0,
-  55.7, 58.0, 64.1, 66.0, 71.0, 73.5, 78.7, 81.0, and the moves 1.0-4.6, 6.5-12.7, 81.3-84.0) render a strip every
-  1/8 s in software at low samples into checks/transitions/ and check it.
-- [x] home-check.json (`node tools/homecheck.mjs`): frame 0 vs the last frame, 0 differing pixels (also the 1 s hold
-  edges)
-- [x] `npm run preview` tested in software (3 frames; and beat 1 at 320x180 to a 5.000 s MP4 with AAC sound, -14.9 LUFS)
-- [x] PC zip: `git archive -o cns6-part6-pc.zip HEAD` (tracked files only: no node_modules, no frames)
-- [ ] user renders `npm run preview -- --beats 3,8` on the PC, then the full part; then `npm start`
+Round 1 storyboard was reviewed: leg poses, cameras, captions, left side, cuffs, tibialis anterior, home check and lib/
+approved. Round 2 fixed:
+- [x] Floating fingers: every digit of a working hand is solved on its own (bisection over its bend; a boundary that
+  jumps from far off to deep inside is rejected; no reach -> curled into the hand). solved.json lists each digit's
+  state and gap. All 18 contacts: palm and all five digits on the skin at 0.05 mm, nothing inside.
+- [x] Inside/outside of the skin and toes decided by their own normals (the rolled cuff by the bone axis); thumb
+  metacarpal counted with the thumb.
+- [x] Dorsiflexion: palm across the middle of the top of the foot, fingers across; 11 mm short of the toe tips.
+- [x] Plantar flexion -30 degrees (measured -29.7), dorsiflexion +15 (+14.9); both filmed from the side at ankle
+  height; review panel f shows the two holds side by side with the measured angles.
+- [x] Sleeves (b06, b08, b10): working arms rise steeply to a top corner; resting hands lie nearer his hip during the
+  close shots (both sides), so no resting sleeve stands next to the low cameras; a travelling arm stays raised until
+  the hand is nearly down (no sweep at the lens).
+- [x] Storyboard re-rendered and republished: https://claude.ai/artifact/AhX8aCaa6X3ZSCM6kUfCgx (copy in storyboard/)
+- [x] checks/contact-frames.json (`node tools/framecheck.mjs`): every contact at its animation frames (give, roll
+  extremes, top of the lift): all OK
+- [x] story_vs_anim.png (`node tools/storyvsanim.mjs`), beats 3, 5, 7, 8, 9: same frames (mean diff ~2/255, JPEG)
+- [x] TRANSITIONS SCAN (`node tools/transitions.mjs`): 19 strips in checks/transitions/, checked: no pans through empty
+  teal, no sleeve or forearm across the lens, hands settled at every cut, captions clear of the contacts
+- [x] home-check.json (`node tools/homecheck.mjs`): first vs last frame 0 differing pixels
+- [x] `npm run preview` tested in software on 3 frames (sound -14.9 LUFS)
+- [x] PC zip (git archive: no node_modules, no frames)
+- [ ] NEXT: the user's review; then the user renders `npm run preview -- --beats 3,8` on the PC, then the full part,
+  then `npm start`
+
+Notes: `node tools/solve.mjs` takes about 45 min in software (`--only a,b` re-solves those contacts and keeps the rest;
+`--only none` runs the leg tables and the mirror step only).
 
 ## Commands (build machine, no GPU)
 

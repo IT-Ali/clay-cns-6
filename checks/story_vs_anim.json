@@ -4,36 +4,36 @@
   "panel": "b03a",
   "frame": 413,
   "t": 13.7667,
-  "meanDiff": 2.36,
+  "meanDiff": 2.24,
   "maxDiff": 63,
-  "pixelsOver8": 15368
+  "pixelsOver8": 13073
  },
  {
   "beat": 5,
   "panel": "b05a",
   "frame": 1043,
   "t": 34.7667,
-  "meanDiff": 2.27,
+  "meanDiff": 2.13,
   "maxDiff": 54,
-  "pixelsOver8": 14799
+  "pixelsOver8": 12176
  },
  {
   "beat": 7,
   "panel": "b07a",
   "frame": 1523,
   "t": 50.7667,
-  "meanDiff": 2.17,
+  "meanDiff": 2.03,
   "maxDiff": 51,
-  "pixelsOver8": 13017
+  "pixelsOver8": 10406
  },
  {
   "beat": 8,
   "panel": "b08a",
   "frame": 1763,
   "t": 58.7667,
-  "meanDiff": 2.25,
+  "meanDiff": 2.14,
   "maxDiff": 57,
-  "pixelsOver8": 14204
+  "pixelsOver8": 12042
  },
  {
   "beat": 9,

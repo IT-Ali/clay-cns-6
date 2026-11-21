@@ -41,7 +41,7 @@
    "id": "b01b",
    "beat": 1,
    "t": 4.6,
-   "what": "A slow push-in toward both legs; his face stays in frame for the question in beat 2.",
+   "what": "A slow push-in toward both legs; his face stays in frame for the question in beat 2. The gloved hands slide along the mattress edge to rest nearer his hip (one after the other), out of the low shots of his legs.",
    "camera": "One continuous dolly from the home shot to \"overview\" (1.0-4.6 s)",
    "sound": "Room ambience",
    "legs": {
@@ -184,7 +184,7 @@
    "kind": "beat",
    "id": "b03a",
    "beat": 3,
-   "t": 13.7,
+   "t": 13.766666666666667,
    "what": "HOLD 13.0-14.5 s (the examiner asks him to let his legs go floppy). No caption.",
    "camera": "Hard cut to \"toneR\": from his right side, low, at knee height, the whole leg",
    "sound": "None",
@@ -400,7 +400,7 @@
    "kind": "beat",
    "id": "b05a",
    "beat": 5,
-   "t": 34.7,
+   "t": 34.766666666666666,
    "what": "HOLD 34.0-35.5 s (instruction). No caption.",
    "camera": "hipflexR: from his right side at bed height",
    "sound": "None",
@@ -616,7 +616,7 @@
    "kind": "beat",
    "id": "b07a",
    "beat": 7,
-   "t": 50.7,
+   "t": 50.766666666666666,
    "what": "HOLD 50.0-51.5 s. No caption.",
    "camera": "kneeflexR: from his right side",
    "sound": "None",
@@ -724,7 +724,7 @@
    "kind": "beat",
    "id": "b08a",
    "beat": 8,
-   "t": 58.7,
+   "t": 58.766666666666666,
    "what": "HOLD 58.0-59.5 s. No caption.",
    "camera": "kneeextR: from his right side",
    "sound": "None",
@@ -832,9 +832,9 @@
    "kind": "beat",
    "id": "b09a",
    "beat": 9,
-   "t": 66.7,
+   "t": 66.76666666666667,
    "what": "HOLD 66.0-67.5 s. No caption.",
-   "camera": "dorsiR: from his right side at foot height",
+   "camera": "dorsiR: from his right side at ankle height",
    "sound": "None",
    "legs": {
     "R": {
@@ -869,8 +869,8 @@
    "id": "b09b",
    "beat": 9,
    "t": 69.3,
-   "what": "He pulls the foot up (ankle +15); the palm presses down on the top of the foot; he holds (tibialis anterior stands out).",
-   "camera": "dorsiR",
+   "what": "He pulls the foot up (ankle +15); the palm lies across the top of the middle of the foot (over the metatarsals), the fingers across the foot, pressing down; he holds (tibialis anterior stands out).",
+   "camera": "dorsiR: from his side at ankle height",
    "sound": "Very soft rustle",
    "legs": {
     "R": {
@@ -942,7 +942,7 @@
    "beat": 10,
    "t": 74.2,
    "what": "HOLD 73.5-75.0 s. No caption.",
-   "camera": "plantarR: from his right side at foot height",
+   "camera": "plantarR: from his right side at ankle height",
    "sound": "None",
    "legs": {
     "R": {
@@ -977,16 +977,16 @@
    "id": "b10b",
    "beat": 10,
    "t": 77,
-   "what": "The palm flat on the ball of the foot; he pushes down like a pedal (ankle -20) and holds (the calf firms).",
-   "camera": "plantarR",
+   "what": "The palm flat on the ball of the foot; he pushes the foot clearly down like a pedal (ankle -30) and holds (the calf firms).",
+   "camera": "plantarR: from his side at ankle height",
    "sound": "Very soft rustle",
    "legs": {
     "R": {
-     "hipFlex": 0.3653,
+     "hipFlex": 0.9091,
      "hipAbd": 0,
      "hipRot": 0,
      "knee": 0,
-     "ankle": -19,
+     "ankle": -29,
      "ankleInv": 0,
      "bigToe": 0,
      "toes": 0,
@@ -1029,11 +1029,11 @@
      "fan": 0
     },
     "L": {
-     "hipFlex": 0.3373,
+     "hipFlex": 0.881,
      "hipAbd": 0,
      "hipRot": 0,
      "knee": 0,
-     "ankle": -19,
+     "ankle": -29,
      "ankleInv": 0,
      "bigToe": 0,
      "toes": 0,
@@ -1049,7 +1049,7 @@
    "id": "b11a",
    "beat": 11,
    "t": 82.6,
-   "what": "Both legs straight, the hands at rest; the camera pulls back.",
+   "what": "Both legs straight; the hands slide back to their home places at his right side as the camera pulls back.",
    "camera": "One continuous move plantarR -> home (81.3-84.0 s)",
    "sound": "Room ambience",
    "legs": {
@@ -1165,32 +1165,39 @@
    "gaps": {
     "tone_R": {
      "palm": {
-      "mm": 0.61,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 4.05,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 0.44,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 0.21,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.06,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 8.01,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 23.07,
-      "leg": "R"
+      "mm": 21.52,
+      "leg": "R",
+      "state": null
      }
     }
    },
@@ -1232,32 +1239,39 @@
    "gaps": {
     "tone_R": {
      "palm": {
-      "mm": 0.61,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 4.05,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 0.44,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 0.21,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.06,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 8.01,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 17.37,
-      "leg": "R"
+      "mm": 16.47,
+      "leg": "R",
+      "state": null
      }
     }
    },
@@ -1299,32 +1313,39 @@
    "gaps": {
     "knee_R": {
      "palm": {
-      "mm": 0.07,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 13.85,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 23.71,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 16.62,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 1.64,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 11.08,
-      "leg": "R"
+      "mm": 11.07,
+      "leg": "R",
+      "state": null
      }
     },
     "heelMattress": 0.05
@@ -1367,32 +1388,39 @@
    "gaps": {
     "tone_L": {
      "palm": {
-      "mm": 0.61,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 4.05,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 0.44,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 0.21,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.06,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 8.01,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 27.77,
-      "leg": "L"
+      "mm": 21.87,
+      "leg": "L",
+      "state": null
      }
     }
    },
@@ -1434,32 +1462,39 @@
    "gaps": {
     "tone_L": {
      "palm": {
-      "mm": 0.61,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 4.05,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 0.44,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 0.21,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.06,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 8.01,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 17.84,
-      "leg": "L"
+      "mm": 16.93,
+      "leg": "L",
+      "state": null
      }
     }
    },
@@ -1501,32 +1536,39 @@
    "gaps": {
     "knee_L": {
      "palm": {
-      "mm": 0.07,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 13.85,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 23.71,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 16.62,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 1.64,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
       "mm": 11.66,
-      "leg": "L"
+      "leg": "L",
+      "state": null
      }
     },
     "heelMattress": 0.05
@@ -1569,32 +1611,39 @@
    "gaps": {
     "hipflex_R": {
      "palm": {
-      "mm": 0.14,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 1.57,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 0.09,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.11,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 5.39,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 14.98,
-      "leg": "R"
+      "mm": 14.91,
+      "leg": "R",
+      "state": null
      }
     }
    },
@@ -1636,32 +1685,39 @@
    "gaps": {
     "hipflex_L": {
      "palm": {
-      "mm": 0.14,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 1.57,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 0.09,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.11,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 5.39,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 15.34,
-      "leg": "L"
+      "mm": 15.27,
+      "leg": "L",
+      "state": null
      }
     }
    },
@@ -1704,31 +1760,38 @@
     "hipext_R": {
      "palm": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": null
      },
      "index": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 3.89,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 1.73,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 13.28,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 18.89,
-      "leg": "R"
+      "mm": 11.39,
+      "leg": "R",
+      "state": null
      }
     }
    },
@@ -1771,31 +1834,38 @@
     "hipext_L": {
      "palm": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": null
      },
      "index": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 3.89,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 1.73,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 13.28,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 16.86,
-      "leg": "L"
+      "mm": 11.4,
+      "leg": "L",
+      "state": null
      }
     }
    },
@@ -1837,32 +1907,39 @@
    "gaps": {
     "kneeflex_R": {
      "palm": {
-      "mm": 0.11,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 30.55,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 41.06,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 30.4,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 14.61,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 22.13,
-      "leg": "R"
+      "mm": 20.81,
+      "leg": "R",
+      "state": null
      }
     },
     "heelMattress": 0.05
@@ -1905,32 +1982,39 @@
    "gaps": {
     "kneeflex_L": {
      "palm": {
-      "mm": 0.11,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 30.55,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 41.06,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 30.4,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 14.61,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 22.12,
-      "leg": "L"
+      "mm": 20.81,
+      "leg": "L",
+      "state": null
      }
     },
     "heelMattress": 0.05
@@ -1973,62 +2057,76 @@
    "gaps": {
     "kneeext_R": {
      "palm": {
-      "mm": 0.16,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 34.05,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 40.51,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 36.31,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 24.22,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 43.82,
-      "leg": "R"
+      "mm": 37.09,
+      "leg": "R",
+      "state": null
      }
     },
     "kneeextAux_R": {
      "palm": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 2.38,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 14.11,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 27.81,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 28.85,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
       "mm": 1.19,
-      "leg": "R"
+      "leg": "R",
+      "state": null
      }
     },
     "heelMattress": 0.05
@@ -2071,62 +2169,76 @@
    "gaps": {
     "kneeext_L": {
      "palm": {
-      "mm": 0.16,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 34.05,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 40.51,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 36.31,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 24.22,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 43.9,
-      "leg": "L"
+      "mm": 37.15,
+      "leg": "L",
+      "state": null
      }
     },
     "kneeextAux_L": {
      "palm": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 2.38,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 14.11,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 27.81,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 28.85,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
       "mm": 0.54,
-      "leg": "L"
+      "leg": "L",
+      "state": null
      }
     },
     "heelMattress": 0.05
@@ -2170,31 +2282,38 @@
     "dorsi_R": {
      "palm": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 34.61,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 36.12,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 28.36,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 13.27,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 0.4,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 22.11,
-      "leg": "R"
+      "mm": 15.63,
+      "leg": "R",
+      "state": null
      }
     }
    },
@@ -2237,31 +2356,38 @@
     "dorsi_L": {
      "palm": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 34.61,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 36.12,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 28.36,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 13.27,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 0.4,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 20.25,
-      "leg": "L"
+      "mm": 15.63,
+      "leg": "L",
+      "state": null
      }
     }
    },
@@ -2304,42 +2430,49 @@
     "plantar_R": {
      "palm": {
       "mm": 0.05,
-      "leg": "R"
+      "leg": "R",
+      "state": null
      },
      "index": {
-      "mm": 38.42,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 35.96,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 13.56,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.73,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 30.1,
-      "leg": "R"
+      "mm": 0.05,
+      "leg": "R",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 23.01,
-      "leg": "R"
+      "mm": 10.02,
+      "leg": "R",
+      "state": null
      }
     }
    },
    "heel": null,
    "legs": {
     "R": {
-     "hipFlex": 0.3653,
+     "hipFlex": 0.9091,
      "hipAbd": 0,
      "hipRot": 0,
      "knee": 0,
-     "ankle": -19,
+     "ankle": -29,
      "ankleInv": 0,
      "bigToe": 0,
      "toes": 0,
@@ -2371,31 +2504,38 @@
     "plantar_L": {
      "palm": {
       "mm": 0.05,
-      "leg": "L"
+      "leg": "L",
+      "state": null
      },
      "index": {
-      "mm": 38.42,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "middle": {
-      "mm": 35.96,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "ring": {
-      "mm": 13.56,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "little": {
-      "mm": 0.73,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "thumb": {
-      "mm": 30.1,
-      "leg": "L"
+      "mm": 0.05,
+      "leg": "L",
+      "state": "on skin"
      },
      "forearm": {
-      "mm": 23,
-      "leg": "L"
+      "mm": 10,
+      "leg": "L",
+      "state": null
      }
     }
    },
@@ -2413,11 +2553,11 @@
      "fan": 0
     },
     "L": {
-     "hipFlex": 0.3373,
+     "hipFlex": 0.881,
      "hipAbd": 0,
      "hipRot": 0,
      "knee": 0,
-     "ankle": -19,
+     "ankle": -29,
      "ankleInv": 0,
      "bigToe": 0,
      "toes": 0,
@@ -2679,11 +2819,11 @@
    "hideEx": true,
    "legs": {
     "R": {
-     "hipFlex": 0.3653,
+     "hipFlex": 0.9091,
      "hipAbd": 0,
      "hipRot": 0,
      "knee": 0,
-     "ankle": -19,
+     "ankle": -29,
      "ankleInv": 0,
      "bigToe": 0,
      "toes": 0,
@@ -2735,11 +2875,11 @@
    "diffWith": "re_calf_before",
    "legs": {
     "R": {
-     "hipFlex": 0.3653,
+     "hipFlex": 0.9091,
      "hipAbd": 0,
      "hipRot": 0,
      "knee": 0,
-     "ankle": -19,
+     "ankle": -29,
      "ankleInv": 0,
      "bigToe": 0,
      "toes": 0,
@@ -2759,6 +2899,86 @@
    },
    "gaps": {},
    "file": "panels/re_calf_during.jpg",
+   "samples": 8
+  },
+  "rf_dorsi_R": {
+   "kind": "review",
+   "id": "rf_dorsi_R",
+   "group": "f",
+   "t": 69.3,
+   "title": "Ankle dorsiflexion hold (right), from his side at ankle height",
+   "cam": null,
+   "ankle": {
+    "setDeg": 13.5,
+    "measuredDeg": 13.4
+   },
+   "noCaption": true,
+   "legs": {
+    "R": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 13.5,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/rf_dorsi_R.jpg",
+   "samples": 8
+  },
+  "rf_plantar_R": {
+   "kind": "review",
+   "id": "rf_plantar_R",
+   "group": "f",
+   "t": 77,
+   "title": "Plantar flexion hold (right), the same camera height and side",
+   "cam": null,
+   "ankle": {
+    "setDeg": -29,
+    "measuredDeg": -28.7
+   },
+   "noCaption": true,
+   "legs": {
+    "R": {
+     "hipFlex": 0.9091,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": -29,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    },
+    "L": {
+     "hipFlex": 0,
+     "hipAbd": 0,
+     "hipRot": 0,
+     "knee": 0,
+     "ankle": 0,
+     "ankleInv": 0,
+     "bigToe": 0,
+     "toes": 0,
+     "fan": 0
+    }
+   },
+   "gaps": {},
+   "file": "panels/rf_plantar_R.jpg",
    "samples": 8
   }
  },
