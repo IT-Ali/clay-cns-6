@@ -1,6 +1,6 @@
 {
- "hash": "852773f6",
- "version": "cns6-solve-v13",
+ "hash": "aca3ae11",
+ "version": "cns6-solve-v14",
  "made": "build machine",
  "legs": {
   "R": {
@@ -1037,74 +1037,75 @@
   "plantar_R": {
    "vi": 42216,
    "sol": {
-    "offset": 0.12840123645063206,
-    "roll": 15,
+    "offset": 0.5754530618625909,
+    "roll": -40,
     "pitch": 0,
     "curl": {
      "index": [
-      1.1974304199218748,
-      1.137558898925781,
-      0.7184582519531248
+      0.8737670898437497,
+      0.8300787353515622,
+      0.5242602539062499
      ],
      "middle": [
-      1.2510559082031247,
-      1.1885031127929684,
-      0.7506335449218748
+      0.9269775390624999,
+      0.8806286621093748,
+      0.5561865234375
      ],
      "ring": [
-      1.188934326171875,
-      1.1294876098632811,
-      0.7133605957031249
+      1.5,
+      1.4249999999999998,
+      0.8999999999999999
      ],
      "little": [
-      0.702642822265625,
-      0.6675106811523437,
-      0.421585693359375
+      1.5,
+      1.4249999999999998,
+      0.8999999999999999
      ]
     },
     "thumb": [
-     -0.76,
+     1.0429443359375,
      0,
-     -0.6699999999999999,
-     -0.57
+     0.875380859375,
+     0.7178173828125
     ]
    },
    "gapsMm": {
-    "palm": 0.05,
+    "palm": 31.826,
     "index": 0.05,
     "middle": 0.05,
-    "ring": 0.05,
-    "little": 0.05,
-    "thumb": 11.902,
-    "forearm": 5.168
+    "ring": 23.624,
+    "little": 45.443,
+    "thumb": 0.05,
+    "forearm": 37.801
    },
    "digits": {
     "index": {
-     "c": 1.1974,
+     "c": 0.8738,
      "state": "on skin",
      "mm": 0.05
     },
     "middle": {
-     "c": 1.2511,
+     "c": 0.927,
      "state": "on skin",
      "mm": 0.05
     },
     "ring": {
-     "c": 1.1889,
-     "state": "on skin",
-     "mm": 0.05
+     "c": 1.5,
+     "state": "curled",
+     "mm": 23.624
     },
     "little": {
-     "c": 0.7026,
-     "state": "on skin",
-     "mm": 0.05
+     "c": 1.5,
+     "state": "curled",
+     "mm": 45.443
     },
     "thumb": {
-     "c": -1.2,
-     "state": "FAIL: no touch and cannot curl",
-     "mm": 11.902
+     "c": 1.3756,
+     "state": "on skin",
+     "mm": 0.05
     }
-   }
+   },
+   "culprit": "thumb (lifted 5.95 mm)"
   },
   "tone_L": {
    "vi": 17304,
@@ -1696,70 +1697,70 @@
   "plantar_L": {
    "vi": 42216,
    "sol": {
-    "offset": 0.3420319198315448,
-    "roll": -30,
+    "offset": 0.24084940853769687,
+    "roll": -40,
     "pitch": 0,
     "curl": {
      "index": [
-      1.0784545898437496,
-      1.024531860351562,
-      0.6470727539062497
+      1.0904296875,
+      1.0359082031249998,
+      0.6542578124999999
      ],
      "middle": [
-      1.0465270996093747,
-      0.994200744628906,
-      0.6279162597656248
+      1.1028137207031246,
+      1.0476730346679684,
+      0.6616882324218747
      ],
      "ring": [
-      1.0040466308593747,
-      0.9538442993164059,
-      0.6024279785156248
+      1.0773315429687498,
+      1.0234649658203123,
+      0.6463989257812498
      ],
      "little": [
-      0.8051269531249998,
-      0.7648706054687497,
-      0.48307617187499985
+      0.7897705078124999,
+      0.7502819824218748,
+      0.4738623046874999
      ]
     },
     "thumb": [
-     0.5949896240234376,
+     0.5894824218749999,
      0,
-     0.49141967773437506,
-     0.39784973144531255
+     0.48669921874999994,
+     0.393916015625
     ]
    },
    "gapsMm": {
-    "palm": 15.05,
+    "palm": 0.05,
     "index": 0.05,
     "middle": 0.05,
-    "ring": 0.05,
+    "ring": 0.051,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 19.716
+    "forearm": 10.343
    },
    "digits": {
     "index": {
-     "c": 1.0785,
+     "c": 1.0904,
      "state": "on skin",
      "mm": 0.05
     },
     "middle": {
-     "c": 1.0465,
+     "c": 1.1028,
      "state": "on skin",
      "mm": 0.05
     },
     "ring": {
-     "c": 1.004,
+     "c": 1.0773,
      "state": "on skin",
-     "mm": 0.05
+     "mm": 0.051
     },
     "little": {
-     "c": 0.8051,
+     "c": 0.7898,
      "state": "on skin",
      "mm": 0.05
     },
     "thumb": {
-     "c": 0.7357,
+     "c": 0.7278,
      "state": "on skin",
      "mm": 0.05
     }
@@ -1915,7 +1916,7 @@
   "kneeext_R kept from the previous solve",
   "kneeextAux_R kept from the previous solve",
   "dorsi_R kept from the previous solve",
-  "plantar_R vi 42216 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":11.902,\"forearm\":5.168}",
+  "plantar_R kept from the previous solve",
   "tone_L kept from the previous solve",
   "knee_L kept from the previous solve",
   "hipflex_L kept from the previous solve",
@@ -1924,10 +1925,11 @@
   "kneeext_L kept from the previous solve",
   "kneeextAux_L kept from the previous solve",
   "dorsi_L kept from the previous solve",
-  "plantar_L vi 42216 gaps(mm) {\"palm\":15.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":19.716}",
-  "solved in 432.7 s"
+  "plantar_L kept from the previous solve",
+  "plantar_R mirror tried, not clean: {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.051,\"little\":0.05,\"thumb\":-26.172,\"forearm\":10.354}",
+  "solved in 40.7 s"
  ],
- "ms": 432742,
+ "ms": 40730,
  "firm": {
   "Rquadriceps": 14904,
   "Rhamstrings": 15626,

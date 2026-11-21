@@ -234,6 +234,26 @@
           }
           P.setLeg('R', {}); P.setLeg('L', {});
         }
+        // mirror step: the legs and the hands are exact mirrors, so when one side of a contact did not solve cleanly and the
+        // other did, the clean side's solution (roll mirrored) is tried on it, measured from the meshes, and kept only if
+        // every part passes
+        const valid = (rec) => rec && rec.gapsMm.palm <= 1.5 && rec.gapsMm.palm >= 0 && Object.values(rec.digits || {}).every((d) => (d.state === 'on skin' && d.mm <= 1.5 && d.mm >= 0) || (d.state === 'curled' && d.mm > 0)) && Object.values(rec.gapsMm).every((g) => g >= 0);
+        for (const id of Object.keys(SPECS)) {
+          const r = out.contacts[id + '_R'], l = out.contacts[id + '_L'];
+          for (const [bad, good, side] of [[r, l, 'R'], [l, r, 'L']]) {
+            if (!bad || !good || valid(bad) || !valid(good)) continue;
+            const spec = specFor(id, side, bad.vi), arm = EX[SPECS[id].forearmUnder ? AUX[side] : WORK[side]];
+            P.setLeg('R', {}); P.setLeg('L', {}); P.setLeg(side, out.legs[side].pose[SPECS[id].leg]);
+            const sol = JSON.parse(JSON.stringify(good.sol)); sol.roll = -(good.sol.roll || 0);
+            CONTACT.apply(P, arm, spec, sol);
+            const sk = CONTACT.legSkin(P, spec.leg, null), g = CONTACT.gaps(sk, arm, null, 1), mm = Object.fromEntries(Object.entries(g).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)]));
+            const digits = Object.fromEntries(Object.entries(good.digits || {}).map(([k, d]) => [k, { c: d.c, state: d.state, mm: mm[k] }]));
+            const rec = Object.assign({}, bad, { sol, gapsMm: mm, digits, culprit: 'mirrored from his ' + (side === 'R' ? 'left' : 'right') });
+            if (valid(rec)) { out.contacts[id + '_' + side] = rec; log(id + '_' + side + ' replaced by the mirror of the other side: ' + JSON.stringify(mm)); }
+            else log(id + '_' + side + ' mirror tried, not clean: ' + JSON.stringify(mm));
+          }
+        }
+        P.setLeg('R', {}); P.setLeg('L', {});
         // the examiner's hands resting on his LEFT side (the far side): the mirror of the home rest, settled on the mattress
         for (const h of ['R', 'L']) {
           const [x, z] = HOME.CNS.ex[h === 'L' ? 'R' : 'L'];          // on his left, the examiner's LEFT hand is nearer his feet
