@@ -239,39 +239,49 @@
 
   // ---------------------------------------------------------------- the solver
   // 1. the hand moves along the skin normal until the named part (spec.touch, default the palm) is TARGET above the
-  //    skin; the thumb lies alongside, swinging away if it would go in; 2. each finger bends at its knuckle toward the
-  //    skin until its pad rests on it too (fingers kept together, never a claw); 3. nothing anywhere (hand or forearm)
-  //    is inside: the hand is lifted by the deepest part. spec.rollSearch: a few turns of the hand about its fingers are
-  //    tried and the one where the named part ends up touching wins.
+  //    skin (digits straight while it settles);
+  // 2. each finger, then the thumb, bends toward the skin (all its joints in proportion) until it lies ON the skin
+  //    (TARGET, found by bisection, so never inside); a digit that cannot reach the skin within its range is curled
+  //    clearly into the hand. Nothing is left hanging in the air: every digit is 'on skin' (< 1.5 mm) or 'curled';
+  // 3. nothing anywhere (hand or forearm) is inside: the hand is lifted by the deepest part, and the digits are
+  //    settled again if it moved. spec.rollSearch: a few turns of the hand about its fingers are tried; the one where
+  //    the named part ends up touching wins.
+  CONTACT.FINGER_CURLED = 1.5;      // a finger with no skin within reach: curled into the hand
+  CONTACT.THUMB_CURLED = 1.1;
+  const fingerCurl = (c) => [c, c * 0.95, c * 0.6];
+  const thumbAt = (base, c) => [base[0] + 0.7 * c, base[1], base[2] + 0.6 * c, base[3] + 0.5 * c];
   const solveOnce = (P, arm, spec, sk, roll) => {
     const touch = spec.touch || 'palm', T = CONTACT.TARGET;
-    const sol = { offset: 0.03, roll, pitch: 0, curl: {}, thumb: (spec.pose.thumb || [0.08, 0, 0.05, 0.03]).slice() };
-    for (const k of ['index', 'middle', 'ring', 'little']) sol.curl[k] = ((spec.pose.curl && spec.pose.curl[k]) || spec.pose.all).slice();
-    const lim = spec.curlLimit || [-0.1, 0.45];
-    const fingers = spec.settle === false ? [] : (spec.settleFingers || ['index', 'middle', 'ring', 'little']);
-    for (let it = 0; it < 14; it++) {
+    const tb = (spec.pose.thumb || [0.08, 0, 0.05, 0.03]).slice();
+    const sol = { offset: 0.03, roll, pitch: 0, curl: {}, thumb: thumbAt(tb, -0.3), digits: {} };
+    const FK = ['index', 'middle', 'ring', 'little'];
+    for (const k of FK) sol.curl[k] = fingerCurl(-0.05);
+    const gapOf = (k) => { CONTACT.apply(P, arm, spec, sol); return CONTACT.partGap(sk, CONTACT.parts(arm)[k], 1, 0.12).gap; };
+    // 1. the palm
+    for (let it = 0; it < 10; it++) sol.offset += K.clamp(T - gapOf(touch), -0.15, 0.15);
+    const settleDigit = (k) => {
+      const thumb = k === 'thumb', lo = thumb ? -0.6 : -0.35, hi = thumb ? 1.4 : 1.6, set = (c) => { if (thumb) sol.thumb = thumbAt(tb, c); else sol.curl[k] = fingerCurl(c); };
+      let prev = null, found = null;
+      for (let c = lo; c <= hi + 1e-6; c += 0.1) { set(c); if (gapOf(k) <= T) { found = c; break; } prev = c; }
+      if (found == null) { const c = thumb ? CONTACT.THUMB_CURLED : CONTACT.FINGER_CURLED; set(c); sol.digits[k] = { c: +c.toFixed(3), state: 'curled' }; return; }
+      if (prev == null) { set(found); sol.digits[k] = { c: +found.toFixed(3), state: 'on skin' }; return; }
+      let a = prev, z = found;                       // gap(a) > T >= gap(z)
+      for (let j = 0; j < 14; j++) { const m = (a + z) / 2; set(m); if (gapOf(k) > T) a = m; else z = m; }
+      set(a); sol.digits[k] = { c: +a.toFixed(4), state: 'on skin' };
+    };
+    const digits = spec.settle === false ? [] : [...(spec.settleFingers || FK), 'thumb'];
+    for (let pass = 0; pass < 2; pass++) {
+      // 2. the digits
+      for (const k of digits) settleDigit(k);
+      // 3. never inside: lift by the deepest part (hand and forearm)
       CONTACT.apply(P, arm, spec, sol);
-      const pp = CONTACT.parts(arm), g = CONTACT.partGap(sk, pp[touch], 1, 0.12);
-      sol.offset += K.clamp(T - g.gap, -0.15, 0.15);
-      if (it >= 4 && spec.thumbSettle !== false) {
-        const gt = CONTACT.partGap(sk, pp.thumb, 1, 0.12), th = sol.thumb, tg = K.clamp((gt.gap - T) / 2, -0.02, 0.01);
-        th[0] = K.clamp(th[0] + tg / 0.5, -0.45, 0.5); th[2] = K.clamp(th[2] + tg / 0.35, -0.45, 0.5); th[3] = K.clamp(th[3] + tg / 0.6, -0.3, 0.4);
-      }
-      if (it >= 4 && fingers.length) {
-        for (const k of fingers) {
-          const gf = CONTACT.partGap(sk, pp[k], 3, 0.12), c = sol.curl[k], d = K.clamp((gf.gap - T) / 0.6, -0.12, 0.12);
-          c[0] = K.clamp(c[0] + d, lim[0], lim[1]); c[1] = K.clamp(c[1] + d * 0.5, -0.05, 0.9); c[2] = K.clamp(c[2] + d * 0.3, -0.05, 0.6);
-        }
-        const ks = ['index', 'middle', 'ring', 'little'], m0 = ks.reduce((m, k) => m + sol.curl[k][0], 0) / 4;
-        for (const k of ks) { const c = sol.curl[k]; c[0] = K.clamp(c[0], m0 - 0.12, m0 + 0.12); c[1] = K.clamp(c[1], m0 * 0.5 - 0.1, m0 * 0.5 + 0.1); }
-      }
+      let all = CONTACT.gaps(sk, arm, null, 1), mn = Math.min(...Object.values(all).map((x) => x.gap)), lifted = 0;
+      for (let k = 0; k < 10 && mn < T; k++) { const d = (T - mn) * 1.05; sol.offset += d; lifted += d; CONTACT.apply(P, arm, spec, sol); all = CONTACT.gaps(sk, arm, null, 1); mn = Math.min(...Object.values(all).map((x) => x.gap)); }
+      sol.gaps = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)]));   // mm
+      sol.score = all[touch].gap;
+      if (lifted < 0.0005) break;                 // the digits rest where they were settled
     }
-    // never inside: lift by the deepest part (hand and forearm)
-    CONTACT.apply(P, arm, spec, sol);
-    let all = CONTACT.gaps(sk, arm, null, 1), mn = Math.min(...Object.values(all).map((x) => x.gap));
-    for (let k = 0; k < 10 && mn < T; k++) { sol.offset += (T - mn) * 1.05; CONTACT.apply(P, arm, spec, sol); all = CONTACT.gaps(sk, arm, null, 1); mn = Math.min(...Object.values(all).map((x) => x.gap)); }
-    sol.gaps = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, +(v.gap * 100).toFixed(3)]));   // mm
-    sol.score = all[touch].gap;
+    for (const k of Object.keys(sol.digits)) { sol.digits[k].mm = sol.gaps[k]; if (sol.digits[k].state === 'on skin' && sol.gaps[k] > CONTACT.LIMIT * 100) sol.digits[k].state = 'FAIL: floating'; }
     return sol;
   };
   CONTACT.solve = (P, arm, spec) => {

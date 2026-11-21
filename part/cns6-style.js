@@ -100,21 +100,23 @@
         // tone: the palm across the front of the lower thigh and knee, fingers down over the knee (the roll)
         tone: { anchor: ['patella', 'tibialTuberosity', 0.2], seg: 'thigh', angle: 15, back: [0, 0, 0, -0.5, 0.62, 0.65], pose: PAL, leg: 'rest' },
         // tone: palm up in the hollow behind the knee, fingers across under it (the brisk lift)
-        knee: { anchor: ['knee', null, 0, [0.05, -0.6, 0]], seg: 'thigh', angle: -90, rollSearch: [0, -15, 15, -30, 30], curlLimit: [-0.1, 0.8], back: [0, 0, 0, -0.6, 0.35, 0.7], pose: PALT, patch: 0.15, leg: 'lift45', slide: 1.2, slidePose: true },
+        knee: { anchor: ['knee', null, 0, [0.05, -0.6, 0]], seg: 'thigh', angle: -90, rollSearch: [0, -15, 15, -30, 30], back: [0, 0, 0, -0.6, 0.35, 0.7], pose: PALT, patch: 0.15, leg: 'lift45', slide: 1.2, slidePose: true },
         // hip flexion: palm on the front of the thigh just above the knee, pressing down
         hipflex: { anchor: ['patella', 'tibialTuberosity', 0.1], seg: 'thigh', angle: 12, back: [0, 0, 0, -0.5, 0.62, 0.65], pose: PAL, leg: 'hipflexUp' },
         // hip extension: palm up under the heel, fingers along the Achilles toward his knee (the heel rests in the palm)
-        hipext: { anchor: ['heel', null, 0], seg: 'shank', patch: 0.12, curlLimit: [-0.1, 0.8], angle: 180, back: [0, 0, 0, 0.65, 0.55, 0.5], pose: PALT, leg: 'hipextUp', slide: 1.2, slidePose: true },
+        hipext: { anchor: ['heel', null, 0], seg: 'shank', patch: 0.12, angle: 180, sleeveZ: 0.25, back: [0, 0, 0, 0.5, 0.8, 0.32], pose: PALT, leg: 'hipextUp', slide: 1.2, slidePose: true },
         // knee flexion: the palm cups the back of the heel just below the Achilles tendon (between his heel and his bottom)
-        kneeflex: { anchor: ['heelBack', 'achilles', 0.5], seg: 'shank', patch: 0.12, curlLimit: [-0.1, 0.8], angle: -90, back: [0, 0, 0, -0.45, 0.75, 0.5], pose: CUP, leg: 'footFlat' },
+        kneeflex: { anchor: ['heelBack', 'achilles', 0.5], seg: 'shank', patch: 0.12, angle: -90, back: [0, 0, 0, -0.45, 0.75, 0.5], pose: CUP, leg: 'footFlat' },
         // knee extension: the palm on the front of the lower shin just above the ankle
-        kneeext: { anchor: ['shinMid', 'ankle', 0.62, 'out'], seg: 'shank', curlLimit: [-0.1, 0.8], angle: 90, back: [0, 0, 0, 0.45, 0.7, 0.55], pose: PAL, leg: 'knee60' },
+        kneeext: { anchor: ['shinMid', 'ankle', 0.62, 'out'], seg: 'shank', angle: 90, sleeveZ: 0.25, back: [0, 0, 0, 0.42, 0.84, 0.34], pose: PAL, leg: 'knee60' },
         // knee extension, the other hand: palm on his other knee, the forearm under the bent knee (solved: forearm touches)
         kneeextAux: { other: true, anchor: ['patella', 'tibialTuberosity', 0.5], seg: 'thigh', angle: 60, back: [0, 0, 0, 0, 0.4, 1], pose: PAL, leg: 'knee60', forearmUnder: true, slide: 3.4 },
         // ankle dorsiflexion: the palm on the top of the foot, fingers toward the toes, pressing it down
-        dorsi: { anchor: ['dorsum', 'toeTip', 0.3, 'skin'], seg: 'foot', patch: 0.1, curlLimit: [-0.1, 0.8], angle: 75, back: [0, 0, 0, -0.45, 0.7, 0.55], pose: PAL, leg: 'dorsiUp' },
+        // ankle dorsiflexion: the palm across the top of the middle of the foot (over the metatarsals), the fingers across
+        // the foot toward its inner border; nothing over the toes, nothing beyond the toe tips (checked at the solve)
+        dorsi: { anchor: ['dorsum', 'toeTip', 0.05, 'skin'], seg: 'foot', patch: 0.1, angle: 90, back: [0, 0, 0, -0.45, 0.7, 0.55], pose: PAL, leg: 'dorsiUp', toeCheck: true },
         // plantar flexion: the palm flat on the ball of the foot, fingers up toward the toes
-        plantar: { anchor: ['ball', 'sole', 0.55, 'skin'], seg: 'foot', patch: 0.1, curlLimit: [-0.1, 0.8], rollSearch: [0, -15, 15, -30, 30], angle: -95, back: [0, 0, 0, 0.65, 0.6, 0.45], pose: PAL, leg: 'plantarDown' },
+        plantar: { anchor: ['ball', 'sole', 0.3, 'skin'], seg: 'foot', patch: 0.1, rollSearch: [0, -15, 15, -30, 30], angle: -95, back: [0, 0, 0, 0.5, 0.82, 0.28], sleeveZ: 0.25, pose: PAL, leg: 'plantarDown' },
       };
       const mirrorSpec = (sp) => Object.assign({}, sp, { angle: -sp.angle, back: [sp.back[0], -sp.back[1], sp.back[2], sp.back[3], sp.back[4], -sp.back[5]] });
       // roles: the examiner's hand nearer his feet does the test; the other one rests (or goes under the knee)
@@ -128,7 +130,7 @@
         calf: { at: ['calf', null, 0], sx: 0.65, sr: 0.32, amp: 0.04 },
       };
       // ------------------------------------------------------------ SOLVE (once, on the build machine) or LOAD solved.json
-      const SOLVE_VERSION = 'cns6-solve-v8';
+      const SOLVE_VERSION = 'cns6-solve-v9';
       const hashOf = (o) => { const s = JSON.stringify(o); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(16); };
       const SPEC_HASH = hashOf({ SOLVE_VERSION, SPECS, MUSC_AT: Object.fromEntries(Object.entries(MUSC).map(([k, m]) => [k, m.at])), ROLL_DEG, LIFT_KNEE, TARGET: CONTACT.TARGET });   // only what is solved
       let SOLVED = root.SOLVED;
@@ -175,6 +177,7 @@
             L2.lift.push([kn, Math.max(a.hipFlex, b.hipFlex)]);
           }
           const liftAt = (kn) => interp(L2.lift, kn);
+          P.setLeg(side, {}); L2.ankleRestDeg = footAngle(side);
           const ps = L2.pose;
           ps.rest = {};
           ps.lift45 = { knee: LIFT_KNEE, hipFlex: liftAt(LIFT_KNEE) };
@@ -182,7 +185,7 @@
           ps.hipflexUp = { hipFlex: 21 };
           ps.hipextUp = settle(side, {}, 'FOOT', 0.5);                       // the heel 5 cm off the bed
           ps.dorsiUp = settle(side, { ankle: 15 }, 'LOWER', restCalf);
-          ps.plantarDown = settle(side, { ankle: -20 }, 'LOWER', restCalf);
+          ps.plantarDown = settle(side, { ankle: -30 }, 'LOWER', restCalf);
           // foot flat on the bed, knee bent: heel and ball both ON the mattress (alternating: hipFlex for the heel, ankle for the ball)
           { let st = { knee: 90, ankle: -10, hipFlex: 45 };
             for (let it = 0; it < 18; it++) {
@@ -197,7 +200,7 @@
           for (const [k, st] of Object.entries(ps)) {
             P.setLeg(side, st);
             const mm = (v) => +(v * 100).toFixed(2);
-            L2.measured[k] = { heelMm: mm(legLow(side, 'HEEL')), ballMm: mm(legLow(side, 'BALL')), lowestLowerLegMm: mm(legLow(side, 'LOWER')), lowestAnyMm: mm(legLow(side, 'ANY')) };
+            L2.measured[k] = { ankleDeg: +(footAngle(side) - L2.ankleRestDeg).toFixed(1), heelMm: mm(legLow(side, 'HEEL')), ballMm: mm(legLow(side, 'BALL')), lowestLowerLegMm: mm(legLow(side, 'LOWER')), lowestAnyMm: mm(legLow(side, 'ANY')) };
             log(side + ' ' + k + ' ' + JSON.stringify(Object.fromEntries(Object.entries(st).map(([a, b]) => [a, +(+b).toFixed(2)]))) + ' mattress gaps (mm) ' + JSON.stringify(L2.measured[k]));
           }
           P.setLeg(side, {});
@@ -216,7 +219,12 @@
             const spec = specFor(id, side, vi);
             const arm = EX[sp.forearmUnder ? AUX[side] : WORK[side]];
             const sol = CONTACT.solve(P, arm, spec);
-            const rec = { vi, sol: { offset: sol.offset, roll: sol.roll, pitch: sol.pitch, curl: sol.curl, thumb: sol.thumb }, gapsMm: sol.gaps };
+            const rec = { vi, sol: { offset: sol.offset, roll: sol.roll, pitch: sol.pitch, curl: sol.curl, thumb: sol.thumb }, gapsMm: sol.gaps, digits: sol.digits };
+            if (sp.toeCheck) {      // how far the hand reaches past the toe tips, along the foot (must be < 0)
+              const u = P.legPoint(leg, 'toeTip').sub(P.legPoint(leg, 'heelBack')).normalize(), tip = P.legPoint(leg, 'toeTip').dot(u); let mx = -Infinity; const v = V(0, 0, 0);
+              arm.hand.group.traverse((m) => { if (!m.isMesh) return; m.updateWorldMatrix(true, false); const A = m.geometry.attributes.position; for (let i = 0; i < A.count; i++) { v.fromBufferAttribute(A, i).applyMatrix4(m.matrixWorld); mx = Math.max(mx, v.dot(u) - tip); } });
+              rec.beyondToeTipsMm = +(mx * 100).toFixed(1);
+            }
             if (sp.forearmUnder) Object.assign(rec, solveForearm(side, spec, sol));
             if (sp.slidePose) Object.assign(rec, solveSlide(id, side, spec, sol, hg, out.legs[side]));
             out.contacts[id + '_' + side] = rec;
@@ -240,6 +248,13 @@
       }
 
       // a spec for one side, with its anchor vertex
+      // the ankle in the sagittal plane: the angle of the foot (heel to toe tip) to the shin (knee to ankle); its change from
+      // rest is the measured ankle angle (+ = dorsiflexion)
+      function footAngle(side) {
+        const s1 = P.legPoint(side, 'ankle').sub(P.legPoint(side, 'knee')), f = P.legPoint(side, 'toeTip').sub(P.legPoint(side, 'heelBack'));
+        return (Math.atan2(f.y, f.x) - Math.atan2(s1.y, s1.x)) * 180 / Math.PI;
+      }
+      root.CNS6_FOOT_ANGLE = (side) => footAngle(side) - SOLVED.legs[side].ankleRestDeg;
       function specFor(id, side, vi) {
         const sp0 = SPECS[id], sp = side === 'R' ? sp0 : mirrorSpec(sp0), leg = sp.other ? (side === 'R' ? 'L' : 'R') : side;
         return Object.assign({}, sp, { leg, vi, sleeve: SLEEVE[side] });
@@ -424,7 +439,7 @@
         const back = spec.forearmUnder ? V(...C.forearmBack) : pz.back, sz = side === 'R' ? 1 : -1;
         // the upper arm rises to the standing examiner's shoulder, leaning the way the forearm leans (to his head or
         // his feet), so it leaves the frame at the top corner and never stands between the camera and the contact
-        const sleeve = spec.forearmUnder ? V(-0.55, 0.7, 0.45 * sz).normalize().toArray() : V(back.x * 0.75, 0.85, 0.5 * sz).normalize().toArray();
+        const sleeve = spec.forearmUnder ? V(-0.3, 0.92, 0.25 * sz).normalize().toArray() : V(back.x * 0.75, 0.85, (spec.sleeveZ || 0.5) * sz).normalize().toArray();
         return { pos: arm.hand.group.position.clone(), quat: arm.hand.group.quaternion.clone(), pose: CONTACT.handPose(spec, C.sol), back, sleeve, fd: pz.fd.clone(), slide: spec.slide || 0 };
       };
       const lerpArr = (a, b, u) => a.map((x, i) => K.lerp(x, b[i] == null ? x : b[i], u));
@@ -527,11 +542,11 @@
         insFeet: shot([12.2, 9.4, 5.2], [7.4, 7.2, 0.0], [7.5, 7.3, 0.4], 0.035),
         toneR: shot([5.4, 8.3, 14.0], [2.9, 7.0, 0.9], [2.5, 7.0, 1.0], 0.04),
         hipflexR: shot([3.6, 9.0, 14.6], [3.0, 7.8, 0.9], [2.6, 7.6, 1.0], 0.04),
-        hipextR: shot([7.8, 8.0, 10.8], [6.0, 6.9, 0.9], [6.9, 6.6, 1.0], 0.035),
+        hipextR: shot([7.4, 8.3, 12.8], [5.9, 6.9, 0.9], [6.9, 6.6, 1.0], 0.035),
         kneeflexR: shot([8.4, 8.6, 11.6], [3.9, 7.5, 0.9], [4.5, 6.9, 1.0], 0.04),
-        kneeextR: shot([8.2, 8.9, 12.6], [3.6, 7.6, 0.6], [4.4, 7.4, 1.0], 0.04),
-        dorsiR: shot([7.4, 7.9, 8.8], [6.2, 7.3, 0.9], [7.0, 7.4, 1.1], 0.03),
-        plantarR: shot([9.6, 8.0, 8.6], [6.9, 7.3, 0.9], [7.7, 7.6, 1.2], 0.03),
+        kneeextR: shot([8.6, 9.2, 14.4], [3.7, 7.6, 0.6], [4.4, 7.4, 1.0], 0.04),
+        dorsiR: shot([6.3, 6.95, 8.9], [5.9, 6.95, 1.1], [6.7, 7.0, 1.2], 0.03),          // from his side at ankle height: the shin, the whole foot, the ankle angle
+        plantarR: shot([6.6, 6.95, 8.9], [6.2, 6.95, 1.1], [7.0, 7.0, 1.2], 0.03),        // the same height and side view as dorsiflexion
       };
       for (const k of ['toneR', 'hipflexR', 'hipextR', 'kneeflexR', 'kneeextR', 'dorsiR', 'plantarR']) SHOTS[k.slice(0, -1) + 'L'] = mirrorShot(SHOTS[k]);
       // the camera schedule: runs of [time, shot] (a run is one continuous K.path move; a new run is a HARD CUT)

@@ -22,29 +22,29 @@ const BEAT = [
   ['b02a', 2, 5.9, 'HOLD 5.0-6.5 s (the examiner asks about pain in the hips, knees or legs). He answers "no": silent visemes E-O-M at 5.85-6.45 s, no sound. No caption.', '"overview", still', 'None (speech added later)'],
   ['b02b', 2, 9.5, 'The camera travels slowly along both legs: above the knees, the knees, the shins, the calves, the feet. Hands at rest.', 'One continuous move 6.5-12.7 s: insThigh, insKnee, insShin, insCalf, insFeet', 'Room ambience'],
   ['b02c', 2, 12.7, 'The feet, both lying the same way.', 'insFeet', 'Room ambience'],
-  ['b03a', 3, 13.7, 'HOLD 13.0-14.5 s (the examiner asks him to let his legs go floppy). No caption.', 'Hard cut to "toneR": from his right side, low, at knee height, the whole leg', 'None'],
+  ['b03a', 3, 413 / 30, 'HOLD 13.0-14.5 s (the examiner asks him to let his legs go floppy). No caption.', 'Hard cut to "toneR": from his right side, low, at knee height, the whole leg', 'None'],
   ['b03b', 3, 15.6, "The examiner's right palm on the front of the lower thigh and knee rolls the leg: externally rotated (hipRot +25), the foot flops out.", 'toneR, still', 'Soft mattress rustle on each turn'],
   ['b03c', 3, 16.6, 'Rolled in (hipRot -25), the foot flops in; twice in all (15.1-19.1 s).', 'toneR', 'Soft rustle'],
   ['b03d', 3, 20.5, 'The hand slides under the knee (palm up), lifts it briskly (knee 20 -> 45 degrees in 0.4 s, about 15 cm): the heel slides up the bed and stays on it; then lowered gently.', 'toneR', 'Rustle of the heel sliding'],
   ['b04a', 4, 26.3, 'Hard cut to his LEFT (the examiner has walked round): the same roll of the left leg.', '"toneL": from his left side, across the bed', 'Soft rustles'],
   ['b04b', 4, 30.7, 'The left knee lifted briskly, the heel sliding on the bed; lowered; then a hard cut back to his right side (33.6 s).', 'toneL, then a cut to hipflexR', 'Rustle'],
-  ['b05a', 5, 34.7, 'HOLD 34.0-35.5 s (instruction). No caption.', 'hipflexR: from his right side at bed height', 'None'],
+  ['b05a', 5, 1043 / 30, 'HOLD 34.0-35.5 s (instruction). No caption.', 'hipflexR: from his right side at bed height', 'None'],
   ['b05b', 5, 37.5, "He lifts his straight right leg about 30 cm (hipFlex 21); the examiner's palm presses down just above the knee; he holds (the leg gives 2.5 mm, then holds).", 'hipflexR', 'Rustle as the leg lifts'],
   ['b05c', 5, 40.3, 'Hard cut to his LEFT: the same.', 'hipflexL', 'Rustle as the leg is lowered'],
   ['b06a', 6, 42.7, 'HOLD 42.0-43.5 s. No caption.', 'hipextR: from his right side, low', 'None'],
   ['b06b', 6, 45.5, "The examiner's palm under his right heel lifts it 5 cm; he pushes down into the hand and holds (the hand does not rise).", 'hipextR', 'Rustle'],
   ['b06c', 6, 48.3, 'Hard cut to his LEFT: the same.', 'hipextL', 'Rustle'],
-  ['b07a', 7, 50.7, 'HOLD 50.0-51.5 s. No caption.', 'kneeflexR: from his right side', 'None'],
+  ['b07a', 7, 1523 / 30, 'HOLD 50.0-51.5 s. No caption.', 'kneeflexR: from his right side', 'None'],
   ['b07b', 7, 53.5, 'Knee bent, foot flat on the bed; the palm cups the back of the heel; he pulls the heel in and holds (the hamstrings firm).', 'kneeflexR', 'Rustle as the heel slides up'],
   ['b07c', 7, 56.3, 'Hard cut to his LEFT: the same.', 'kneeflexL', 'Rustle'],
-  ['b08a', 8, 58.7, 'HOLD 58.0-59.5 s. No caption.', 'kneeextR: from his right side', 'None'],
+  ['b08a', 8, 1763 / 30, 'HOLD 58.0-59.5 s. No caption.', 'kneeextR: from his right side', 'None'],
   ['b08b', 8, 62.0, "Knee bent 60 degrees over the examiner's left forearm (heel on the bed); the right palm on the lower shin; he straightens against it and holds (the quadriceps firms).", 'kneeextR', 'Rustle'],
   ['b08c', 8, 64.6, 'Hard cut to his LEFT: the same.', 'kneeextL', 'Rustle'],
-  ['b09a', 9, 66.7, 'HOLD 66.0-67.5 s. No caption.', 'dorsiR: from his right side at foot height', 'None'],
-  ['b09b', 9, 69.3, 'He pulls the foot up (ankle +15); the palm presses down on the top of the foot; he holds (tibialis anterior stands out).', 'dorsiR', 'Very soft rustle'],
+  ['b09a', 9, 2003 / 30, 'HOLD 66.0-67.5 s. No caption.', 'dorsiR: from his right side at ankle height', 'None'],
+  ['b09b', 9, 69.3, 'He pulls the foot up (ankle +15); the palm lies across the top of the middle of the foot (over the metatarsals), the fingers across the foot, pressing down; he holds (tibialis anterior stands out).', 'dorsiR: from his side at ankle height', 'Very soft rustle'],
   ['b09c', 9, 71.7, 'Hard cut to his LEFT: the same.', 'dorsiL', 'None'],
-  ['b10a', 10, 74.2, 'HOLD 73.5-75.0 s. No caption.', 'plantarR: from his right side at foot height', 'None'],
-  ['b10b', 10, 77.0, 'The palm flat on the ball of the foot; he pushes down like a pedal (ankle -20) and holds (the calf firms).', 'plantarR', 'Very soft rustle'],
+  ['b10a', 10, 74.2, 'HOLD 73.5-75.0 s. No caption.', 'plantarR: from his right side at ankle height', 'None'],
+  ['b10b', 10, 77.0, 'The palm flat on the ball of the foot; he pushes the foot clearly down like a pedal (ankle -30) and holds (the calf firms).', 'plantarR: from his side at ankle height', 'Very soft rustle'],
   ['b10c', 10, 79.3, 'Hard cut to his LEFT: the same; then a hard cut back to his right side (81.0 s).', 'plantarL', 'None'],
   ['b11a', 11, 82.6, 'Both legs straight, the hands at rest; the camera pulls back.', 'One continuous move plantarR -> home (81.3-84.0 s)', 'Room ambience'],
   ['b11b', 11, 84.98, 'The CNS home shot, held still for the last second: pixel-identical to the first frame.', 'SET.HOME_CNS, still 84.0-85.0 s', 'Room ambience fades out over the last 0.5 s'],
@@ -62,6 +62,8 @@ REV.push({ id: 're_ta_during', group: 'e', t: 69.5, title: 'Tibialis anterior: d
 REV.push({ id: 're_calf_before', group: 'e', t: 77.0, title: 'Calf, foot pushed down: before (no firming)', cam: { pos: [3.4, 6.35, 5.2], target: [3.6, 6.3, 0.9], fov: 28, focus: [3.6, 6.25, 1.3], aperture: 0 }, firmOff: true, noCaption: true, hideEx: true });
 REV.push({ id: 're_calf_during', group: 'e', t: 77.0, title: 'Calf: during the resistance (firms)', cam: { pos: [3.4, 6.35, 5.2], target: [3.6, 6.3, 0.9], fov: 28, focus: [3.6, 6.25, 1.3], aperture: 0 }, noCaption: true, hideEx: true, diffWith: 're_calf_before' });
 
+REV.push({ id: 'rf_dorsi_R', group: 'f', t: 69.3, title: 'Ankle dorsiflexion hold (right), from his side at ankle height', cam: null, ankle: 'R', noCaption: true });
+REV.push({ id: 'rf_plantar_R', group: 'f', t: 77.0, title: 'Plantar flexion hold (right), the same camera height and side', cam: null, ankle: 'R', noCaption: true });
 const { srv, url } = await serve();
 const browser = await launch({ gpu: false });
 const meta = fs.existsSync(path.join(OUT, 'storyboard.json')) ? JSON.parse(fs.readFileSync(path.join(OUT, 'storyboard.json'), 'utf8')) : { panels: {} };
@@ -106,15 +108,24 @@ try {
         const [name, side] = id.split('_'), aux = name === 'kneeextAux', h = aux ? (side === 'R' ? 'L' : 'R') : side, leg = aux ? (side === 'R' ? 'L' : 'R') : side;
         const legs = aux ? [leg, side] : [leg];
         const res = CONTACT.review(P, Wd.EX[h], legs);
-        const named = aux ? ['palm', 'forearm'] : ['palm'];
-        out.gaps[id] = Object.fromEntries(Object.entries(res).map(([k, v]) => [k, { mm: +(v.gap * 100).toFixed(2), leg: v.leg }]));
-        for (const [k, v] of Object.entries(res)) {
-          const mm = v.gap * 100, show = named.includes(k) || mm < 5;
-          if (!show || !v.at || !v.skin) continue;
-          const col = mm < 0 ? '#ff5a4f' : mm <= 1.5 ? '#7dff9a' : '#ffd36b';
-          const [X, Y] = arrow(v.at, v.skin, col);
-          label(`${aux && k === 'palm' ? 'other hand palm' : k} ${mm.toFixed(2)} mm`, X + 6, Y - 6, col);
+        // ALL five digits and the palm (and the forearm under the knee), measured from the meshes now; a digit is either
+        // ON the skin (< 1.5 mm, arrow to the skin) or curled into the hand (dot, its distance to the skin)
+        const dig = (Wd.SOLVED.contacts[id] && Wd.SOLVED.contacts[id].digits) || {};
+        out.gaps[id] = Object.fromEntries(Object.entries(res).map(([k, v]) => [k, { mm: +(v.gap * 100).toFixed(2), leg: v.leg, state: k === 'palm' || k === 'forearm' ? null : (v.gap * 100 < 1.5 && v.gap >= 0 ? 'on skin' : dig[k] && dig[k].state === 'curled' ? 'curled' : 'FLOATING') }]));
+        for (const k of ['palm', 'thumb', 'index', 'middle', 'ring', 'little', ...(aux ? ['forearm'] : [])]) {
+          const v = res[k]; if (!v || !v.at) continue;
+          const mm = v.gap * 100, st = out.gaps[id][k].state, pre = aux && k !== 'forearm' ? 'other hand ' : '';
+          if (st === 'curled') { const [X, Y] = scr(v.at); x.fillStyle = '#9fc4ff'; x.beginPath(); x.arc(X, Y, 3.2, 0, 7); x.fill(); label(`${pre}${k} curled into the hand (${mm.toFixed(1)} mm)`, X + 6, Y - 6, '#9fc4ff'); continue; }
+          const col = mm < 0 || st === 'FLOATING' ? '#ff5a4f' : '#7dff9a';
+          const [X, Y] = v.skin ? arrow(v.at, v.skin, col) : scr(v.at);
+          label(`${pre}${k} ${mm.toFixed(2)} mm${st === 'FLOATING' ? ' FLOATING' : ''}`, X + 6, Y - 6, col);
         }
+      }
+      if (p.ankle) {   // the ankle angle: set (the leg state) and measured from the mesh landmarks (foot line to shin line)
+        const set = P.leg(p.ankle).ankle, meas = window.CNS6_FOOT_ANGLE(p.ankle);
+        out.ankle = { setDeg: +set.toFixed(1), measuredDeg: +meas.toFixed(1) };
+        x.font = '600 26px Fredoka, sans-serif'; const txt = `ankle ${set >= 0 ? '+' : ''}${set.toFixed(1)} deg set, ${meas >= 0 ? '+' : ''}${meas.toFixed(1)} deg measured`, w = x.measureText(txt).width + 24;
+        x.fillStyle = 'rgba(10,30,32,0.85)'; x.fillRect(18, H - 58, w, 40); x.fillStyle = '#fff7c2'; x.fillText(txt, 30, H - 29);
       }
       if (p.heel) {   // the heel on the mattress: the lowest point of the foot above the mattress top
         const m = P.legMeshes[p.heel]; m.updateWorldMatrix(true, false); const A = m.geometry.attributes.position, R = m.geometry.attributes.restPos, v = V(0, 0, 0); let best = { g: Infinity };
