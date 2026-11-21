@@ -31,7 +31,7 @@ try {
       x.drawImage(b, 10, y + 26, sw, sh); x.drawImage(a, 20 + sw, y + 26, sw, sh);
       x.fillStyle = '#f8eedb'; x.font = '600 17px Fredoka, sans-serif';
       x.fillText(`Beat ${beat} - storyboard panel ${id} (t = ${st.t} s)`, 10, y + 18);
-      x.fillText(`animation frame ${i} (render.mjs path)`, 20 + sw, y + 18); x.font = '500 14px Fredoka, sans-serif'; x.fillText(`mean diff ${st.meanDiff}/255, max ${mx}, ${(over8 / (W * H) * 100).toFixed(2)}% px > 8 (JPEG panel)`, 20 + sw + 330, y + 18);
+      x.fillText(`animation frame ${i} (render.mjs path)`, 20 + sw, y + 18); x.font = '500 14px Fredoka, sans-serif'; x.fillText(`mean diff ${st.meanDiff}/255, max ${mx}, ${(over8 / (W * H) * 100).toFixed(2)}% px > 8`, 20 + sw + 330, y + 18);
     }
     return { png: out.toDataURL('image/png').split(',')[1], stats };
   }, { PAIRS, panels, W, H });
