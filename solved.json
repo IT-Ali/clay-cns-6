@@ -1,6 +1,6 @@
 {
- "hash": "aca3ae11",
- "version": "cns6-solve-v14",
+ "hash": "a943c648",
+ "version": "cns6-solve-v15",
  "made": "build machine",
  "legs": {
   "R": {
@@ -1035,77 +1035,76 @@
    "beyondToeTipsMm": -11.1
   },
   "plantar_R": {
-   "vi": 42216,
+   "vi": 41928,
    "sol": {
-    "offset": 0.5754530618625909,
-    "roll": -40,
+    "offset": 0.2421433111970702,
+    "roll": 40,
     "pitch": 0,
     "curl": {
      "index": [
-      0.8737670898437497,
-      0.8300787353515622,
-      0.5242602539062499
+      1.09378662109375,
+      1.0390972900390623,
+      0.6562719726562499
      ],
      "middle": [
-      0.9269775390624999,
-      0.8806286621093748,
-      0.5561865234375
+      1.0724853515624995,
+      1.0188610839843744,
+      0.6434912109374996
      ],
      "ring": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      1.0667785644531245,
+      1.0134396362304683,
+      0.6400671386718747
      ],
      "little": [
-      1.5,
-      1.4249999999999998,
-      0.8999999999999999
+      0.8226928710937498,
+      0.7815582275390622,
+      0.49361572265624987
      ]
     },
     "thumb": [
-     1.0429443359375,
+     0.5985614013671876,
      0,
-     0.875380859375,
-     0.7178173828125
+     0.4944812011718751,
+     0.4004010009765626
     ]
    },
    "gapsMm": {
-    "palm": 31.826,
+    "palm": 0.05,
     "index": 0.05,
     "middle": 0.05,
-    "ring": 23.624,
-    "little": 45.443,
+    "ring": 0.05,
+    "little": 0.05,
     "thumb": 0.05,
-    "forearm": 37.801
+    "forearm": 9.346
    },
    "digits": {
     "index": {
-     "c": 0.8738,
+     "c": 1.0938,
      "state": "on skin",
      "mm": 0.05
     },
     "middle": {
-     "c": 0.927,
+     "c": 1.0725,
      "state": "on skin",
      "mm": 0.05
     },
     "ring": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 23.624
+     "c": 1.0668,
+     "state": "on skin",
+     "mm": 0.05
     },
     "little": {
-     "c": 1.5,
-     "state": "curled",
-     "mm": 45.443
+     "c": 0.8227,
+     "state": "on skin",
+     "mm": 0.05
     },
     "thumb": {
-     "c": 1.3756,
+     "c": 0.7408,
      "state": "on skin",
      "mm": 0.05
     }
-   },
-   "culprit": "thumb (lifted 5.95 mm)"
+   }
   },
   "tone_L": {
    "vi": 17304,
@@ -1695,72 +1694,72 @@
    "beyondToeTipsMm": -11.1
   },
   "plantar_L": {
-   "vi": 42216,
+   "vi": 41928,
    "sol": {
-    "offset": 0.24084940853769687,
+    "offset": 0.24214352544194004,
     "roll": -40,
     "pitch": 0,
     "curl": {
      "index": [
-      1.0904296875,
-      1.0359082031249998,
-      0.6542578124999999
+      1.09378662109375,
+      1.0390972900390623,
+      0.6562719726562499
      ],
      "middle": [
-      1.1028137207031246,
-      1.0476730346679684,
-      0.6616882324218747
+      1.0724853515624995,
+      1.0188610839843744,
+      0.6434912109374996
      ],
      "ring": [
-      1.0773315429687498,
-      1.0234649658203123,
-      0.6463989257812498
+      1.0667785644531245,
+      1.0134396362304683,
+      0.6400671386718747
      ],
      "little": [
-      0.7897705078124999,
-      0.7502819824218748,
-      0.4738623046874999
+      0.8226928710937498,
+      0.7815582275390622,
+      0.49361572265624987
      ]
     },
     "thumb": [
-     0.5894824218749999,
+     0.5985614013671876,
      0,
-     0.48669921874999994,
-     0.393916015625
+     0.4944812011718751,
+     0.4004010009765626
     ]
    },
    "gapsMm": {
     "palm": 0.05,
     "index": 0.05,
     "middle": 0.05,
-    "ring": 0.051,
+    "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 10.343
+    "forearm": 9.327
    },
    "digits": {
     "index": {
-     "c": 1.0904,
+     "c": 1.0938,
      "state": "on skin",
      "mm": 0.05
     },
     "middle": {
-     "c": 1.1028,
+     "c": 1.0725,
      "state": "on skin",
      "mm": 0.05
     },
     "ring": {
-     "c": 1.0773,
+     "c": 1.0668,
      "state": "on skin",
-     "mm": 0.051
+     "mm": 0.05
     },
     "little": {
-     "c": 0.7898,
+     "c": 0.8227,
      "state": "on skin",
      "mm": 0.05
     },
     "thumb": {
-     "c": 0.7278,
+     "c": 0.7408,
      "state": "on skin",
      "mm": 0.05
     }
@@ -1916,7 +1915,7 @@
   "kneeext_R kept from the previous solve",
   "kneeextAux_R kept from the previous solve",
   "dorsi_R kept from the previous solve",
-  "plantar_R kept from the previous solve",
+  "plantar_R vi 41928 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":9.346}",
   "tone_L kept from the previous solve",
   "knee_L kept from the previous solve",
   "hipflex_L kept from the previous solve",
@@ -1925,11 +1924,10 @@
   "kneeext_L kept from the previous solve",
   "kneeextAux_L kept from the previous solve",
   "dorsi_L kept from the previous solve",
-  "plantar_L kept from the previous solve",
-  "plantar_R mirror tried, not clean: {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.051,\"little\":0.05,\"thumb\":-26.172,\"forearm\":10.354}",
-  "solved in 40.7 s"
+  "plantar_L vi 41928 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":9.327}",
+  "solved in 542.4 s"
  ],
- "ms": 40730,
+ "ms": 542435,
  "firm": {
   "Rquadriceps": 14904,
   "Rhamstrings": 15626,
