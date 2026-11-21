@@ -1,6 +1,6 @@
 {
- "hash": "a943c648",
- "version": "cns6-solve-v15",
+ "hash": "3f3ea3ed",
+ "version": "cns6-solve-v16",
  "made": "build machine",
  "legs": {
   "R": {
@@ -489,7 +489,7 @@
     "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 21.836
+    "forearm": 20.516
    },
    "digits": {
     "index": {
@@ -781,7 +781,7 @@
     "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 20.87
+    "forearm": 20.852
    },
    "digits": {
     "index": {
@@ -853,7 +853,7 @@
     "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 37.288
+    "forearm": 37.113
    },
    "digits": {
     "index": {
@@ -925,7 +925,7 @@
     "ring": 0.05,
     "little": 0.051,
     "thumb": 0.05,
-    "forearm": 27.443
+    "forearm": 27.145
    },
    "digits": {
     "index": {
@@ -1148,7 +1148,7 @@
     "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 23.677
+    "forearm": 20.877
    },
    "digits": {
     "index": {
@@ -1440,7 +1440,7 @@
     "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 20.868
+    "forearm": 20.849
    },
    "digits": {
     "index": {
@@ -1512,7 +1512,7 @@
     "ring": 0.05,
     "little": 0.05,
     "thumb": 0.05,
-    "forearm": 37.168
+    "forearm": 37.17
    },
    "digits": {
     "index": {
@@ -1584,7 +1584,7 @@
     "ring": 0.05,
     "little": 0.051,
     "thumb": 0.05,
-    "forearm": 27.443
+    "forearm": 27.145
    },
    "digits": {
     "index": {
@@ -1907,27 +1907,27 @@
   "L plantarDown {\"ankle\":-30,\"hipFlex\":0.88} mattress gaps (mm) {\"ankleDeg\":-29.7,\"heelMm\":-5.83,\"ballMm\":84.04,\"lowestLowerLegMm\":-5.83,\"lowestAnyMm\":-5.83}",
   "L footFlat {\"knee\":90,\"ankle\":-39.48,\"hipFlex\":51.69} mattress gaps (mm) {\"ankleDeg\":-39.3,\"heelMm\":5.33,\"ballMm\":6.83,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.81}",
   "L footFlatGive {\"knee\":89.65,\"ankle\":-39.48,\"hipFlex\":51.48} mattress gaps (mm) {\"ankleDeg\":-39.3,\"heelMm\":5.26,\"ballMm\":7.16,\"lowestLowerLegMm\":0.05,\"lowestAnyMm\":-0.81}",
-  "tone_R kept from the previous solve",
-  "knee_R kept from the previous solve",
-  "hipflex_R kept from the previous solve",
-  "hipext_R kept from the previous solve",
-  "kneeflex_R kept from the previous solve",
-  "kneeext_R kept from the previous solve",
-  "kneeextAux_R kept from the previous solve",
-  "dorsi_R kept from the previous solve",
+  "tone_R vi 17304 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":20.516}",
+  "knee_R vi 17162 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":11.071} slide lift 19.5",
+  "hipflex_R vi 17112 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":14.999}",
+  "hipext_R vi 35875 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":11.429} slide lift 2.6",
+  "kneeflex_R vi 33480 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":20.852}",
+  "kneeext_R vi 30074 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":37.113}",
+  "kneeextAux_R vi 18072 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":27.145} forearm 0.296",
+  "dorsi_R vi 42556 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":15.143}",
   "plantar_R vi 41928 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":9.346}",
-  "tone_L kept from the previous solve",
-  "knee_L kept from the previous solve",
-  "hipflex_L kept from the previous solve",
-  "hipext_L kept from the previous solve",
-  "kneeflex_L kept from the previous solve",
-  "kneeext_L kept from the previous solve",
-  "kneeextAux_L kept from the previous solve",
-  "dorsi_L kept from the previous solve",
+  "tone_L vi 17304 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":20.877}",
+  "knee_L vi 17162 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":11.659} slide lift 19.5",
+  "hipflex_L vi 17112 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":15.338}",
+  "hipext_L vi 35875 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.051,\"little\":0.05,\"thumb\":0.05,\"forearm\":11.431} slide lift 2.6",
+  "kneeflex_L vi 33480 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":20.849}",
+  "kneeext_L vi 30074 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.051,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":37.17}",
+  "kneeextAux_L vi 18072 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.051,\"thumb\":0.05,\"forearm\":27.145} forearm 0.069",
+  "dorsi_L vi 42556 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":15.143}",
   "plantar_L vi 41928 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":9.327}",
-  "solved in 542.4 s"
+  "solved in 2636.2 s"
  ],
- "ms": 542435,
+ "ms": 2636242,
  "firm": {
   "Rquadriceps": 14904,
   "Rhamstrings": 15626,
