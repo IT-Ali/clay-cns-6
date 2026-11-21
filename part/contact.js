@@ -128,9 +128,8 @@
   CONTACT.parts = (arm) => {
     const h = arm.hand, F = h.fingers, parts = { palm: [] };
     for (const c of h.body.children) if (c.isMesh) parts.palm.push(c);
-    for (const c of h.thumb.meta.children) if (c.isMesh) parts.palm.push(c);
     for (const k of Object.keys(F)) { parts[k] = []; F[k].mcp.traverse((m) => { if (m.isMesh) parts[k].push(m); }); }
-    parts.thumb = []; h.thumb.mcp.traverse((m) => { if (m.isMesh) parts.thumb.push(m); });
+    parts.thumb = []; h.thumb.meta.traverse((m) => { if (m.isMesh) parts.thumb.push(m); });   // the metacarpal and both phalanges
     parts.forearm = []; arm.fore.traverse((m) => { if (m.isMesh && m.material === arm.fore.children[0].material) parts.forearm.push(m); });
     return parts;
   };
@@ -259,13 +258,24 @@
     const gapOf = (k) => { CONTACT.apply(P, arm, spec, sol); return CONTACT.partGap(sk, CONTACT.parts(arm)[k], 1, 0.12).gap; };
     // 1. the palm
     for (let it = 0; it < 10; it++) sol.offset += K.clamp(T - gapOf(touch), -0.15, 0.15);
+    // a digit: scan its whole range of bend; take the touching boundary (the gap crossing TARGET) nearest its natural
+    // bend, refined by bisection on the outside; with no crossing it is curled into the hand (never reaches the skin)
+    // or, if it is inside everywhere, at its least deep bend (the hand is then lifted)
     const settleDigit = (k) => {
-      const thumb = k === 'thumb', lo = thumb ? -1.2 : -0.5, hi = thumb ? 1.4 : 1.6, set = (c) => { if (thumb) sol.thumb = thumbAt(tb, c); else sol.curl[k] = fingerCurl(c); };
-      let prev = null, found = null;
-      for (let c = lo; c <= hi + 1e-6; c += 0.1) { set(c); if (gapOf(k) <= T) { found = c; break; } prev = c; }
-      if (found == null) { const c = thumb ? CONTACT.THUMB_CURLED : CONTACT.FINGER_CURLED; set(c); sol.digits[k] = { c: +c.toFixed(3), state: 'curled' }; return; }
-      if (prev == null) { set(found); sol.digits[k] = { c: +found.toFixed(3), state: 'on skin' }; return; }
-      let a = prev, z = found;                       // gap(a) > T >= gap(z)
+      const thumb = k === 'thumb', lo = thumb ? -1.2 : -0.5, hi = thumb ? 1.4 : 1.6, c0 = 0, set = (c) => { if (thumb) sol.thumb = thumbAt(tb, c); else sol.curl[k] = fingerCurl(c); };
+      const cs = [], gs = [];
+      for (let c = lo; c <= hi + 1e-6; c += 0.1) { set(c); cs.push(c); gs.push(gapOf(k)); }
+      let best = null;
+      for (let i = 0; i < cs.length - 1; i++) {
+        if ((gs[i] > T) === (gs[i + 1] > T)) continue;
+        const d = Math.min(Math.abs(cs[i] - c0), Math.abs(cs[i + 1] - c0));
+        if (!best || d < best.d) best = { d, out: gs[i] > T ? cs[i] : cs[i + 1], inn: gs[i] > T ? cs[i + 1] : cs[i] };
+      }
+      if (!best) {
+        if (gs.every((g) => g > T)) { const c = thumb ? CONTACT.THUMB_CURLED : CONTACT.FINGER_CURLED; set(c); sol.digits[k] = { c: +c.toFixed(3), state: 'curled' }; return; }
+        let im = 0; gs.forEach((g, i) => { if (g > gs[im]) im = i; }); set(cs[im]); sol.digits[k] = { c: +cs[im].toFixed(3), state: 'inside at every bend' }; return;
+      }
+      let a = best.out, z = best.inn;
       for (let j = 0; j < 14; j++) { const m = (a + z) / 2; set(m); if (gapOf(k) > T) a = m; else z = m; }
       set(a); sol.digits[k] = { c: +a.toFixed(4), state: 'on skin' };
     };
