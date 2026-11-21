@@ -314,7 +314,11 @@
   CONTACT.solve = (P, arm, spec) => {
     const center = CONTACT.vertex(P, spec.leg, spec.vi, spec.patch).p, sk = CONTACT.legSkin(P, spec.leg, center, 2.8);
     let best = null;
-    for (const r of spec.rollSearch || [0]) { const sol = solveOnce(P, arm, spec, sk, r); if (!best || sol.score < best.score - 1e-5) best = sol; }
+    // a turn wins if the palm touches AND every digit is on the skin or curled (an invalid digit costs 10 cm)
+    for (const r of spec.rollSearch || [0]) {
+      const sol = solveOnce(P, arm, spec, sk, r), bad = Object.values(sol.digits).filter((d) => d.state !== 'on skin' && d.state !== 'curled').length;
+      sol.score += bad; if (!best || sol.score < best.score - 1e-5) best = sol;
+    }
     CONTACT.apply(P, arm, spec, best);
     return best;
   };

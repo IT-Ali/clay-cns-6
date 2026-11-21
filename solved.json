@@ -1,6 +1,6 @@
 {
- "hash": "2361cf37",
- "version": "cns6-solve-v12",
+ "hash": "852773f6",
+ "version": "cns6-solve-v13",
  "made": "build machine",
  "legs": {
   "R": {
@@ -1063,10 +1063,10 @@
      ]
     },
     "thumb": [
-     -0.5721697998046874,
+     -0.76,
      0,
-     -0.5090026855468749,
-     -0.4358355712890625
+     -0.6699999999999999,
+     -0.57
     ]
    },
    "gapsMm": {
@@ -1075,7 +1075,7 @@
     "middle": 0.05,
     "ring": 0.05,
     "little": 0.05,
-    "thumb": 11.835,
+    "thumb": 11.902,
     "forearm": 5.168
    },
    "digits": {
@@ -1100,9 +1100,9 @@
      "mm": 0.05
     },
     "thumb": {
-     "c": -0.9317,
-     "state": "FAIL: floating",
-     "mm": 11.835
+     "c": -1.2,
+     "state": "FAIL: no touch and cannot curl",
+     "mm": 11.902
     }
    }
   },
@@ -1914,8 +1914,8 @@
   "kneeflex_R kept from the previous solve",
   "kneeext_R kept from the previous solve",
   "kneeextAux_R kept from the previous solve",
-  "dorsi_R vi 42556 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":15.143}",
-  "plantar_R vi 42216 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":11.835,\"forearm\":5.168}",
+  "dorsi_R kept from the previous solve",
+  "plantar_R vi 42216 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":11.902,\"forearm\":5.168}",
   "tone_L kept from the previous solve",
   "knee_L kept from the previous solve",
   "hipflex_L kept from the previous solve",
@@ -1923,11 +1923,11 @@
   "kneeflex_L kept from the previous solve",
   "kneeext_L kept from the previous solve",
   "kneeextAux_L kept from the previous solve",
-  "dorsi_L vi 42556 gaps(mm) {\"palm\":0.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":15.143}",
+  "dorsi_L kept from the previous solve",
   "plantar_L vi 42216 gaps(mm) {\"palm\":15.05,\"index\":0.05,\"middle\":0.05,\"ring\":0.05,\"little\":0.05,\"thumb\":0.05,\"forearm\":19.716}",
-  "solved in 1190.9 s"
+  "solved in 432.7 s"
  ],
- "ms": 1190854,
+ "ms": 432742,
  "firm": {
   "Rquadriceps": 14904,
   "Rhamstrings": 15626,
