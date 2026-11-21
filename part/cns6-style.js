@@ -567,8 +567,8 @@
         hipextR: shot([7.4, 8.3, 12.8], [5.9, 6.9, 0.9], [6.9, 6.6, 1.0], 0.035),
         kneeflexR: shot([8.4, 8.6, 11.6], [3.9, 7.5, 0.9], [4.5, 6.9, 1.0], 0.04),
         kneeextR: shot([8.6, 9.2, 14.4], [3.7, 7.6, 0.6], [4.4, 7.4, 1.0], 0.04),
-        dorsiR: shot([6.3, 6.95, 8.9], [5.9, 6.95, 1.1], [6.7, 7.0, 1.2], 0.03),          // from his side at ankle height: the shin, the whole foot, the ankle angle
-        plantarR: shot([6.6, 6.95, 8.9], [6.2, 6.95, 1.1], [7.0, 7.0, 1.2], 0.03),        // the same height and side view as dorsiflexion
+        dorsiR: shot([6.0, 6.95, 11.2], [5.7, 7.45, 1.1], [6.7, 7.2, 1.2], 0.03),          // from his side at ankle height: the shin, the whole foot, the ankle angle
+        plantarR: shot([6.3, 6.95, 11.2], [6.0, 7.45, 1.1], [7.1, 7.2, 1.2], 0.03),        // the same height and side view as dorsiflexion
       };
       for (const k of ['toneR', 'hipflexR', 'hipextR', 'kneeflexR', 'kneeextR', 'dorsiR', 'plantarR']) SHOTS[k.slice(0, -1) + 'L'] = mirrorShot(SHOTS[k]);
       // the camera schedule: runs of [time, shot] (a run is one continuous K.path move; a new run is a HARD CUT)
